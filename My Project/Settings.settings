@@ -1,0 +1,94 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="UserFormOpen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">N</Value>
+    </Setting>
+    <Setting Name="UserFormHeight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="UserFormWidth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="ComputerFormOpen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">N</Value>
+    </Setting>
+    <Setting Name="ComputerHeight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="ComputerWidth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="UserGroupOpen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No</Value>
+    </Setting>
+    <Setting Name="UserGroupX" Type="System.String" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="UserGroupHeight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="UserGroupWidth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="SCCMReportOpen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No</Value>
+    </Setting>
+    <Setting Name="SCCMReportWidth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="SCCMReportHeight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="UserGroupY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="UserFormY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="UserFormX" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ComputerX" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ComputerY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="SCCMReportX" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="SCCMReportY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="MainX" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="MainY" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="MainHeight" Type="System.String" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="MainWidth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="SendTo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">rogoflap@gmail.com</Value>
+    </Setting>
+    <Setting Name="LDAP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LDAP://stl02DC</Value>
+    </Setting>
+    <Setting Name="LogFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\work\vbnet\adlookup</Value>
+    </Setting>
+    <Setting Name="ExactDBServer" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;stl01app&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">stl01app</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

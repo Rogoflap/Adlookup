@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Computer Info 1</title>
+<style type="text/css">
+.auto-style1 {
+	border: 0px solid #000000;
+}
+.auto-style2 {
+	border-width: 0px;
+}
+.auto-style3 {
+	border-style: solid;
+	border-width: 1px;
+}
+</style>
+</head>
+
+<body>
+This is the Computer Info page.
+
+Here we query the AD Directory for Computer entries.<p>&nbsp;</p>
+<p>We show the following information.</p>
+&nbsp;<table class="auto-style1" style="width: 75%">
+	<tr>
+		<td class="auto-style3">User</td>
+		<td class="auto-style3">User&#39;s Name (If USERID is in Computer Name)</td>
+	</tr>
+	<tr>
+		<td class="auto-style3">Userid</td>
+		<td class="auto-style3">User&#39;s ID (Characters 4-7) of Computer&#39;s Name)</td>
+	</tr>
+	<tr>
+		<td class="auto-style3">Name</td>
+		<td class="auto-style3">Computer Name</td>
+	</tr>
+	<tr>
+		<td class="auto-style3">OS</td>
+		<td class="auto-style3">Operating System </td>
+	</tr>
+	<tr>
+		<td class="auto-style3">Service Pack</td>
+		<td class="auto-style3">Operating System Service Pack</td>
+	</tr>
+	<tr>
+		<td class="auto-style3">Location</td>
+		<td class="auto-style3">First 4 Letters of Computer Name</td>
+	</tr>
+	<tr>
+		<td class="auto-style3">OU</td>
+		<td class="auto-style3">OU Folder Computer is in</td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+<p>If you do a right click with the mouse on&nbsp; a row in the grid you will ge 
+tthe following options.</p>
+<table class="auto-style2" style="width: 75%">
+	<tr>
+		<td class="auto-style3" style="width: 355px">Ping Machine</td>
+		<td class="auto-style3">Will Ping the Machine Name</td>
+	</tr>
+	<tr>
+		<td class="auto-style3" style="width: 355px">*&nbsp; SCCM Info</td>
+		<td class="auto-style3">Will show SCCM information about machine (IF 
+		your userid is in the SCCM Group)</td>
+	</tr>
+	<tr>
+		<td class="auto-style3" style="width: 355px">Dameware Machine</td>
+		<td class="auto-style3">Will start Dameware Mini Remote session to that 
+		machine (If you have Dameware Mini Remote Installed)</td>
+	</tr>
+	<tr>
+		<td class="auto-style3" style="width: 355px">Remote Desktop Machine</td>
+		<td class="auto-style3">Will start up a remote desktop session to that 
+		machine.</td>
+	</tr>
+	<tr>
+		<td class="auto-style3" style="width: 355px">Print Grid (All Rows / 
+		Selected Rows)</td>
+		<td class="auto-style3">Prints out rows in the grid&nbsp;&nbsp; (Print 
+		Preivew first allows you to set up the print (Portraid / Landscape, 
+		Border width etc)</td>
+	</tr>
+	<tr>
+		<td class="auto-style3" style="width: 355px">Export to Excel (All Rows / 
+		Selected Rows)</td>
+		<td class="auto-style3">Allows the contents of the grid to be Showin in 
+		Excel.</td>
+	</tr>
+</table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+﻿
+Version 2.1.6
+
+	*  Addressed issue when on the User Info Screen and right click Show Member Info was showing
+	   even when MemberInfo column was not present.  Caused Run Time Error.
+
+	*  Fixed Issue with Send Suggestion causing error when hitting Send Button.
+
+	* 123

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Table>
+  <Query>
+    <QueryName>99999 Contacts</QueryName>
+    <SQL>Select db_name(), * from vw_999999Contacts</SQL>
+  </Query>
+ <Query>
+    <QueryName>BOL</QueryName>
+    <SQL>Select db_name(),* from VW_BOL</SQL>
+  </Query>
+    <Query>
+      <QueryName>ConfirmShip</QueryName>
+      <SQL>Select db_name(), * from  VW_ConfirmShip</SQL>
+    </Query>
+    <Query>
+      <QueryName>Customer List</QueryName>
+      <SQL>Select db_name(),* from arcusfil_wv</SQL>
+    </Query>
+    <Query>
+      <QueryName>DIFF QOH</QueryName>
+      <SQL>Select db_Name(), * from vw_DiffQOH</SQL>
+    </Query>
+    <Query>
+      <QueryName>Dropship Order</QueryName>
+      <SQL>Select db_name(), * from vw_DropShipOrder</SQL>
+    </Query>
+    <Query>
+      <QueryName>Late Order</QueryName>
+      <SQL>Select db_name(), * from VW_LateOrder</SQL>
+    </Query>
+    <Query>
+      <QueryName>LOC QOH</QueryName>
+      <SQL>Select db_Name(), * from vw_LocQOH</SQL>
+    </Query>
+    <Query>
+      <QueryName>Item Last Usage</QueryName>
+      <SQL>Select db_name(),* from VW_1LastUsage</SQL>
+    </Query>
+   <Query>
+    <QueryName>PO Cost VS Standard</QueryName>
+    <SQL>Select db_name(),* from vw_pocostvrsstd</SQL>
+  </Query>
+  <Query>
+    <QueryName>New Item Created</QueryName>
+    <SQL>Select db_Name(), * from VW_NewItemCreated</SQL>
+  </Query>
+  <Query>
+    <QueryName>Order Loc DropShip</QueryName>
+    <SQL>Select db_Name(), * from vw_OrderLocDropShip</SQL>
+  </Query>
+  <Query>
+    <QueryName>PO Email</QueryName>
+    <SQL>Select db_name(), * from vw_POEmail</SQL>
+  </Query>
+  <Query>
+    <QueryName>PO Request</QueryName>
+    <SQL>Select db_Name(), * from vw_POReq</SQL>
+  </Query>
+  <Query>
+    <QueryName>Price Code List</QueryName>
+    <SQL>
+      select p.cd_tp, case p.cd_tp  
+      when 1 then 'Customer and Item' 
+      when 2 then 'Customer and Product Category' 
+      When 3 Then 'Customer Type and Item' 
+      when 4 then 'Customer Type and Product Category' 
+      When 5 Then 'Customer Only' 
+      when 6 then 'Item Only' 
+      When 7 Then 'Customer Type Only' 
+      When 8 Then 'Product Category Only' else cast(p.cd_tp as CHAR(1)) end as code_desc 
+      , ltrim(p.cd_tp_1_cust_no) as cus_no , c.cmp_name as cus_name , rtrim(cd_tp_1_item_no) as item_no 
+       , i.item_desc_1, p.start_dt, p.end_dt, cd_prc_basis as price_basis, minimum_qty_1 , prc_or_disc_1 , minimum_qty_2 
+      , prc_or_disc_2, minimum_qty_3, prc_or_disc_3, minimum_qty_4, prc_or_disc_4 
+       from oeprcfil_sql p left outer join imitmidx_sql i on p.cd_tp_1_item_no = i.item_no Left outer join cicmpy c on p.cd_tp_1_cust_no = c.debcode 
+    </SQL>
+  </Query>
+  <Query>
+    <QueryName>Quarintine Inventory</QueryName>
+    <SQL>Select db_name(), * from vw_QuarantineInventory</SQL>
+  </Query>
+  <Query>
+    <QueryName>RMA</QueryName>
+    <SQL>Select db_name(), * from vw_RMA</SQL>
+  </Query>
+  <Query>
+    <QueryName>Serial QOH</QueryName>
+    <SQL>Select db_name(),* from vw_SerialQOH</SQL>
+  </Query>
+  <Query>
+    <QueryName>Vendor Sales Person</QueryName>
+    <SQL>
+      SELECT db_name(), cicmpy.id,cmp_name, CompanyType,SalesPersonNumber, h.fullname as SalesPerson,AccountTypeCode,ClassificationId 
+      FROM  [cicmpy] inner join humres h on h.id = SalesPersonNumber
+    </SQL>
+  </Query>
+  <Query>
+    <QueryName>Unique Ship Via Codes</QueryName>
+    <SQL>
+      select distinct b.bedrnr as 'company', o.ship_via_cd, z.code_desc 
+    from oehdrhst_sql o left outer join zAR_Ship_Via z on o.ship_via_cd = z.sy_code cross join bedryf b
+    </SQL>
+  </Query>
+  <Query>
+    <QueryName>Transit Transfer Approved</QueryName>
+    <SQL>Select db_Name(),* from vw_TransitInvApproved</SQL>
+  </Query>
+  <Query>
+    <QueryName>Exact Users - Roles</QueryName>
+    <SQL>
+      select db_name() as [DB],pwr.role_name,pwr.descr64, 
+      hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title, 
+      hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr, 
+      hr.usr_id,hr.job_level As [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked 
+      from [humres] hr  
+       left join pwruc uru on uru.res_id = hr.res_id 
+       left join pwrole pwr on pwr.role_id = uru.role_id
+    </SQL>
+  </Query>
+  <Query>
+    <QueryName>Exact Table List</QueryName>
+    <SQL>SELECT db_name(), * From DDTables</SQL>
+  </Query>
+  <Query>
+    <QueryName>WISYS Users</QueryName>
+    <SQL>select db_name() as DBNAME,username,fullname,admin,securitylvl,isdeleted From wsUsers</SQL>
+  </Query>
+
+</Table>
+
+
+
+
+
+
+
+
+
+
+

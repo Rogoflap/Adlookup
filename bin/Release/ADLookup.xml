@@ -1,0 +1,411 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ADLookup
+</name>
+</assembly>
+<members>
+<member name="T:ADLookup.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:ADLookup.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:ADLookup.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtHardwareDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAutoStartProgramsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtServicesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAddRemoveProgramsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtFilesListDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtNetworkInfoDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtDiskSpaceDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtSoftwareUpdatesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtSoftwareInstalledByUserDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.v_RA_System_SMSInstalledSitesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAddRemoveProgramsReportsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtCompInfoReportDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtComputerListAllDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtPackageDistributionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAdvertisementSummaryDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtCollectionDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAdvertisementDetailDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtHardwareRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAutoStartProgramsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtServicesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAddRemoveProgramsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtFilesListRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtNetworkInfoRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtDiskSpaceRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtSoftwareUpdatesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtSoftwareInstalledByUserRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.v_RA_System_SMSInstalledSitesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAddRemoveProgramsReportsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtCompInfoReportRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtComputerListAllRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtPackageDistributionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAdvertisementSummaryRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtCollectionRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAdvertisementDetailRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtHardwareRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAutoStartProgramsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtServicesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAddRemoveProgramsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtFilesListRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtNetworkInfoRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtDiskSpaceRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtSoftwareUpdatesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtSoftwareInstalledByUserRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.v_RA_System_SMSInstalledSitesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAddRemoveProgramsReportsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtCompInfoReportRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtComputerListAllRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtPackageDistributionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAdvertisementSummaryRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtCollectionRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSet.dtAdvertisementDetailRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtHardwareTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtAutoStartProgramsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtServicesTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtAddRemoveProgramsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtFilesListTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtNetworkInfoTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtDiskSpaceTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtSoftwareUpdatesTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtSoftwareInstalledByUserTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.v_RA_System_SMSInstalledSitesTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtAddRemoveProgramsReportsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtCompInfoReportTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtComputerListAllTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtPackageDistributionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtAdvertisementSummaryTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtCollectionTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.dtAdvertisementDetailTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(ADLookup.SMS_EAIDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(ADLookup.SMS_EAIDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(ADLookup.SMS_EAIDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.UpdateAll(ADLookup.SMS_EAIDataSet)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:ADLookup.SMS_EAIDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+</members>
+</doc>
