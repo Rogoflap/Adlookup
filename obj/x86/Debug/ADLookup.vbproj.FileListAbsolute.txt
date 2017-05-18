@@ -29,17 +29,23 @@ C:\Work\VBPrograms\ADLookup\ADLookup\ADLookup\obj\x86\Debug\ADLookup.UserInfo.re
 C:\Work\VBPrograms\ADLookup\ADLookup\ADLookup\bin\Debug\ADLookup Help.pdf
 C:\Work\VBPrograms\ADLookup\ADLookup\ADLookup\bin\Debug\ReadMe.txt
 c:\work\VBPrograms\ADLookup\ADLookup\ADLookup\obj\x86\Debug\ADLookup.Computershares.resources
-C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.exe
-C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.pdb
 C:\Work\VBNet\ADLookup\bin\Debug\ADLookup Help.pdf
 C:\Work\VBNet\ADLookup\bin\Debug\ReadMe.txt
 C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.exe.config
 C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.exe.manifest
 C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.application
+C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.exe
+C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.pdb
+C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.xml
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.vbproj.ResolveComReference.cache
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.BugFixes.resources
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.ComputerInfo.resources
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.Computershares.resources
+C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.EditXML.resources
+C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.EmpowerEmail.resources
+C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.GeneralData.resources
+C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.Mail.resources
+C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.PrinterInfo.resources
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.UserGroupInfo.resources
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.UserInfo.resources
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.MainParent.resources
@@ -57,7 +63,4 @@ C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.application
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.exe
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.xml
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.pdb
-C:\Work\VBNet\ADLookup\bin\Debug\ADLookup.xml
-C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.PrinterInfo.resources
-C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.GeneralData.resources
-C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.vbprojResolveAssemblyReference.cache
+C:\Work\VBNet\ADLookup\bin\Debug\bin\Debug\SQL.xml

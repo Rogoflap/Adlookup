@@ -35,6 +35,7 @@ Partial Class ComputerInfo
         Me.ReadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tsslStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.labelLastUpdate = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbRefresh = New System.Windows.Forms.ToolStripButton()
@@ -71,7 +72,6 @@ Partial Class ComputerInfo
         Me.Label16 = New System.Windows.Forms.Label()
         Me.txtCompCompName = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.labelLastUpdate = New System.Windows.Forms.ToolStripStatusLabel()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -90,6 +90,7 @@ Partial Class ComputerInfo
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -108,7 +109,6 @@ Partial Class ComputerInfo
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Location = New System.Drawing.Point(12, 155)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -174,6 +174,12 @@ Partial Class ComputerInfo
         Me.tsslStatus.Size = New System.Drawing.Size(46, 17)
         Me.tsslStatus.Text = "Testing"
         Me.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'labelLastUpdate
+        '
+        Me.labelLastUpdate.Name = "labelLastUpdate"
+        Me.labelLastUpdate.Size = New System.Drawing.Size(41, 17)
+        Me.labelLastUpdate.Text = "Label2"
         '
         'ToolTip1
         '
@@ -455,12 +461,6 @@ Partial Class ComputerInfo
         Me.Label15.TabIndex = 27
         Me.Label15.Text = "Computer Name"
         '
-        'labelLastUpdate
-        '
-        Me.labelLastUpdate.Name = "labelLastUpdate"
-        Me.labelLastUpdate.Size = New System.Drawing.Size(41, 17)
-        Me.labelLastUpdate.Text = "Label2"
-        '
         'ComputerInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -476,7 +476,6 @@ Partial Class ComputerInfo
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.KeyPreview = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "ComputerInfo"
         Me.Text = "Outlook Contact Lookup   (Alt-Space to Hide / Visible)"

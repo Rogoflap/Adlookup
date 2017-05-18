@@ -1,0 +1,1196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Table>
+  <Query>
+  <QueryName>99999 Contacts</QueryName>
+   <DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company, * from vw_999999Contacts</SQL>
+  </Query>
+ 
+   <Query>
+  <QueryName>zSTL01DB SourceDatabase</QueryName>  
+  <DBServer>STL01DB</DBServer>
+   <DataBase>Data_WH_2</DataBase>
+      <SQL>
+        select *
+        from SourceDatabase
+	</SQL>
+  </Query>
+  
+  <Query>
+  <QueryName>Admin List Tables and Columns in Database</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <SQL>
+    select table_name,column_Name
+	from information_schema.columns 
+	
+    order by table_name,column_name
+  </SQL>
+  </Query>
+  
+  <Query>
+  <QueryName>Event Manager SQL Queries Status</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <DataBase>KS_Object</DataBase>
+      <SQL>
+   SELECT 
+       [id]
+      ,[priority]
+      ,convert(int,[complete]) as Completed
+      ,[status]
+      ,[description]
+      ,[runtime]
+      ,[schedule_type]
+      ,[triggered]
+      ,[section]
+      ,[section_id]
+      ,[connection_id]
+      ,[changed_dt]
+      ,[changed_user]
+      ,[created_dt]
+      ,[created_user]
+      ,[changed_version]
+      ,[created_version]
+      
+  FROM [KS_Object].[dbo].[out_sql]
+  </SQL>
+  </Query>
+  
+  <Query>
+  <QueryName>Event Manager Email Status</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <DataBase>KS_Object</DataBase>
+      <SQL>
+   select * from out_email
+  </SQL>
+  </Query>
+  
+  
+  <Query>
+  <QueryName>Event Manager Copy Status</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <DataBase>KS_Object</DataBase>
+      <SQL>
+   select * from out_copy
+  </SQL>
+  </Query>
+  
+  
+  <Query>
+  <QueryName>Event Manager Report Status</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <DataBase>KS_Object</DataBase>
+      <SQL>
+   select * from out_report
+  </SQL>
+  </Query>
+  
+  
+   <Query>
+ <QueryName>Exact Sales</QueryName>
+  <DBServer>STL01APP</DBServer>
+      <SQL>
+  select * from oeslshst_sql
+  </SQL>
+  </Query>
+  
+   <Query>
+ <QueryName>Exact Contacts</QueryName>
+  <DBServer>STL01APP</DBServer>
+      <SQL>
+  
+select 
+c.FullName,
+cnt_f_tel,
+cnt_email,
+c.active_y,
+c.YesNoField1 as EmailInvloice,
+h2.fullname as Creator, 
+c.syscreated,h3.fullname as ModBy,
+c.sysmodified
+from cicntp c 
+left join humres h2 on h2.res_id = c.syscreator
+left join humres h3 on h3.res_id = c.sysmodifier
+  </SQL>
+  </Query>
+  
+  
+   <Query>
+ <QueryName>SSRS Reports</QueryName>
+ <DataBase>ReportServer</DataBase>
+ <DBServer>STL01APP</DBServer>
+      <SQL>
+WITH XMLNAMESPACES 
+( DEFAULT 
+  'http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition'
+, 'http://schemas.microsoft.com/SQLServer/reporting/reportdesigner' AS ReportDefinition )
+SELECT  
+CATDATA.Name AS ReportName
+,CATDATA.Path AS ReportPathLocation
+,xmlcolumn.value('(@Name)[1]', 'VARCHAR(250)') AS DataSetName  
+,xmlcolumn.value('(Query/DataSourceName)[1]','VARCHAR(250)') AS DataSoureName 
+,xmlcolumn.value('(Query/CommandText)[1]','VARCHAR(2500)') AS CommandText
+FROM (  
+	SELECT C.Name
+	,c.Path
+	,CONVERT(XML,CONVERT(VARBINARY(MAX),C.Content)) AS reportXML
+	FROM  ReportServer.dbo.Catalog C
+	WHERE  C.Content is not null
+	AND  C.Type = 2
+	) CATDATA
+CROSS APPLY reportXML.nodes('/Report/DataSets/DataSet') xmltable ( xmlcolumn )
+ORDER BY CATDATA.Name
+
+</SQL>
+  </Query>
+  
+  
+  <Query>
+ <QueryName>Event Runtimes</QueryName>
+ <DataBase>KS_Object</DataBase>
+ <DBServer>STL01APP</DBServer>  
+ <SQL>
+Select p.application,p.event,os.runtime,os.status,os.description,p.changed_dt,s.description
+from out_sql os left join package p on p.section_id = os.section_id
+left join sqlalert sql on sql.id = p.section_id
+left join schedule s on s.id = sql.schedule_id
+order by runtime desc
+
+ </SQL>
+  </Query>
+  
+  
+ <Query>
+ <QueryName>BOL</QueryName>
+ <DBServer>STL01APP</DBServer>  
+    <SQL>Select db_name() as Company,* from VW_BOL</SQL>
+  </Query>
+    
+	<Query>
+	<QueryName>ConfirmShip</QueryName>
+	<DBServer>STL01APP</DBServer>
+      
+      <SQL>Select db_name() as Company, * from  VW_ConfirmShip</SQL>
+    </Query>
+    <Query>
+	<QueryName>Customer List</QueryName>
+	<DBServer>STL01APP</DBServer>
+      
+      <SQL>Select db_name() as Company,* from arcusfil_wv</SQL>
+    </Query>
+    <Query>
+	<QueryName>DIFF QOH</QueryName>
+	<DBServer>STL01APP</DBServer>
+      <SQL>Select db_name() as Company, * from vw_DiffQOH</SQL>
+    </Query>
+    <Query>
+	<QueryName>Dropship Order</QueryName>
+	<DBServer>STL01APP</DBServer>
+      
+      <SQL>Select db_name() as Company, * from vw_DropShipOrder</SQL>
+    </Query>
+    <Query>
+	<QueryName>Late Order</QueryName>
+	<DBServer>STL01APP</DBServer>
+      
+      <SQL>Select db_name() as Company, * from VW_LateOrder</SQL>
+    </Query>
+    <Query>
+	<QueryName>LOC QOH</QueryName>
+	<DBServer>STL01APP</DBServer>
+      
+      <SQL>Select db_name() as Company, * from vw_LocQOH</SQL>
+    </Query>
+    <Query>
+	<QueryName>Item Last Usage</QueryName>
+	<DBServer>STL01APP</DBServer>
+      
+      <SQL>Select db_name() as Company,* from VW_1LastUsage</SQL>
+    </Query>
+   <Query>
+   <QueryName>PO Cost VS Standard</QueryName>
+   <DBServer>STL01APP</DBServer>
+    
+    <SQL>Select db_name() as Company,* from vw_pocostvrsstd</SQL>
+  </Query>
+  <Query>
+  <QueryName>New Item Created</QueryName>
+  <DBServer>STL01APP</DBServer>
+    
+    <SQL>Select db_name() as Company, * from VW_NewItemCreated</SQL>
+  </Query>
+  <Query>
+  <QueryName>Order Loc DropShip</QueryName>
+  <DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company, * from vw_OrderLocDropShip</SQL>
+  </Query>
+  <Query>
+  <QueryName>PO Email</QueryName>
+  <DBServer>STL01APP</DBServer>
+    
+    <SQL>Select db_name() as Company, * from vw_POEmail</SQL>
+  </Query>
+  <Query>
+  <QueryName>PO Request</QueryName>
+  <DBServer>STL01APP</DBServer>
+    
+    <SQL>Select db_name() as Company, * from vw_POReq</SQL>
+  </Query>
+  <Query>
+  <QueryName>Price Code List</QueryName>
+  <DBServer>STL01APP</DBServer>
+    
+    <SQL>
+      select p.cd_tp, case p.cd_tp  
+      when 1 then 'Customer and Item' 
+      when 2 then 'Customer and Product Category' 
+      When 3 Then 'Customer Type and Item' 
+      when 4 then 'Customer Type and Product Category' 
+      When 5 Then 'Customer Only' 
+      when 6 then 'Item Only' 
+      When 7 Then 'Customer Type Only' 
+      When 8 Then 'Product Category Only' else cast(p.cd_tp as CHAR(1)) end as code_desc 
+      , ltrim(p.cd_tp_1_cust_no) as cus_no , c.cmp_name as cus_name , rtrim(cd_tp_1_item_no) as item_no 
+       , i.item_desc_1, p.start_dt, p.end_dt, cd_prc_basis as price_basis, minimum_qty_1 , prc_or_disc_1 , minimum_qty_2 
+      , prc_or_disc_2, minimum_qty_3, prc_or_disc_3, minimum_qty_4, prc_or_disc_4 
+       from oeprcfil_sql p left outer join imitmidx_sql i on p.cd_tp_1_item_no = i.item_no Left outer join cicmpy c on p.cd_tp_1_cust_no = c.debcode 
+    </SQL>
+  </Query>
+  <Query>
+
+    <QueryName>Quarintine Inventory</QueryName>
+	  <DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company, * from vw_QuarantineInventory</SQL>
+  </Query>
+  <Query>
+  
+    <QueryName>RMA</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company, * from vw_RMA</SQL>
+  </Query>
+  <Query>
+  
+    <QueryName>Serial QOH</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company,* from vw_SerialQOH</SQL>
+  </Query>
+  <Query>
+  
+    <QueryName>Vendor Sales Person</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+      Select db_name() as Company, cicmpy.id,cmp_name, CompanyType,SalesPersonNumber, h.fullname as SalesPerson,AccountTypeCode,ClassificationId 
+      FROM  [cicmpy] inner join humres h on h.id = SalesPersonNumber
+    </SQL>
+  </Query>
+  <Query>
+  
+    <QueryName>Unique Ship Via Codes</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+      select distinct b.bedrnr as 'company', o.ship_via_cd, z.code_desc 
+    from oehdrhst_sql o left outer join zAR_Ship_Via z on o.ship_via_cd = z.sy_code cross join bedryf b
+    </SQL>
+  </Query>
+  <Query>
+  
+    <QueryName>Transit Transfer Approved</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company,* from vw_TransitInvApproved</SQL>
+  </Query>
+  <Query>
+  
+    <QueryName>Exact Users - Roles</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+      Select db_name() as DB,hr.res_id,pwr.role_name,pwr.descr64,
+      hr.fullname,hr.loc,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+      hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+      hr.usr_id,hr.job_level As [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked
+      from [humres] hr
+      left join pwruc uru on uru.res_id = hr.res_id
+      left join pwrole pwr on pwr.role_id = uru.role_id
+    </SQL>
+  </Query>
+  <Query>
+  
+  <QueryName>Exact Active Users In DB List</QueryName>
+  <DBServer>STL01APP</DBServer>
+    <SQL>
+      Select db_name() as DB,hr.res_id,hr.usr_id,hr.job_title,
+      hr.fullname,hr.loc,hr.sur_name,hr.first_name,hr.mail,
+      hr.job_level As [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked
+      from [humres] hr
+      </SQL>
+  </Query>
+  
+  <Query>
+  
+  <QueryName>Event Manager Events</QueryName>
+  <DBServer>STL01APP</DBServer>
+  <DataBase>KS_Object</DataBase>
+    <SQL>
+
+  select 
+    em.description,em.smtpfromname,
+	convert(int,evt.active) As Active, evt.application,evt.description,s.description as Sched,evt.unique_column,evt.email_address,evt.email_cc,evt.subject,
+	r.description,r.printfilename,r.parameter_names,r.filespec,evt.changed_user,evt.changed_dt
+	from sqlalert Evt 
+	inner join schedule s on s.id = evt.schedule_id
+	left join report r on r.id = evt.report
+	left join email em on em.id = evt.email_id
+		order by evt.description
+</SQL>
+  </Query>
+  
+    <Query>
+	
+    <QueryName>Event Manager Query List</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+		Use [KS_Object]
+		Select so.application,so.description,so.unique_column,so.tablelist,so.filter,changed_user,changed_dt
+		from sqlobject so
+		order by description
+	</SQL>
+  </Query>
+  
+  <Query>
+  
+    <QueryName>Exact Table List</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company, * From DDTables</SQL>
+  </Query>
+  
+  <Query>
+    <QueryName>WISYS Users</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>Select db_name() as Company,username,fullname,admin,securitylvl,isdeleted From wsUsers</SQL>
+  </Query>
+
+  <Query>
+  
+    <QueryName>Open Orders</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>Select o.Description OrdStatus,ot.Description OrdType,*
+  from oeordhdr_sql oe inner join OrderStatus o on o.Status = oe.status
+  inner join OrderType ot on ot.Type = oe.ord_type
+</SQL>
+  </Query>
+  
+  <Query>
+  
+    <QueryName>Users And Job Titles</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+  select res_id,fullname,loc,job_title,mail
+  from humres
+  order by fullname
+</SQL>
+  </Query>
+  <Query>
+  
+  
+    <QueryName>Database Index Info</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+  SELECT  db_name() [DBName],o.name as TableName,
+            sind.name as IndexName,
+            partition_number AS partitionnum ,
+            avg_fragmentation_in_percent AS frag ,
+            page_count AS page_count
+        FROM    sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL,
+                                           'LIMITED') as ind
+            inner join sys.objects o on o.object_id = ind.object_id
+                                                       inner join sys.indexes sind on sind.object_id = ind.object_id
+    WHERE   avg_fragmentation_in_percent > 30
+            AND ind.index_id > 0
+            AND page_count > 50
+</SQL>
+  </Query>
+
+  <Query>
+  
+    <QueryName>SQL Job Configuration Info</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+      SELECT
+      [sJOB].[job_id] AS [JobID]
+      , [sJOB].[name] AS [JobName]
+      , [sDBP].[name] AS [JobOwner]
+      , [sCAT].[name] AS [JobCategory]
+      , [sJOB].[description] AS [JobDescription]
+      , CASE [sJOB].[enabled]
+      WHEN 1 THEN 'Yes'
+      WHEN 0 THEN 'No'
+      END AS [IsEnabled]
+      , [sJOB].[date_created] AS [JobCreatedOn]
+      , [sJOB].[date_modified] AS [JobLastModifiedOn]
+      , [sSVR].[name] AS [OriginatingServerName]
+      , [sJSTP].[step_id] AS [JobStartStepNo]
+      , [sJSTP].[step_name] AS [JobStartStepName]
+      , CASE
+      WHEN [sSCH].[schedule_uid] IS NULL THEN 'No'
+      ELSE 'Yes'
+      END AS [IsScheduled]
+      , [sSCH].[schedule_uid] AS [JobScheduleID]
+      , [sSCH].[name] AS [JobScheduleName]
+      , CASE [sJOB].[delete_level]
+      WHEN 0 THEN 'Never'
+      WHEN 1 THEN 'On Success'
+      WHEN 2 THEN 'On Failure'
+      WHEN 3 THEN 'On Completion'
+      END AS [JobDeletionCriterion]
+      FROM
+      [msdb].[dbo].[sysjobs] AS [sJOB]
+      LEFT JOIN [msdb].[sys].[servers] AS [sSVR]
+      ON [sJOB].[originating_server_id] = [sSVR].[server_id]
+      LEFT JOIN [msdb].[dbo].[syscategories] AS [sCAT]
+      ON [sJOB].[category_id] = [sCAT].[category_id]
+      LEFT JOIN [msdb].[dbo].[sysjobsteps] AS [sJSTP]
+      ON [sJOB].[job_id] = [sJSTP].[job_id]
+      AND [sJOB].[start_step_id] = [sJSTP].[step_id]
+      LEFT JOIN [msdb].[sys].[database_principals] AS [sDBP]
+      ON [sJOB].[owner_sid] = [sDBP].[sid]
+      LEFT JOIN [msdb].[dbo].[sysjobschedules] AS [sJOBSCH]
+      ON [sJOB].[job_id] = [sJOBSCH].[job_id]
+      LEFT JOIN [msdb].[dbo].[sysschedules] AS [sSCH]
+      ON [sJOBSCH].[schedule_id] = [sSCH].[schedule_id]
+      ORDER BY [JobName]
+     </SQL>
+  </Query>
+
+  <Query>
+  
+    <QueryName>SQL Job Next Run Info</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+      SELECT
+      [sJOB].[job_id] AS [JobID]
+      , [sJOB].[name] AS [JobName]
+      , CASE
+      WHEN [sJOBH].[run_date] IS NULL OR [sJOBH].[run_time] IS NULL THEN NULL
+      ELSE CAST(
+      CAST([sJOBH].[run_date] AS CHAR(8))
+      + ' '
+      + STUFF(
+      STUFF(RIGHT('000000' + CAST([sJOBH].[run_time] AS VARCHAR(6)),  6)
+      , 3, 0, ':')
+      , 6, 0, ':')
+      AS DATETIME)
+      END AS [LastRunDateTime]
+      , CASE [sJOBH].[run_status]
+      WHEN 0 THEN 'Failed'
+      WHEN 1 THEN 'Succeeded'
+      WHEN 2 THEN 'Retry'
+      WHEN 3 THEN 'Canceled'
+      WHEN 4 THEN 'Running' -- In Progress
+      END AS [LastRunStatus]
+      , STUFF(
+      STUFF(RIGHT('000000' + CAST([sJOBH].[run_duration] AS VARCHAR(6)),  6)
+      , 3, 0, ':')
+      , 6, 0, ':')
+      AS [LastRunDuration (HH:MM:SS)]
+      , [sJOBH].[message] AS [LastRunStatusMessage]
+      , CASE [sJOBSCH].[NextRunDate]
+      WHEN 0 THEN NULL
+      ELSE CAST(
+      CAST([sJOBSCH].[NextRunDate] AS CHAR(8))
+      + ' '
+      + STUFF(
+      STUFF(RIGHT('000000' + CAST([sJOBSCH].[NextRunTime] AS VARCHAR(6)),  6)
+      , 3, 0, ':')
+      , 6, 0, ':')
+      AS DATETIME)
+      END AS [NextRunDateTime]
+      FROM
+      [msdb].[dbo].[sysjobs] AS [sJOB]
+      LEFT JOIN (
+      SELECT
+      [job_id]
+      , MIN([next_run_date]) AS [NextRunDate]
+      , MIN([next_run_time]) AS [NextRunTime]
+      FROM [msdb].[dbo].[sysjobschedules]
+      GROUP BY [job_id]
+      ) AS [sJOBSCH]
+      ON [sJOB].[job_id] = [sJOBSCH].[job_id]
+      LEFT JOIN (
+      SELECT
+      [job_id]
+      , [run_date]
+      , [run_time]
+      , [run_status]
+      , [run_duration]
+      , [message]
+      , ROW_NUMBER() OVER (
+      PARTITION BY [job_id]
+      ORDER BY [run_date] DESC, [run_time] DESC
+      ) AS RowNumber
+      FROM [msdb].[dbo].[sysjobhistory]
+      WHERE [step_id] = 0
+      ) AS [sJOBH]
+      ON [sJOB].[job_id] = [sJOBH].[job_id]
+      AND [sJOBH].[RowNumber] = 1
+      ORDER BY [JobName]
+    </SQL>
+  </Query>
+  
+    <Query>
+   <QueryName>SQL List Views in Database</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+		select * from sys.all_views
+</SQL>
+  </Query>
+
+
+  <Query>
+  
+    <QueryName>SQL Job History Info</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+  select
+  j.name as 'JobName',
+  s.step_id as 'Step',
+  s.step_name as 'StepName',
+  msdb.dbo.agent_datetime(run_date, run_time) as 'RunDateTime',
+  ((run_duration/10000*3600 + (run_duration/100)%100*60 + run_duration%100 + 31 ) / 60)
+  as 'RunDurationMinutes'
+  From msdb.dbo.sysjobs j
+  INNER JOIN msdb.dbo.sysjobsteps s
+  ON j.job_id = s.job_id
+  INNER JOIN msdb.dbo.sysjobhistory h
+  ON s.job_id = h.job_id
+  AND s.step_id = h.step_id
+  AND h.step_id &lt; &gt; 0
+    where j.enabled = 1   --Only Enabled Jobs
+    order by JobName, RunDateTime desc
+  </SQL>
+</Query>
+
+<Query>
+
+    <QueryName>Automated Invoice Print / Mail</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+Select * 
+from vw_AutoInvoiceToPrint
+  </SQL>
+</Query>
+
+
+  <Query>
+  
+    <QueryName>Automated Invoice Email</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+
+Select * 
+from vw_AutoInvoiceToEmail
+  </SQL>
+</Query>
+  <Query>
+
+    <QueryName>Automated Invoice Contact</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+SELECT ciy.cmp_code,
+       ciy.cmp_name AS Customer,
+       ciy.cmp_tel,
+       ciy.cmp_e_mail AS [Customer Email],
+       cnt_f_Name ContactaName,
+       cnt_email [ContactEmail Invoice EMail],
+       ctp.YesNoField1 [EmailInvoice]
+FROM dbo.cicntp ctp
+     INNER JOIN dbo.cicmpy ciy ON ctp.cmp_wwn = ciy.cmp_wwn;  </SQL>
+</Query>
+
+    <Query>
+	
+    <QueryName>Event Manager Status</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+  Use [KS_Object]
+   select id,server_id,name,[current],computername,username,osplatform,osversion,
+      description,display_order,changed_dt,changed_user,created_dt,created_user,
+      changed_version,created_version
+   from status s
+   order by display_order 
+  </SQL>
+</Query>
+
+  
+  <Query>
+  
+    <QueryName>Z UserControl</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+     Use [Z_UserControl]
+     select *
+     from usercontrol
+</SQL>
+</Query>
+  
+      <Query>
+	  
+    <QueryName>Event Manager History</QueryName>
+	<DBServer>STL01APP</DBServer>
+	<DataBase>KS_Object</DataBase>
+	
+    <SQL>
+    Use [KS_Object]
+    Select 
+    case when oc.location is null
+    then
+     'Email'
+    else
+     'Copy Report'
+    end as [Type],
+    s.runtime SQL_ExecTime,
+    p.created_dt,convert(varchar(10),p.created_dt,101) as RunDt,p.application,p.event,p.subject,p.message,
+    om.status EmailStatus,om.description,om.address,om.address_cc,om.address_bcc,
+    a.filename,r.filespec,r.name,r.printfilename,
+    oc.location,
+    orp.status RptStatus,orp.description,orp.printfilename,orp.dbparams
+    from package p 
+    left join attachment a on a.package_id = p.id
+    left join report r on r.id = a.report_id
+    left join out_copy oc on oc.package_id = p.id
+    left join out_report orp on orp.package_id = p.id
+    left join out_email om on om.package_id = p.id
+    left join out_sql s on s.section_id = p.section_id
+    where p.created_dt > getdate() - 5
+    order by p.created_dt desc
+   
+   </SQL>
+</Query>
+    
+    <Query>
+	
+    <QueryName>Exact Users in All Databases</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+
+declare @FullName as varchar(100)
+Set @FullName = '%%'
+
+Use [001]
+
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+into #UserInfo
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [100]
+
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [200]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [201]
+
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [202]
+
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [210]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [210].dbo.[humres] hr 
+left join [210].dbo.pwruc uru on uru.res_id = hr.res_id
+left join [210].dbo.pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [211]
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [215]
+
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [215_TEST]
+
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [240]
+
+Insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [250]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [260]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [270]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [280]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [290]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [295]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [310]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [315]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [320]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [321]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [325]
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [630]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [640]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use[660]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [680]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+inner join pwruc uru on uru.res_id = hr.res_id
+inner join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+order by Db,fullname,role_name
+
+
+Use [690]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [820]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [840]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+
+Use [990]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+Use [999]
+
+insert into #UserInfo
+select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
+hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
+hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
+hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
+from [humres] hr 
+left join pwruc uru on uru.res_id = hr.res_id
+left join pwrole pwr on pwr.role_id = uru.role_id
+where Fullname like @FullName
+
+select
+[DB],usr_id,fullname,mail,job_title,role_name,descr64,syscreated,
+[Sec Lev],pur_limit,VacancyStartDate,blocked,backofficeblocked,loc
+from #UserInfo
+
+drop table #UserInfo
+
+
+  </SQL>
+</Query>
+
+
+<Query>
+	
+    <QueryName>Exact Customers Contacts </QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+
+Use [200]
+SELECT Db_Name() as DB,'Customer' AS RecType,
+       cmp_parent AS Parent,
+       cmp_code CompCode,
+       cmp_name CompName,
+       cmp_e_mail Email,
+	  c.cmp_tel,
+	  c.cmp_fadd1,
+	  c.cmp_fcity,
+	  c.cmp_fpc,
+	  c.cmp_status,
+	  t.FullName [Contact Name],
+	  T.cnt_email [Contact Email],
+	  t.cnt_f_tel, 
+	  T.YesNoField1 as EmailInvoice 
+	  into #CustomerInfo
+FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+	  
+
+Use [215]
+Insert into #CustomerInfo
+SELECT Db_Name() as DB,'Customer' AS RecType,
+       cmp_parent AS Parent,
+       cmp_code CompCode,
+       cmp_name CompName,
+       cmp_e_mail Email,
+	  c.cmp_tel,
+	  c.cmp_fadd1,
+	  c.cmp_fcity,
+	  c.cmp_fpc,
+	  c.cmp_status,
+	  t.FullName [Contact Name],
+	  T.cnt_email [Contact Email],
+	  t.cnt_f_tel, 
+	  T.YesNoField1 as EmailInvoice 
+FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+
+Use [270]
+Insert into #CustomerInfo
+SELECT Db_Name() as DB,'Customer' AS RecType,
+       cmp_parent AS Parent,
+       cmp_code CompCode,
+       cmp_name CompName,
+       cmp_e_mail Email,
+	  c.cmp_tel,
+	  c.cmp_fadd1,
+	  c.cmp_fcity,
+	  c.cmp_fpc,
+	  c.cmp_status,
+	  t.FullName [Contact Name],
+	  T.cnt_email [Contact Email],
+	  t.cnt_f_tel, 
+	  T.YesNoField1 as EmailInvoice 
+FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+
+Use [630]
+Insert into #CustomerInfo
+SELECT Db_Name() as DB,'Customer' AS RecType,
+       cmp_parent AS Parent,
+       cmp_code CompCode,
+       cmp_name CompName,
+       cmp_e_mail Email,
+	  c.cmp_tel,
+	  c.cmp_fadd1,
+	  c.cmp_fcity,
+	  c.cmp_fpc,
+	  c.cmp_status,
+	  t.FullName [Contact Name],
+	  T.cnt_email [Contact Email],
+	  t.cnt_f_tel, 
+	  T.YesNoField1 as EmailInvoice 
+FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+
+Use [680]
+Insert into #CustomerInfo
+SELECT Db_Name() as DB,'Customer' AS RecType,
+       cmp_parent AS Parent,
+       cmp_code CompCode,
+       cmp_name CompName,
+       cmp_e_mail Email,
+	  c.cmp_tel,
+	  c.cmp_fadd1,
+	  c.cmp_fcity,
+	  c.cmp_fpc,
+	  c.cmp_status,
+	  t.FullName [Contact Name],
+	  T.cnt_email [Contact Email],
+	  t.cnt_f_tel, 
+	  T.YesNoField1 as EmailInvoice 
+FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+
+Select * from #CustomerInfo
+
+drop table #CustomerInfo
+
+
+
+  </SQL>
+</Query>
+
+
+<Query>
+	<QueryName>Accella_Location</QueryName>
+	<DBServer>STL01DB</DBServer>
+	<DataBase>Data_WH_2</DataBase>    
+    <SQL>
+select *
+from Accella_Location
+</SQL>
+</Query>
+
+<Query>
+	<QueryName>Audit Orders</QueryName>
+	<DBServer>STL01APP</DBServer>
+	 <SQL>
+
+select --'Audit' as [Table],oa.Ord_No,oa.status,os.description OrdStatus,oa.aud_action,convert(datetime,convert(varchar(10),oa.aud_dt,101) + ' ' + convert(varchar(8),convert(time,aud_tm))) as AudDt
+*
+from dbo.oehdraud_sql oa inner join orderstatus os on os.status = oa.status
+where ord_dt > DATEADD(day,-30,getDate())
+order by ord_no,oa.status desc
+
+</SQL>
+</Query>
+
+<Query>
+	<QueryName>Audit Purchase Orders</QueryName>
+	<DBServer>STL01APP</DBServer>
+	 <SQL>
+
+select  *
+from pohdraud_sql as poh inner join polinaud_sql pol on pol.ord_no = poh.ord_no
+where poh.ord_dt > DATEADD(day,-30,getDate())
+order by poh.ord_dt desc
+
+</SQL>
+</Query>
+
+</Table>

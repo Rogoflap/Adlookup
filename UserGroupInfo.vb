@@ -85,6 +85,15 @@ Public Class UserGroupInfo
                 End If
             End If
 
+
+            If Me.txtMail.Text.Length > 0 Then
+                If sTemp.Length > 0 Then
+                    sTemp += " and Mail like '*" & Me.txtMail.Text & "*'"
+                Else
+                    sTemp += " Mail like '*" & Me.txtMail.Text & "*'"
+                End If
+            End If
+
             If Me.txtMemberOf.Text.Length > 0 Then
                 If sTemp.Length > 0 Then
                     sTemp += " and MemberOf like '*" & Me.txtMemberOf.Text & "*'"
@@ -116,30 +125,12 @@ Public Class UserGroupInfo
         Me.tsslStatus.Text = "Rows Found: " & DataGridView1.RowCount
     End Sub
 
-    Private Sub filterKeyUp(sender As Object, e As System.EventArgs) Handles txtFullName.KeyUp, txtDescription.KeyUp, txtMembers.KeyUp, txtMemberOf.KeyUp
+    Private Sub filterKeyUp(sender As Object, e As System.EventArgs) Handles txtFullName.KeyUp, txtDescription.KeyUp, txtMembers.KeyUp, txtMemberOf.KeyUp, txtMail.KeyUp
         FilterGrid()
     End Sub
 
     Private Sub txtPhone_KeyUp(sender As Object, e As System.Windows.Forms.KeyEventArgs)
         FilterGrid()
-    End Sub
-
-    Private Sub DataGridView1_CellClick(sender As Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        iRowSelected = e.RowIndex
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
-        Try
-            Select Case UCase(Me.DataGridView1.Columns(e.ColumnIndex).HeaderText)
-                Case "USERID"
-                    ShowUserSummary(DataGridView1.Item(e.ColumnIndex, e.RowIndex).Value)
-                Case "EMAIL"
-                    OpenNewEmail(DataGridView1.Item(e.ColumnIndex, e.RowIndex).Value)
-            End Select
-        Catch ex As Exception
-            LogError("Error Sending Email from Grid Doubleclick" & ex.Message & vbTab & ex.StackTrace)
-            sendMail("Error Sending Email from Grid Doubleclick", ex.Message & vbTab & ex.StackTrace)
-        End Try
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SaveToolStripMenuItem.Click
@@ -334,7 +325,7 @@ Public Class UserGroupInfo
         RefreshGrid()
     End Sub
 
-    Private Sub filterKeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles txtFullName.KeyUp, txtDescription.KeyUp, txtMemberOf.KeyUp, txtMembers.KeyUp
+    Private Sub filterKeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles txtFullName.KeyUp, txtDescription.KeyUp, txtMemberOf.KeyUp, txtMembers.KeyUp, txtMail.KeyUp
 
     End Sub
 
@@ -409,5 +400,4 @@ Public Class UserGroupInfo
             DataGridView1.Columns(i).Width = iWidth
         Next
     End Sub
-
 End Class

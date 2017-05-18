@@ -27,7 +27,7 @@ Public Class MainParent
     Private Sub SaveAsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SaveAsToolStripMenuItem.Click
         Dim SaveFileDialog As New SaveFileDialog
         SaveFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        SaveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*" 
+        SaveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
 
         If (SaveFileDialog.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
             Dim FileName As String = SaveFileDialog.FileName
@@ -35,35 +35,6 @@ Public Class MainParent
         End If
     End Sub
 
-
-    Private Sub ExitToolsStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Try
-            Dim iresult As Integer
-            iresult = MsgBox("Are you sure you want to close Outlook Contact Info?", vbQuestion + vbYesNo, "Close Outlook Contact Info?")
-            If iresult = vbYes Then
-                UnregisterHotKey(Me.Handle, 100)
-                UnregisterHotKey(Me.Handle, 200)
-                LogError("Closing ADLookup")
-                Me.Close()
-            End If
-        Catch ex As Exception
-            LogError("Error unregistering HotKey" & ex.Message & vbTab & ex.StackTrace)
-            sendMail("Error unregistering HotKey", ex.Message & vbTab & ex.StackTrace)
-        End Try
-
-    End Sub
-
-    Private Sub CutToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CutToolStripMenuItem.Click
-        ' Use My.Computer.Clipboard to insert the selected text or images into the clipboard
-    End Sub
-
-    Private Sub CopyToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CopyToolStripMenuItem.Click
-        ' Use My.Computer.Clipboard to insert the selected text or images into the clipboard
-    End Sub
-
-    Private Sub PasteToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles PasteToolStripMenuItem.Click
-        'Use My.Computer.Clipboard.GetText() or My.Computer.Clipboard.GetData to retrieve information from the clipboard.
-    End Sub
 
     Private Sub ToolBarToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolBarToolStripMenuItem.Click
         Me.ToolStrip.Visible = Me.ToolBarToolStripMenuItem.Checked
@@ -217,29 +188,6 @@ Public Class MainParent
         End If
     End Sub
 
-    Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
-        Try
-            If m.Msg = WM_HOTKEY Then
-                Dim id As IntPtr = m.WParam
-                Select Case (id.ToString)
-                    Case "100"
-                        If Me.WindowState = FormWindowState.Minimized Then
-                            Me.WindowState = FormWindowState.Normal
-                        Else
-                            Me.WindowState = FormWindowState.Minimized
-                        End If
-                        'MessageBox.Show("You pressed ALT+Space key combination")
-                    Case "200"
-                        MessageBox.Show("You pressed ALT+C key combination")
-                End Select
-            End If
-            MyBase.WndProc(m)
-        Catch ex As Exception
-            LogError("Error Executing Alt-Space" & ex.Message & vbTab & ex.StackTrace)
-            sendMail("Error Executing Alt-Space", ex.Message & vbTab & ex.StackTrace)
-        End Try
-    End Sub
-
     Private Sub tsbUser_Click(sender As System.Object, e As System.EventArgs) Handles tsbUser.Click
         ShowFormUserInfo()
     End Sub
@@ -287,7 +235,7 @@ Public Class MainParent
         FillUserIDFullName()
 
         Try
-            Me.Text = GetCurrentUserName() & " - Outlook Contact Lookup Ver " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build & "    (Alt-Space to Hide / Visible)"
+            Me.Text = GetCurrentUserName() & " - Outlook Contact Lookup Ver " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build
             LogError("Starting Adlookup  Ver " & My.Application.Info.Version.Major & "." & My.Application.Info.Version.Minor & "." & My.Application.Info.Version.Build)
 
             If isSCCMUser(GetCurrentUserName) Then
@@ -322,7 +270,6 @@ Public Class MainParent
 
             Me.LayoutMdi(MdiLayout.TileHorizontal)
 
-            'RegisterHotKey(Me.Handle, 100, MOD_ALT, Keys.Space)
         Catch ex As Exception
             LogError("Error Loading Main form: " & ex.Message)
         End Try
@@ -383,31 +330,24 @@ Public Class MainParent
     End Sub
 
     Private Sub tsbExact_Click(sender As Object, e As EventArgs) Handles tsbExact.Click
-        If Me.MdiChildren.Count < 1 Then
-            Me.Cursor = Cursors.WaitCursor
-            Dim frm As New GeneralData
-            frm.MdiParent = Me
-            frm.Show()
-            Me.Cursor = Cursors.Default
-        Else
-            For Each Child As Form In Me.MdiChildren
-                If TypeOf Child Is UserInfo Then
-                    Me.ActivateMdiChild(Child)
-                    Child.BringToFront()
-                    Exit Sub
-                End If
-            Next Child
-
-            Me.Cursor = Cursors.WaitCursor
-            Dim frm As New GeneralData
-            frm.MdiParent = Me
-            frm.Show()
-            'frm.WindowState = FormWindowState.Maximized
-            Me.Cursor = Cursors.Default
-        End If
+        Me.Cursor = Cursors.WaitCursor
+        Dim frm As New GeneralData
+        frm.MdiParent = Me
+        frm.Show()
+        frm.WindowState = FormWindowState.Maximized
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub tsbPrinterInfo_Click(sender As Object, e As EventArgs) Handles tsbPrinterInfo.Click
         ShowFormPrinterInfo()
+    End Sub
+
+    Private Sub EmpowerEmailButton_Click(sender As Object, e As EventArgs) Handles EmpowerEmailButton.Click
+        Me.Cursor = Cursors.WaitCursor
+        Dim frm As New EmpowerEmail
+        frm.MdiParent = Me
+        frm.Show()
+        frm.WindowState = FormWindowState.Maximized
+        Me.Cursor = Cursors.Default
     End Sub
 End Class

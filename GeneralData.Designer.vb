@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class GeneralData
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class GeneralData
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -29,18 +29,10 @@ Partial Class GeneralData
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tsslStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.labelLastUpdate = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.cmbQuery = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PrintGridToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AllRowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SelectedRowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExportGridToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AllRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SelectedRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.cmsUser = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.cmbCompany = New System.Windows.Forms.ComboBox()
         Me.lbl1 = New System.Windows.Forms.Label()
         Me.LabelHeader = New System.Windows.Forms.Label()
@@ -78,18 +70,33 @@ Partial Class GeneralData
         Me.txt9 = New System.Windows.Forms.TextBox()
         Me.txt1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.chkShowSQL = New System.Windows.Forms.CheckBox()
+        Me.txtSQL = New System.Windows.Forms.TextBox()
+        Me.cmbServer = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmbReloadCombo = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.cmsUser = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PrintGridToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllRowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectedRowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportGridToExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AllRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectedRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyCtrlCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.cmsUser.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslStatus, Me.labelLastUpdate})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 752)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 655)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1252, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1411, 22)
         Me.StatusStrip1.TabIndex = 36
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -106,61 +113,20 @@ Partial Class GeneralData
         Me.labelLastUpdate.Size = New System.Drawing.Size(121, 17)
         Me.labelLastUpdate.Text = "ToolStripStatusLabel1"
         '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToOrderColumns = True
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 141)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(1241, 598)
-        Me.DataGridView1.TabIndex = 35
-        Me.DataGridView1.TabStop = False
-        '
         'cmbQuery
         '
         Me.cmbQuery.FormattingEnabled = True
-        Me.cmbQuery.Items.AddRange(New Object() {"Item Last Usage", "BOL", "ConfirmShip", "Customer List", "DIFF QOH", "Dropship Order", "Late Order", "LOC QOH", "New Item Created", "Order Loc DropShip", "PO Email", "PO Request", "Price Code List", "Quarintine Inventory", "RMA", "Serial QOH", "Transit Transfer Approved", "Unique Ship Via Codes", "Vendor Sales Person", "Exact Users - Roles", "Exact Table List", "WISYS Users", "PO Cost VS Standard", "99999 Contacts"})
-        Me.cmbQuery.Location = New System.Drawing.Point(92, 21)
+        Me.cmbQuery.Items.AddRange(New Object() {"99999 Contacts", "BOL", "ConfirmShip", "Customer List", "DIFF QOH", "Dropship Order", "Exact Table List", "Exact Users - Roles", "Item Last Usage", "Late Order", "LOC QOH", "New Item Created", "Order Loc DropShip", "PO Cost VS Standard", "PO Email", "PO Request", "Price Code List", "Quarintine Inventory", "RMA", "Serial QOH", "Transit Transfer Approved", "Unique Ship Via Codes", "Vendor Sales Person", "WISYS Users"})
+        Me.cmbQuery.Location = New System.Drawing.Point(310, 21)
         Me.cmbQuery.Name = "cmbQuery"
-        Me.cmbQuery.Size = New System.Drawing.Size(348, 21)
+        Me.cmbQuery.Size = New System.Drawing.Size(343, 21)
+        Me.cmbQuery.Sorted = True
         Me.cmbQuery.TabIndex = 38
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(89, 5)
+        Me.Label1.Location = New System.Drawing.Point(307, 5)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
         Me.Label1.TabIndex = 39
@@ -172,57 +138,13 @@ Partial Class GeneralData
         Me.ToolTip1.InitialDelay = 500
         Me.ToolTip1.ReshowDelay = 100
         '
-        'PrintGridToolStripMenuItem1
-        '
-        Me.PrintGridToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllRowsToolStripMenuItem, Me.SelectedRowsToolStripMenuItem})
-        Me.PrintGridToolStripMenuItem1.Name = "PrintGridToolStripMenuItem1"
-        Me.PrintGridToolStripMenuItem1.Size = New System.Drawing.Size(175, 22)
-        Me.PrintGridToolStripMenuItem1.Text = "Print Grid"
-        '
-        'AllRowsToolStripMenuItem
-        '
-        Me.AllRowsToolStripMenuItem.Name = "AllRowsToolStripMenuItem"
-        Me.AllRowsToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
-        Me.AllRowsToolStripMenuItem.Text = "All Rows"
-        '
-        'SelectedRowsToolStripMenuItem
-        '
-        Me.SelectedRowsToolStripMenuItem.Name = "SelectedRowsToolStripMenuItem"
-        Me.SelectedRowsToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
-        Me.SelectedRowsToolStripMenuItem.Text = "Selected Rows"
-        '
-        'ExportGridToExcelToolStripMenuItem
-        '
-        Me.ExportGridToExcelToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllRowsToolStripMenuItem1, Me.SelectedRowsToolStripMenuItem1})
-        Me.ExportGridToExcelToolStripMenuItem.Name = "ExportGridToExcelToolStripMenuItem"
-        Me.ExportGridToExcelToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
-        Me.ExportGridToExcelToolStripMenuItem.Text = "Export Grid to Excel"
-        '
-        'AllRowsToolStripMenuItem1
-        '
-        Me.AllRowsToolStripMenuItem1.Name = "AllRowsToolStripMenuItem1"
-        Me.AllRowsToolStripMenuItem1.Size = New System.Drawing.Size(149, 22)
-        Me.AllRowsToolStripMenuItem1.Text = "All Rows"
-        '
-        'SelectedRowsToolStripMenuItem1
-        '
-        Me.SelectedRowsToolStripMenuItem1.Name = "SelectedRowsToolStripMenuItem1"
-        Me.SelectedRowsToolStripMenuItem1.Size = New System.Drawing.Size(149, 22)
-        Me.SelectedRowsToolStripMenuItem1.Text = "Selected Rows"
-        '
-        'cmsUser
-        '
-        Me.cmsUser.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintGridToolStripMenuItem1, Me.ExportGridToExcelToolStripMenuItem})
-        Me.cmsUser.Name = "ContextMenuStrip1"
-        Me.cmsUser.Size = New System.Drawing.Size(176, 48)
-        '
         'cmbCompany
         '
         Me.cmbCompany.FormattingEnabled = True
-        Me.cmbCompany.Items.AddRange(New Object() {"100", "200", "210", "250", "260", "270", "630", "640", "660", "680"})
-        Me.cmbCompany.Location = New System.Drawing.Point(14, 21)
+        Me.cmbCompany.Items.AddRange(New Object() {"100", "200", "200_TSR", "215", "215_TEST", "210", "250", "260", "270", "630", "640", "660", "680", "Data_WH_2", "ReportServer"})
+        Me.cmbCompany.Location = New System.Drawing.Point(97, 21)
         Me.cmbCompany.Name = "cmbCompany"
-        Me.cmbCompany.Size = New System.Drawing.Size(66, 21)
+        Me.cmbCompany.Size = New System.Drawing.Size(86, 21)
         Me.cmbCompany.TabIndex = 41
         Me.cmbCompany.Text = "200"
         '
@@ -240,19 +162,19 @@ Partial Class GeneralData
         Me.LabelHeader.AutoSize = True
         Me.LabelHeader.BackColor = System.Drawing.Color.Transparent
         Me.LabelHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelHeader.Location = New System.Drawing.Point(547, 13)
+        Me.LabelHeader.Location = New System.Drawing.Point(832, 6)
         Me.LabelHeader.Name = "LabelHeader"
-        Me.LabelHeader.Size = New System.Drawing.Size(116, 29)
+        Me.LabelHeader.Size = New System.Drawing.Size(176, 29)
         Me.LabelHeader.TabIndex = 43
-        Me.LabelHeader.Text = "AD INFO"
+        Me.LabelHeader.Text = "Exact Queries"
         '
         'BtnRefresh
         '
-        Me.BtnRefresh.Location = New System.Drawing.Point(446, 19)
+        Me.BtnRefresh.Location = New System.Drawing.Point(664, 19)
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(75, 23)
         Me.BtnRefresh.TabIndex = 44
-        Me.BtnRefresh.Text = "Refresh"
+        Me.BtnRefresh.Text = "Get Data"
         Me.BtnRefresh.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -291,7 +213,7 @@ Partial Class GeneralData
         Me.GroupBox1.Controls.Add(Me.txt1)
         Me.GroupBox1.Location = New System.Drawing.Point(9, 48)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1017, 89)
+        Me.GroupBox1.Size = New System.Drawing.Size(937, 89)
         Me.GroupBox1.TabIndex = 45
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filter"
@@ -546,17 +468,176 @@ Partial Class GeneralData
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(11, 5)
+        Me.Label2.Location = New System.Drawing.Point(94, 5)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(22, 13)
         Me.Label2.TabIndex = 35
         Me.Label2.Text = "DB"
         '
+        'chkShowSQL
+        '
+        Me.chkShowSQL.AutoSize = True
+        Me.chkShowSQL.Location = New System.Drawing.Point(749, 23)
+        Me.chkShowSQL.Name = "chkShowSQL"
+        Me.chkShowSQL.Size = New System.Drawing.Size(77, 17)
+        Me.chkShowSQL.TabIndex = 46
+        Me.chkShowSQL.Text = "Show SQL"
+        Me.chkShowSQL.UseVisualStyleBackColor = True
+        '
+        'txtSQL
+        '
+        Me.txtSQL.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSQL.Location = New System.Drawing.Point(954, 50)
+        Me.txtSQL.Multiline = True
+        Me.txtSQL.Name = "txtSQL"
+        Me.txtSQL.ReadOnly = True
+        Me.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.txtSQL.Size = New System.Drawing.Size(445, 86)
+        Me.txtSQL.TabIndex = 47
+        '
+        'cmbServer
+        '
+        Me.cmbServer.FormattingEnabled = True
+        Me.cmbServer.Items.AddRange(New Object() {"STL01APP", "STL01DB", "DMC01QA"})
+        Me.cmbServer.Location = New System.Drawing.Point(10, 21)
+        Me.cmbServer.Name = "cmbServer"
+        Me.cmbServer.Size = New System.Drawing.Size(80, 21)
+        Me.cmbServer.TabIndex = 49
+        Me.cmbServer.Text = "STL01APP"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(7, 5)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(47, 13)
+        Me.Label3.TabIndex = 48
+        Me.Label3.Text = "DB Serv"
+        '
+        'cmbReloadCombo
+        '
+        Me.cmbReloadCombo.Location = New System.Drawing.Point(198, 17)
+        Me.cmbReloadCombo.Name = "cmbReloadCombo"
+        Me.cmbReloadCombo.Size = New System.Drawing.Size(90, 23)
+        Me.cmbReloadCombo.TabIndex = 50
+        Me.cmbReloadCombo.Text = "Reload XML List"
+        Me.cmbReloadCombo.UseVisualStyleBackColor = True
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(961, 39)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(58, 13)
+        Me.Label4.TabIndex = 51
+        Me.Label4.Text = "SQL String"
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToOrderColumns = True
+        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 143)
+        Me.DataGridView1.Name = "DataGridView1"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(1399, 509)
+        Me.DataGridView1.TabIndex = 52
+        Me.DataGridView1.TabStop = False
+        '
+        'cmsUser
+        '
+        Me.cmsUser.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintGridToolStripMenuItem1, Me.ExportGridToExcelToolStripMenuItem, Me.CopyCtrlCToolStripMenuItem})
+        Me.cmsUser.Name = "ContextMenuStrip1"
+        Me.cmsUser.Size = New System.Drawing.Size(176, 70)
+        '
+        'PrintGridToolStripMenuItem1
+        '
+        Me.PrintGridToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllRowsToolStripMenuItem, Me.SelectedRowsToolStripMenuItem})
+        Me.PrintGridToolStripMenuItem1.Name = "PrintGridToolStripMenuItem1"
+        Me.PrintGridToolStripMenuItem1.Size = New System.Drawing.Size(175, 22)
+        Me.PrintGridToolStripMenuItem1.Text = "Print Grid"
+        '
+        'AllRowsToolStripMenuItem
+        '
+        Me.AllRowsToolStripMenuItem.Name = "AllRowsToolStripMenuItem"
+        Me.AllRowsToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.AllRowsToolStripMenuItem.Text = "All Rows"
+        '
+        'SelectedRowsToolStripMenuItem
+        '
+        Me.SelectedRowsToolStripMenuItem.Name = "SelectedRowsToolStripMenuItem"
+        Me.SelectedRowsToolStripMenuItem.Size = New System.Drawing.Size(149, 22)
+        Me.SelectedRowsToolStripMenuItem.Text = "Selected Rows"
+        '
+        'ExportGridToExcelToolStripMenuItem
+        '
+        Me.ExportGridToExcelToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AllRowsToolStripMenuItem1, Me.SelectedRowsToolStripMenuItem1})
+        Me.ExportGridToExcelToolStripMenuItem.Name = "ExportGridToExcelToolStripMenuItem"
+        Me.ExportGridToExcelToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.ExportGridToExcelToolStripMenuItem.Text = "Export Grid to Excel"
+        '
+        'AllRowsToolStripMenuItem1
+        '
+        Me.AllRowsToolStripMenuItem1.Name = "AllRowsToolStripMenuItem1"
+        Me.AllRowsToolStripMenuItem1.Size = New System.Drawing.Size(149, 22)
+        Me.AllRowsToolStripMenuItem1.Text = "All Rows"
+        '
+        'SelectedRowsToolStripMenuItem1
+        '
+        Me.SelectedRowsToolStripMenuItem1.Name = "SelectedRowsToolStripMenuItem1"
+        Me.SelectedRowsToolStripMenuItem1.Size = New System.Drawing.Size(149, 22)
+        Me.SelectedRowsToolStripMenuItem1.Text = "Selected Rows"
+        '
+        'CopyCtrlCToolStripMenuItem
+        '
+        Me.CopyCtrlCToolStripMenuItem.Name = "CopyCtrlCToolStripMenuItem"
+        Me.CopyCtrlCToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.CopyCtrlCToolStripMenuItem.Text = "Copy - Ctrl + C"
+        '
         'GeneralData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1252, 774)
+        Me.ClientSize = New System.Drawing.Size(1411, 677)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.cmbReloadCombo)
+        Me.Controls.Add(Me.cmbServer)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.txtSQL)
+        Me.Controls.Add(Me.chkShowSQL)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.BtnRefresh)
         Me.Controls.Add(Me.LabelHeader)
@@ -564,34 +645,25 @@ Partial Class GeneralData
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cmbQuery)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label2)
         Me.Name = "GeneralData"
-        Me.Text = "GeneralData"
+        Me.Text = "Exact Data"
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.cmsUser.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsUser.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents tsslStatus As ToolStripStatusLabel
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents cmbQuery As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents PrintDocument1 As Printing.PrintDocument
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents PrintGridToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents AllRowsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SelectedRowsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExportGridToExcelToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AllRowsToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents SelectedRowsToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents cmsUser As ContextMenuStrip
     Friend WithEvents cmbCompany As ComboBox
     Friend WithEvents lbl1 As Label
     Friend WithEvents LabelHeader As Label
@@ -630,4 +702,19 @@ Partial Class GeneralData
     Friend WithEvents Label2 As Label
     Friend WithEvents txt1 As TextBox
     Friend WithEvents labelLastUpdate As ToolStripStatusLabel
+    Friend WithEvents chkShowSQL As CheckBox
+    Friend WithEvents txtSQL As TextBox
+    Friend WithEvents cmbServer As ComboBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cmbReloadCombo As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents cmsUser As ContextMenuStrip
+    Friend WithEvents PrintGridToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents AllRowsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SelectedRowsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportGridToExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AllRowsToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents SelectedRowsToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents CopyCtrlCToolStripMenuItem As ToolStripMenuItem
 End Class

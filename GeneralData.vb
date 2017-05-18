@@ -56,136 +56,64 @@ Public Class GeneralData
     End Sub
 
     Public Sub RefreshGrid()
-
+        Dim sSql As String = "N/A"
         Try
-
+            Me.Cursor = Cursors.WaitCursor
 
             Me.DataGridView1.DataSource = Nothing
 
-            ' Current List in Combo Box
-            'Name                     View Called
-            'Item Last Usage            VW_1LastUsage
-            'BOL                        VW_BOL
-            'ConfirmShip                VW_ConfirmShip
-            'Custsomer List             
-            'DIFF QOH                   vw_DiffQOH
-            'Dropship Order             vw_DropShipOrder
-            'Late Order                 VW_LateOrder
-            'Loc QOH                    vw_LocQOH
-            'New Item Created           VW_NewItemCreated
-            'Order Loc DropShip         vw_OrderLocDropShip
-            'PO Email                   vw_POEmail
-            'PO Request                 vw_POReq
-            'Price Code List
-            'Quarintine Inventory       vw_QuarantineInventory
-            'RMA                        vw_RMA
-            'Serial QOH                 vw_SerialQOH
-            'Transit Transfer Approved  vw_TransitInvApproved
-            'Unique Ship Via Codes
-            'Vendor Sales Person
-            'Exact Table List           SELECT * From DDTables
-            'Exact Users - Roles
-            'WISYS Users
-            'PO Cost VS Standard
-            '99999 Contacts             vw_999999Contacts
+            ' List box filled from SQL.XML file in EXE folder.
 
             ClearFilters()
             HideFilters()
 
             Dim sQuerySelected As String
-            Dim sSql As String
-
+            Dim sDbServer As String
+            Dim sDatabase As String
+            Me.txtSQL.Text = ""
             sQuerySelected = cmbQuery.Text
 
-            sSql = GetSQLFromXML(sQuerySelected)
 
-            'Select Case sQuerySelected
-            '    Case "99999 Contacts"
-            '        sSql = "Select db_name(), * from vw_999999Contacts"
-            '    Case "BOL"
-            '        sSql = "Select db_name(),* from VW_BOL"
-            '    Case "ConfirmShip"
-            '        sSql = "Select db_name(), * from  VW_ConfirmShip"
-            '    Case "Customer List"
-            '        sSql = "Select db_name(),* from arcusfil_wv"
-            '    Case "DIFF QOH"
-            '        sSql = "Select db_Name(), * from vw_DiffQOH"
-            '    Case "Dropship Order"
-            '        sSql = "Select db_name(), * from vw_DropShipOrder"
-            '    Case "Late Order"
-            '        sSql = "Select db_name(), * from VW_LateOrder"
-            '    Case "LOC QOH"
-            '        sSql = "Select db_Name(), * from vw_LocQOH"
-            '    Case "New Item Created"
-            '        sSql = "Select db_Name(), * from VW_NewItemCreated"
-            '    Case "Order Loc DropShip"
-            '        sSql = "Select db_Name(), * from vw_OrderLocDropShip"
-            '    Case "PO Email"
-            '        sSql = "Select db_name(), * from vw_POEmail"
-            '    Case "PO Request"
-            '        sSql = "Select db_Name(), * from vw_POReq"
-            '    Case "Price Code List"
-            '        sSql = "select p.cd_tp, case p.cd_tp  "
-            '        sSql += " when 1 then 'Customer and Item' "
-            '        sSql += " when 2 then 'Customer and Product Category' "
-            '        sSql += " When 3 Then 'Customer Type and Item' "
-            '        sSql += " when 4 then 'Customer Type and Product Category' "
-            '        sSql += " When 5 Then 'Customer Only' "
-            '        sSql += " when 6 then 'Item Only' "
-            '        sSql += " When 7 Then 'Customer Type Only' "
-            '        sSql += " When 8 Then 'Product Category Only' else cast(p.cd_tp as CHAR(1)) end as code_desc "
-            '        sSql += " , ltrim(p.cd_tp_1_cust_no) as cus_no , c.cmp_name as cus_name , rtrim(cd_tp_1_item_no) as item_no "
-            '        sSql += " , i.item_desc_1, p.start_dt, p.end_dt, cd_prc_basis as price_basis, minimum_qty_1 , prc_or_disc_1 , minimum_qty_2 "
-            '        sSql += " , prc_or_disc_2, minimum_qty_3, prc_or_disc_3, minimum_qty_4, prc_or_disc_4 "
-            '        sSql += " from oeprcfil_sql p left outer join imitmidx_sql i on p.cd_tp_1_item_no = i.item_no Left outer join cicmpy c on p.cd_tp_1_cust_no = c.debcode "
-            '    Case "Quarintine Inventory"
-            '        sSql = "Select db_name(), * from vw_QuarantineInventory"
-            '    Case "RMA"
-            '        sSql = "Select db_name(), * from vw_RMA"
-            '    Case "Serial QOH"
-            '        sSql = "Select db_name(),* from vw_SerialQOH"
-            '    Case "Serial QOH"
-            '        sSql = "Select db_Name(), * from vw_SerialQOH"
-            '    Case "Transit Transfer Approved"
-            '        sSql = "Select db_Name(),* from vw_TransitInvApproved"
-            '    Case "Unique Ship Via Codes"
-            '        sSql = "select distinct b.bedrnr as 'company', o.ship_via_cd, z.code_desc "
-            '        sSql += " from oehdrhst_sql o left outer join zAR_Ship_Via z on o.ship_via_cd = z.sy_code cross join bedryf b  "
-            '    Case "Vendor Sales Person"
-            '        sSql = "SELECT db_name(), cicmpy.id,cmp_name, CompanyType,SalesPersonNumber, h.fullname as SalesPerson,AccountTypeCode,ClassificationId "
-            '        sSql += " FROM  [cicmpy] inner join humres h on h.id = SalesPersonNumber"
-            '    Case "Exact Users - Roles"
-            '        sSql = "select db_name() as [DB],pwr.role_name,pwr.descr64, "
-            '        sSql += " hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title, "
-            '        sSql += " hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr, "
-            '        sSql += " hr.usr_id,hr.job_level As [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked "
-            '        sSql += " from [humres] hr  "
-            '        sSql += " left join pwruc uru on uru.res_id = hr.res_id "
-            '        sSql += " left join pwrole pwr on pwr.role_id = uru.role_id "
-            '    Case "Exact Table List"
-            '        sSql = "SELECT db_name(), * From DDTables"
-            '    Case "WISYS Users"
-            '        sSql = "select db_name() as DBNAME,username,fullname,admin,securitylvl,isdeleted From wsUsers"
-            '    Case "Item Last Usage"
-            '        sSql = "Select db_name(),* from VW_1LastUsage"
-            '    Case "PPV", "PO Cost VS Standard"
-            '        sSql = "Select db_name(),* from vw_pocostvrsstd"
-            'End Select
+            If cmbQuery.Text = "ZCustom" Then
+                Dim sTable As String
+                sTable = InputBox("Input View or Table to select from below ", "Custom Select Query")
+                sSql = "Select * from " & sTable
+                Me.txtSQL.Text = sSql
+                LabelHeader.Text = "DB" & Me.cmbCompany.Text & " " & sTable
+            Else
+                sSql = GetSQLFromXML(sQuerySelected)
+                sDatabase = GetDatabaseFromXML(sQuerySelected)
+                sDbServer = GetDBServerFromXML(sQuerySelected)
+
+                If sDbServer <> "" Then
+                    cmbServer.Text = sDbServer
+                End If
+
+                If sDatabase <> "" Then    ' Database Defined
+                    cmbCompany.Text = sDatabase
+                ElseIf sDbServer = "STL01APP" Then
+                    'cmbCompany.Text = "200"   ' Set to Default Database 200
+                End If
+
+                LabelHeader.Text = "DB " & Me.cmbCompany.Text & " " & cmbQuery.Text
+            End If
+            If chkShowSQL.Checked Then
+                Me.txtSQL.Text = sSql
+            End If
             dt = GetDTfromSQL(sSql)
 
             DataGridView1.DataSource = dt
             dtfReports = dt
-
-            Me.Cursor = Cursors.WaitCursor
+            Me.DataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet
             Me.DataGridView1.Refresh()
 
-            LabelHeader.Text = cmbQuery.Text
             Me.DataGridView1.ContextMenuStrip = Me.cmsUser
             'DataGridView1.DataSource = dt
             SetRowsFound()
             SetUpFilter()
         Catch ex As Exception
             LogError(ex.Message)
+            Me.txtSQL.Text += vbCrLf & ex.Message & vbCrLf & ssql
         Finally
             Me.labelLastUpdate.Text = "Last Refreshed: " & Now
             Me.Cursor = Cursors.Default
@@ -204,7 +132,46 @@ Public Class GeneralData
             End If
         Next
         Return sSqlOut
+
     End Function
+
+
+    Public Function GetDataBaseFromXML(SQueryName As String) As String
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim queryname As String = ""
+        Dim sDBOut As String = ""
+        Try
+            For Each node As XmlNode In nodes
+                queryname = node.SelectSingleNode("QueryName").InnerText
+                If queryname = SQueryName Then
+                    sDBOut = node.SelectSingleNode("DataBase").InnerText
+                    Exit For
+                End If
+            Next
+            Return sDBOut
+        Catch ex As Exception
+            Return sDBOut
+        End Try
+    End Function
+    Public Function GetDBServerFromXML(SQueryName As String) As String
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim queryname As String = ""
+        Dim sDBServerOut As String = ""
+        Try
+            For Each node As XmlNode In nodes
+                queryname = node.SelectSingleNode("QueryName").InnerText
+                If queryname = SQueryName Then
+                    sDBServerOut = node.SelectSingleNode("DBServer").InnerText
+                    Exit For
+                End If
+            Next
+            Return sDBServerOut
+        Catch ex As Exception
+            Return sDBServerOut
+        End Try
+
+    End Function
+
 
     Public Sub FillInCombo()
         Try
@@ -218,6 +185,7 @@ Public Class GeneralData
                 cmbQuery.Items.Add(QueryName)
                 '    MessageBox.Show(QueryName & " " & SQL)
             Next
+            cmbQuery.Items.Add("ZCustom")
         Catch ex As Exception
             MsgBox(ex.Message.ToString)
         End Try
@@ -230,7 +198,7 @@ Public Class GeneralData
     Public Function GetDTfromSQL(sSql As String) As DataTable
 
         Try
-            Dim sConnection As String = "server=stl01app;database=" & Me.cmbCompany.Text & ";Trusted_Connection=True;"
+            Dim sConnection As String = "server=" & Me.cmbServer.Text & ";database=" & Me.cmbCompany.Text & ";Trusted_Connection=True;"
 
             Dim objDataAdapter As New SqlDataAdapter(sSql, sConnection)
             Dim dsResult As New DataSet("OuResult")
@@ -245,6 +213,7 @@ Public Class GeneralData
             GetDTfromSQL = dsResult.Tables(0)
         Catch ex As Exception
             LogError("Error GetDTFromSQL. " & vbCrLf & sSql & vbCrLf & ex.Message)
+            Me.txtSQL.Text += vbCrLf & ex.Message
             MsgBox("Error GetDTFromSQL. " & vbCrLf & sSql & vbCrLf & ex.Message)
             GetDTfromSQL = Nothing
         End Try
@@ -252,23 +221,23 @@ Public Class GeneralData
     End Function
 
     Private Sub cmbQuery_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbQuery.SelectedValueChanged
-        RefreshGrid()
+        'RefreshGrid()
     End Sub
-    Private Sub AllRowsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AllRowsToolStripMenuItem.Click
+    Private Sub AllRowsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         PrintDGV.Print_DataGridView(Me.DataGridView1, "Results for " & dt.TableName, True)
     End Sub
 
-    Private Sub SelectedRowsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedRowsToolStripMenuItem.Click
+    Private Sub SelectedRowsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
         PrintDGV.Print_DataGridView(Me.DataGridView1, "Results for " & dt.TableName, False)
     End Sub
 
-    Private Sub AllRowsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles AllRowsToolStripMenuItem1.Click
+    Private Sub AllRowsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs)
         Me.Cursor = Cursors.WaitCursor
         ExportToExcel(DataGridView1)
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub SelectedRowsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles SelectedRowsToolStripMenuItem1.Click
+    Private Sub SelectedRowsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs)
         Me.Cursor = Cursors.WaitCursor
         ExportToExcel(DataGridView1, True)
         Me.Cursor = Cursors.Default
@@ -292,71 +261,184 @@ Public Class GeneralData
                         lbl1.Text = col.HeaderText
                         lbl1.Visible = True
                         txt1.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl1.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl1.Tag = "Date"
+                        Else
+                            lbl1.Tag = "Text"
+                        End If
                     Case 2
                         lbl2.Text = col.HeaderText
                         lbl2.Visible = True
                         txt2.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl2.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl2.Tag = "Date"
+                        Else
+                            lbl2.Tag = "Text"
+                        End If
                     Case 3
                         lbl3.Text = col.HeaderText
                         lbl3.Visible = True
                         txt3.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl3.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl3.Tag = "Date"
+                        Else
+                            lbl3.Tag = "Text"
+                        End If
                     Case 4
                         lbl4.Text = col.HeaderText
                         lbl4.Visible = True
                         txt4.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl4.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl4.Tag = "Date"
+                        Else
+                            lbl4.Tag = "Text"
+                        End If
                     Case 5
                         lbl5.Text = col.HeaderText
                         lbl5.Visible = True
                         txt5.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl5.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl5.Tag = "Date"
+                        Else
+                            lbl5.Tag = "Text"
+                        End If
                     Case 6
                         lbl6.Text = col.HeaderText
                         lbl6.Visible = True
                         txt6.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl6.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl6.Tag = "Date"
+                        Else
+                            lbl6.Tag = "Text"
+                        End If
                     Case 7
                         lbl7.Text = col.HeaderText
                         lbl7.Visible = True
                         txt7.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl7.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl7.Tag = "Date"
+                        Else
+                            lbl7.Tag = "Text"
+                        End If
                     Case 8
                         lbl8.Text = col.HeaderText
                         lbl8.Visible = True
                         txt8.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl8.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl8.Tag = "Date"
+                        Else
+                            lbl8.Tag = "Text"
+                        End If
                     Case 9
                         lbl9.Text = col.HeaderText
                         lbl9.Visible = True
                         txt9.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl9.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl9.Tag = "Date"
+                        Else
+                            lbl9.Tag = "Text"
+                        End If
                     Case 10
                         lbl10.Text = col.HeaderText
                         lbl10.Visible = True
                         txt10.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl10.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl10.Tag = "Date"
+                        Else
+                            lbl10.Tag = "Text"
+                        End If
                     Case 11
                         lbl11.Text = col.HeaderText
                         lbl11.Visible = True
                         txt11.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl11.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl11.Tag = "Date"
+                        Else
+                            lbl11.Tag = "Text"
+                        End If
                     Case 12
                         lbl12.Text = col.HeaderText
                         lbl12.Visible = True
                         txt12.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl12.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl12.Tag = "Date"
+                        Else
+                            lbl12.Tag = "Text"
+                        End If
                     Case 13
                         lbl13.Text = col.HeaderText
                         lbl13.Visible = True
                         txt13.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl13.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl13.Tag = "Date"
+                        Else
+                            lbl13.Tag = "Text"
+                        End If
                     Case 14
                         lbl14.Text = col.HeaderText
                         lbl14.Visible = True
                         txt14.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl14.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl14.Tag = "Date"
+                        Else
+                            lbl14.Tag = "Text"
+                        End If
                     Case 15
                         lbl15.Text = col.HeaderText
                         lbl15.Visible = True
                         txt15.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl15.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl15.Tag = "Date"
+                        Else
+                            lbl15.Tag = "Text"
+                        End If
                     Case 16
                         lbl16.Text = col.HeaderText
                         lbl16.Visible = True
                         txt16.Visible = True
+                        If col.ValueType Is GetType(Integer) Or col.ValueType Is GetType(Byte) Then
+                            lbl16.Tag = "Integer"
+                        ElseIf col.ValueType Is GetType(Date) Then
+                            lbl16.Tag = "Date"
+                        Else
+                            lbl16.Tag = "Text"
+                        End If
 
                     Case Else
 
                 End Select
             End If 'Skipping Date Fields in Filter area
+
         Next
 
     End Sub
@@ -372,10 +454,19 @@ Public Class GeneralData
                 If ctrltb(0).Text.Length > 0 Then
                     ctrllb = GroupBox1.Controls.Find("lbl" & i, False)
                     If sTemp.Length > 0 Then
-                        sTemp += " and [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                        If ctrllb(0).Tag = "Text" Then
+                            sTemp += " and [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                        Else
+                            sTemp += " and [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
+                        End If
                     Else
-                        sTemp += " [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                        If ctrllb(0).Tag = "Text" Then
+                            sTemp += " [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                        Else
+                            sTemp += " [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
+                        End If
                     End If
+
                 End If
             Next
 
@@ -391,7 +482,6 @@ Public Class GeneralData
         End Try
     End Sub
 
-
     Private Sub txt1_KeyUp(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles txt1.KeyUp, txt2.KeyUp, txt3.KeyUp, txt4.KeyUp, txt5.KeyUp, txt6.KeyUp, txt7.KeyUp, txt8.KeyUp, txt9.KeyUp, txt10.KeyUp, txt11.KeyUp, txt12.KeyUp, txt13.KeyUp, txt14.KeyUp, txt15.KeyUp, txt16.KeyUp
         FilterGrid()
     End Sub
@@ -399,4 +489,44 @@ Public Class GeneralData
     Private Sub GeneralData_Load(sender As Object, e As EventArgs) Handles Me.Load
         FillInCombo()
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        Dim frm As New EditXML
+        frm.Show()
+    End Sub
+
+    Private Sub cmbReloadCombo_Click(sender As Object, e As EventArgs) Handles cmbReloadCombo.Click
+        FillInCombo()
+    End Sub
+
+    Private Sub CopyCtrlCToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyCtrlCToolStripMenuItem.Click
+        My.Computer.Keyboard.SendKeys("^{C}")
+    End Sub
+
+    Private Sub AllRowsToolStripMenuItem1_Click_1(sender As Object, e As EventArgs) Handles AllRowsToolStripMenuItem1.Click
+        Me.Cursor = Cursors.WaitCursor
+        'ExportToExcel(dtf)
+        ExportToExcel(DataGridView1)
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SelectedRowsToolStripMenuItem1_Click_1(sender As Object, e As EventArgs) Handles SelectedRowsToolStripMenuItem1.Click
+        Me.Cursor = Cursors.WaitCursor
+        'ExportToExcel(dtf)
+        ExportToExcel(DataGridView1, True)
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub AllRowsToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles AllRowsToolStripMenuItem.Click
+        PrintDGV.Print_DataGridView(Me.DataGridView1, "Results for " & dt.TableName, True)
+    End Sub
+
+    Private Sub SelectedRowsToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles SelectedRowsToolStripMenuItem.Click
+        PrintDGV.Print_DataGridView(Me.DataGridView1, "Results for " & dt.TableName, False)
+    End Sub
+
+    Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
+
+    End Sub
+
 End Class

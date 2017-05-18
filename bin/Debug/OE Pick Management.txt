@@ -1,0 +1,73 @@
+SELECT oeordhdr_wv.ord_type,
+       oeordlin_wv.ord_no,
+       Cast(oeordlin_wv.ord_no AS INT) AS ord_no_int,
+       oeordlin_wv.line_no,
+       Rtrim(oeordlin_wv.item_no) AS item_no,
+       oeordlin_wv.item_desc_1,
+       oeordlin_wv.item_desc_2,
+       oeordlin_wv.qty_ordered,
+       oeordlin_wv.qty_to_ship,
+       oeordlin_wv.qty_bkord,
+       oeordlin_wv.prod_cat,
+       oeordlin_wv.req_ship_dt,
+       oeordhdr_wv.oe_po_no,
+       Ltrim(oeordhdr_wv.cus_no) AS cus_no,
+       oeordhdr_wv.ship_to_name,
+       oeordhdr_wv.ship_to_addr_1,
+       oeordhdr_wv.ship_to_addr_2,
+       oeordhdr_wv.ship_to_addr_3,
+       oeordhdr_wv.ship_to_addr_4,
+       oeordhdr_wv.ship_to_country,
+       oeordhdr_wv.ship_via_cd,
+       oeordhdr_wv.ship_instruction_1,
+       oeordhdr_wv.ship_instruction_2,
+       oeordlin_wv.loc,
+       oeordlin_wv.request_dt,
+       oeordlin_wv.extra_1,
+       oeordlin_wv.extra_2,
+       oeordlin_wv.extra_3,
+       oeordlin_wv.extra_4,
+       oeordlin_wv.extra_5,
+       oeordlin_wv.extra_7,
+       oeordlin_wv.extra_8,
+       oeordlin_wv.extra_9,
+       oeordlin_wv.extra_10,
+       oeordlin_wv.extra_11,
+       oeordlin_wv.extra_12,
+       oeordlin_wv.extra_13,
+       oeordlin_wv.extra_14,
+       oeordlin_wv.extra_15,
+       oeordlin_wv.user_def_fld_1,
+       oeordlin_wv.user_def_fld_2,
+       oeordlin_wv.user_def_fld_3,
+       oeordlin_wv.user_def_fld_4,
+       oeordlin_wv.user_def_fld_5,
+       oeordhdr_wv.ord_dt,
+       oeordlin_wv.promise_dt,
+       oeordlin_wv.item_no,
+       iminvloc_wv.inv_class,
+       iminvloc_wv.std_cost,
+       iminvloc_wv.cycle_count_cd,
+       iminvloc_wv.qty_on_hand,
+       iminvloc_wv.qty_allocated,
+       iminvloc_wv.qty_bkord AS item_qty_bkord,
+       ( iminvloc_wv.qty_on_hand - iminvloc_wv.qty_allocated + iminvloc_wv.qty_bkord ) AS qty_avail_to_fill,
+       oeordhdr_wv.ship_to_city,
+       oeordhdr_wv.ship_to_state,
+       oeordhdr_wv.ship_to_zip
+FROM   oeordhdr_wv
+       INNER JOIN oeordlin_wv ON oeordhdr_wv.ord_no = oeordlin_wv.ord_no
+                                 AND oeordhdr_wv.ord_type = oeordlin_wv.ord_type
+       INNER JOIN iminvloc_wv ON oeordlin_wv.item_no = iminvloc_wv.item_no
+                                 AND oeordlin_wv.loc = iminvloc_wv.loc
+WHERE  oeordhdr_wv.ord_type = 'O'
+       AND Isnull(oeordlin_wv.extra_6, ' ') = ' '
+       AND Isnull(oeordlin_wv.filler_0004, ' ') = ' '
+       AND ( oeordlin_wv.picked_dt IS NULL
+              OR oeordlin_wv.picked_dt = '1900-01-01 00:00:00.000' )
+       AND ( oeordlin_wv.shipped_dt IS NULL
+              OR oeordlin_wv.shipped_dt = '1900-01-01 00:00:00.000' )
+       AND ( oeordhdr_wv.status = '1'
+              OR oeordhdr_wv.status = '4' )
+       AND oeordhdr_wv.selection_cd <> 'I'
+       AND Isnull(oeordhdr_wv.hold_fg, '') <> 'H' 

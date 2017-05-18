@@ -401,17 +401,17 @@ Public Class UserInfo
 
     Private Sub DataGridView1_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles DataGridView1.MouseDown
 
-        ShowUserInfoSummaryToolStripMenuItem.Visible = False
-        ShowMemberOfInfoToolStripMenuItem.Visible = False
+        'ShowUserInfoSummaryToolStripMenuItem.Visible = False
+        'ShowMemberOfInfoToolStripMenuItem.Visible = False
 
-        For i = 0 To DataGridView1.ColumnCount - 1
-            If DataGridView1.Columns(i).HeaderText.ToUpper = "MEMBEROF" Then
-                ShowMemberOfInfoToolStripMenuItem.Visible = True
-            End If
-            If DataGridView1.Columns(i).HeaderText.ToUpper = "USERID" Then
-                ShowUserInfoSummaryToolStripMenuItem.Visible = True
-            End If
-        Next
+        'For i = 0 To DataGridView1.ColumnCount - 1
+        '    If DataGridView1.Columns(i).HeaderText.ToUpper = "MEMBEROF" Then
+        '        ShowMemberOfInfoToolStripMenuItem.Visible = True
+        '    End If
+        '    If DataGridView1.Columns(i).HeaderText.ToUpper = "USERID" Then
+        '        ShowUserInfoSummaryToolStripMenuItem.Visible = True
+        '    End If
+        'Next
 
         ' Code for checking what cell was clicked....
         'If e.Button = Windows.Forms.MouseButtons.Right Then

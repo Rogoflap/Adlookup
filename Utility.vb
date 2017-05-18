@@ -14,6 +14,7 @@ Imports System.Xml
 
 
 
+
 Module Utility
     Public sLogfileName As String = My.Settings.LogFile
     Public sEmailTo As String = My.Settings.SendTo
@@ -35,14 +36,14 @@ Module Utility
     Public sLoadType As String
     Public dcUserIDFullname As Dictionary(Of String, String)
 
-    <DllImport("User32.dll")> _
-    Public Function RegisterHotKey(ByVal hwnd As IntPtr, _
-                            ByVal id As Integer, ByVal fsModifiers As Integer, _
+    <DllImport("User32.dll")>
+    Public Function RegisterHotKey(ByVal hwnd As IntPtr,
+                            ByVal id As Integer, ByVal fsModifiers As Integer,
                             ByVal vk As Integer) As Integer
     End Function
 
-    <DllImport("User32.dll")> _
-    Public Function UnregisterHotKey(ByVal hwnd As IntPtr, _
+    <DllImport("User32.dll")>
+    Public Function UnregisterHotKey(ByVal hwnd As IntPtr,
                         ByVal id As Integer) As Integer
     End Function
 
@@ -566,13 +567,13 @@ Module Utility
             Dim sConnection As String ' = "server=olinsccmsql;database=SMS_EAI;Trusted_Connection=True;"
             Dim ssql As String
 
-            ssql = "Select distinct Netbios_Name0 As ComputerName, vras.System_OU_Name0  As OU" & _
-                    " from v_RA_System_SystemOUName vras INNER JOIN v_R_System vrs " & _
-                    " On vrs.ResourceID = vras.ResourceID " & _
-                    " where System_OU_Name0 In  " & _
-                    " (Select distinct max(System_OU_Name0) " & _
-                    " from v_RA_System_SystemOUName  " & _
-                    " where vras.ResourceID = v_RA_System_SystemOUName .ResourceID) " & _
+            ssql = "Select distinct Netbios_Name0 As ComputerName, vras.System_OU_Name0  As OU" &
+                    " from v_RA_System_SystemOUName vras INNER JOIN v_R_System vrs " &
+                    " On vrs.ResourceID = vras.ResourceID " &
+                    " where System_OU_Name0 In  " &
+                    " (Select distinct max(System_OU_Name0) " &
+                    " from v_RA_System_SystemOUName  " &
+                    " where vras.ResourceID = v_RA_System_SystemOUName .ResourceID) " &
                     " ORDER by Netbios_Name0,System_OU_Name0"
 
             Dim objDataAdapter As New SqlDataAdapter(ssql, sConnection)
@@ -763,7 +764,7 @@ Module Utility
                     If adResult.Properties("distinguishedName").Count > 0 Then
                         Dim sOu As String
                         sOu = adResult.Properties("distinguishedName")(0).ToString
-                       If adResult.Properties("telephoneNumber").Count > 0 Or adResult.Properties("Company").Count > 0 Then
+                        If adResult.Properties("telephoneNumber").Count > 0 Or adResult.Properties("Company").Count > 0 Then
                             dcUserIDFullname.Add(adResult.Properties("sAMAccountName")(0).ToString().ToUpper, adResult.Properties("CN")(0).ToString())
                         End If
                     End If
@@ -887,21 +888,21 @@ Module Utility
                         'If adResult.Properties("showInAddressBook").Count > 0 Then
                         dr = dt.NewRow()
 
-                            dr(0) = adResult.Properties("cn")(0).ToString()
-                            If adResult.Properties("telephoneNumber").Count > 0 Then
-                                dr(1) = adResult.Properties("telephoneNumber")(0).ToString()
-                            End If
+                        dr(0) = adResult.Properties("cn")(0).ToString()
+                        If adResult.Properties("telephoneNumber").Count > 0 Then
+                            dr(1) = adResult.Properties("telephoneNumber")(0).ToString()
+                        End If
 
-                            If adResult.Properties("mail").Count > 0 Then
-                                dr(2) = adResult.Properties("mail")(0).ToString()
-                            End If
+                        If adResult.Properties("mail").Count > 0 Then
+                            dr(2) = adResult.Properties("mail")(0).ToString()
+                        End If
 
-                            dr(3) = adResult.Properties("sAMAccountName")(0).ToString()
+                        dr(3) = adResult.Properties("sAMAccountName")(0).ToString()
 
 
-                            If adResult.Properties("Title").Count > 0 Then
-                                dr(4) = adResult.Properties("Title")(0).ToString()
-                            End If
+                        If adResult.Properties("Title").Count > 0 Then
+                            dr(4) = adResult.Properties("Title")(0).ToString()
+                        End If
 
                         If adResult.Properties("streetaddress").Count > 0 Then
                             dr(5) = adResult.Properties("streetaddress")(0).ToString()
@@ -920,22 +921,22 @@ Module Utility
                         End If
 
                         If adResult.Properties("Physicaldeliveryofficename").Count > 0 Then
-                                dr(6) = adResult.Properties("Physicaldeliveryofficename")(0).ToString()
-                            End If
+                            dr(6) = adResult.Properties("Physicaldeliveryofficename")(0).ToString()
+                        End If
 
-                            If adResult.Properties("homedirectory").Count > 0 Then
-                                dr(7) = adResult.Properties("homedirectory")(0).ToString()
-                            End If
+                        If adResult.Properties("homedirectory").Count > 0 Then
+                            dr(7) = adResult.Properties("homedirectory")(0).ToString()
+                        End If
 
-                            'Get Location of User
+                        'Get Location of User
 
-                            If adResult.Properties("Company").Count > 0 Then
-                                dr(8) = adResult.Properties("Company")(0).ToString()
-                            End If
+                        If adResult.Properties("Company").Count > 0 Then
+                            dr(8) = adResult.Properties("Company")(0).ToString()
+                        End If
 
-                            If adResult.Properties("Manager").Count > 0 Then
-                                dr(9) = Mid(adResult.Properties("Manager")(0).ToString(), 4, (InStr(adResult.Properties("Manager")(0).ToString(), ",")) - 4)
-                            End If
+                        If adResult.Properties("Manager").Count > 0 Then
+                            dr(9) = Mid(adResult.Properties("Manager")(0).ToString(), 4, (InStr(adResult.Properties("Manager")(0).ToString(), ",")) - 4)
+                        End If
 
                         'dr(9) = getLocation(adResult.Properties("cn")(0).ToString())
                         If adResult.Properties("UserAccountControl").Count > 0 Then
@@ -984,39 +985,39 @@ Module Utility
                         End If
 
                         Try
-                                If adResult.Properties("lastLogon").Count > 0 Then
-                                    If adResult.Properties("lastLogon")(0) > 0 Then
-                                        dr(11) = Date.FromFileTime(adResult.Properties("lastLogon")(0))
-                                    End If
+                            If adResult.Properties("lastLogon").Count > 0 Then
+                                If adResult.Properties("lastLogon")(0) > 0 Then
+                                    dr(11) = Date.FromFileTime(adResult.Properties("lastLogon")(0))
                                 End If
-                            Catch
-                            End Try
+                            End If
+                        Catch
+                        End Try
 
-                            Try
-                                If adResult.Properties("pwdLastSet").Count > 0 Then
-                                    If adResult.Properties("pwdLastSet")(0) > 0 Then
-                                        dr(12) = Date.FromFileTime(adResult.Properties("pwdLastSet")(0))
-                                    End If
+                        Try
+                            If adResult.Properties("pwdLastSet").Count > 0 Then
+                                If adResult.Properties("pwdLastSet")(0) > 0 Then
+                                    dr(12) = Date.FromFileTime(adResult.Properties("pwdLastSet")(0))
                                 End If
-                            Catch
-                            End Try
+                            End If
+                        Catch
+                        End Try
 
-                            Try
-                                If adResult.Properties("LockoutTime").Count > 0 Then
-                                    If adResult.Properties("LockoutTime")(0) > 0 Then
-                                        dr(13) = Date.FromFileTime(adResult.Properties("LockoutTime")(0))
-                                    End If
+                        Try
+                            If adResult.Properties("LockoutTime").Count > 0 Then
+                                If adResult.Properties("LockoutTime")(0) > 0 Then
+                                    dr(13) = Date.FromFileTime(adResult.Properties("LockoutTime")(0))
                                 End If
-                            Catch
-                            End Try
+                            End If
+                        Catch
+                        End Try
 
 
-                            Try
-                                If adResult.Properties("WhenCreated").Count > 0 Then
-                                    dr(14) = adResult.Properties("WhenCreated")(0)
-                                End If
-                            Catch
-                            End Try
+                        Try
+                            If adResult.Properties("WhenCreated").Count > 0 Then
+                                dr(14) = adResult.Properties("WhenCreated")(0)
+                            End If
+                        Catch
+                        End Try
 
                         Try
                             If adResult.Properties("WhenChanged").Count > 0 Then
@@ -1026,21 +1027,21 @@ Module Utility
                         End Try
 
                         If AddMemberInfo Then
-                                If adResult.Properties("memberof").Count > 0 Then
-                                    Dim sTemp As String = ""
-                                    Dim i As Integer = 0
-                                    For i = 0 To adResult.Properties("memberof").Count - 1
-                                        sTemp += GetGroupPath(adResult.Properties("memberof")(i).ToString())
-                                        sTemp += vbCrLf
-                                    Next
+                            If adResult.Properties("memberof").Count > 0 Then
+                                Dim sTemp As String = ""
+                                Dim i As Integer = 0
+                                For i = 0 To adResult.Properties("memberof").Count - 1
+                                    sTemp += GetGroupPath(adResult.Properties("memberof")(i).ToString())
+                                    sTemp += vbCrLf
+                                Next
                                 dr(16) = sTemp
                             End If
 
-                                If adResult.Properties("distinguishedName").Count > 0 Then
+                            If adResult.Properties("distinguishedName").Count > 0 Then
                                 dr(17) = GetOuPath(adResult.Properties("distinguishedName")(0).ToString())
                             End If
 
-                            End If 'ADMember
+                        End If 'ADMember
 
                         dt.Rows.Add(dr)
 
@@ -1104,11 +1105,12 @@ Module Utility
             dt = New DataTable("Groups")
 
             dt.Columns.Add(New DataColumn("Name", GetType(System.String)))
+            dt.Columns.Add(New DataColumn("Mail", GetType(System.String)))
             dt.Columns.Add(New DataColumn("Description", GetType(System.String)))
-            dt.Columns.Add(New DataColumn("ADSPath", GetType(System.String)))
             dt.Columns.Add(New DataColumn("Created", GetType(System.DateTime)))
             dt.Columns.Add(New DataColumn("MemberOf", GetType(System.String)))
             dt.Columns.Add(New DataColumn("Members", GetType(System.String)))
+            dt.Columns.Add(New DataColumn("ADSPath", GetType(System.String)))
 
             Dim dr As DataRow
             findUser.SearchScope = SearchScope.Subtree
@@ -1133,15 +1135,19 @@ Module Utility
                 End Try
 
                 Try
-                    If adResult.Properties("Description")(0).ToString.Length > 0 Then
-                        dr(1) = adResult.Properties("Description")(0).ToString()
+                    If adResult.Properties("Mail").Count > 0 Then
+                        dr(1) = adResult.Properties("Mail")(0).ToString()
                     End If
                 Catch ex As Exception
                 End Try
 
-                If adResult.Properties("adsPath").Count > 0 Then
-                    dr(2) = Mid(adResult.Properties("adsPath")(0).ToString(), 8)
-                End If
+
+                Try
+                    If adResult.Properties("Description")(0).ToString.Length > 0 Then
+                        dr(2) = adResult.Properties("Description")(0).ToString()
+                    End If
+                Catch ex As Exception
+                End Try
 
                 'If adResult.Properties("WhenCreated")(0).count > 0 Then
                 dr(3) = adResult.Properties("WhenCreated")(0).ToString
@@ -1172,6 +1178,13 @@ Module Utility
                 Catch ex As Exception
                     dr(5) = sTemp
                 End Try
+
+
+                If adResult.Properties("adsPath").Count > 0 Then
+                    dr(6) = Mid(adResult.Properties("adsPath")(0).ToString(), 8)
+                End If
+
+
                 dt.Rows.Add(dr)
 
             Next
@@ -1499,7 +1512,7 @@ Module Utility
             Dim sErr As StreamReader = myProcess.StandardError
             '        sIn.Write("dir c:\windows\system32\*.com" & _
             '          System.Environment.NewLine)
-            sIn.Write(sTemp & _
+            sIn.Write(sTemp &
                System.Environment.NewLine)
             sIn.Write("exit" & System.Environment.NewLine)
             s = sOut.ReadToEnd()
@@ -1724,5 +1737,120 @@ Module Utility
         Next
     End Sub
 
+    Public Function GetAttachment(sEmailID As String) As String
+        Dim tempApp As Outlook.Application
+        Dim tempInbox As Outlook.MAPIFolder
+        Dim InboxItems As Outlook.Items
+        Dim dt As New DataTable
+        Dim sFileName As String = ""
 
+        'Dim objattachments, objAttach
+        tempApp = CreateObject("Outlook.Application")
+        'tempInbox = tempApp.GetNamespace("Mapi").Folders("Empower@Accellacorp.com").Folders("Inbox").Folders(sSubFolder)
+        'InboxItems = tempInbox.Items
+        Dim oMail As Outlook.MailItem
+        'oMail = tempApp.GetNamespace("Mapi").Folders("Empower@Accellacorp.com").getitemfromid(sEmailID)
+        oMail = tempApp.GetNamespace("Mapi").GetItemFromID(sEmailID)
+        Try
+            File.Delete("C:\Temp\" & oMail.Attachments(1).FileName)
+            oMail.Attachments(1).SaveAsFile("C:\Temp\" & oMail.Attachments(1).FileName)
+            sFileName = "C:\Temp\" & oMail.Attachments(1).FileName
+        Catch ex As Exception
+        End Try
+        Return sFileName
+    End Function
+
+    Public Function GetInvoiceEMails(sSubFolder As String) As DataTable
+        Dim tempApp As Outlook.Application
+        Dim tempInbox As Outlook.MAPIFolder
+        Dim InboxItems As Outlook.Items
+        Dim dt As New DataTable
+
+        'Dim objattachments, objAttach
+        tempApp = CreateObject("Outlook.Application")
+
+        If sSubFolder = "Inbox" Then
+            tempInbox = tempApp.GetNamespace("Mapi").Folders("Empower@Accellacorp.com").Folders("Inbox")
+        Else
+            tempInbox = tempApp.GetNamespace("Mapi").Folders("Empower@Accellacorp.com").Folders("Inbox").Folders(sSubFolder)
+        End If
+
+        'tempInbox = tempApp.GetNamespace("Mapi").GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox)
+        InboxItems = tempInbox.Items
+        Dim newMail As Object 'Outlook.MailItem
+        Dim oMail As Outlook.MailItem
+        Dim rptItem As Outlook.ReportItem
+        Dim fldrs As Outlook.Folder
+
+
+        dt = New DataTable("Inbox")
+        dt.Columns.Add(New DataColumn("ID", GetType(System.String)))          '0
+        dt.Columns.Add(New DataColumn("Dat", GetType(System.DateTime)))          '0
+        dt.Columns.Add(New DataColumn("Dat2", GetType(System.String)))          '0
+        dt.Columns.Add(New DataColumn("From", GetType(System.String)))     '1
+        dt.Columns.Add(New DataColumn("To", GetType(System.String)))         '2
+        dt.Columns.Add(New DataColumn("CC", GetType(System.String)))         '2
+        dt.Columns.Add(New DataColumn("Subject", GetType(System.String)))        '3
+        dt.Columns.Add(New DataColumn("Body", GetType(System.String)))      '4
+        dt.Columns.Add(New DataColumn("Type", GetType(System.String))) '5
+        dt.Columns.Add(New DataColumn("Attachment", GetType(System.String)))         '2
+        dt.Columns.Add(New DataColumn("Attachment Name", GetType(System.String)))         '2
+        Dim dr As DataRow
+
+        For Each fldrs In tempInbox.Folders
+            Debug.Print(fldrs.EntryID & " : " & fldrs.Name)
+        Next
+
+        For Each newMail In InboxItems
+            dr = dt.NewRow
+            Debug.Print("ObjectType: " & TypeName(newMail))
+            If (TypeOf newMail Is Outlook.MailItem) Then     'Email Found
+                oMail = newMail
+                'Debug.Print(newMail.Subject)
+                dr("ID") = oMail.EntryID
+                dr("Dat") = oMail.ReceivedTime
+                dr("Dat2") = oMail.ReceivedTime
+                dr("Subject") = oMail.Subject
+                dr("To") = oMail.To
+                dr("CC") = oMail.CC
+                If oMail.Attachments.Count > 0 Then
+                    dr("Attachment") = "Yes"
+                    dr("Attachment Name") = oMail.Attachments(1).FileName
+                Else
+                    dr("Attachment") = "No"
+                End If
+                dr("Body") = oMail.Body
+                dr("Type") = "MailItem"
+                dr("From") = oMail.Sender.Name
+                dt.Rows.Add(dr)
+            ElseIf (TypeOf newMail Is Outlook.ReportItem) Then   ' Undeliverable found
+                rptItem = newMail
+                dr("Dat") = rptItem.CreationTime
+                dr("Dat2") = rptItem.CreationTime
+                dr("Subject") = rptItem.Subject
+                'dr("To") = rptItem.
+                'dr("CC") = rptItem.CC
+                'dr("BCC") = rptItem.BCC
+                dr("Body") = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.Unicode.GetBytes(rptItem.Body)) 'rptItem.Body
+                dr("Type") = "ReportItem"
+                'dr("From") = rptItem.Send
+                dt.Rows.Add(dr)
+                'Debug.Print(rptItem.Subject)
+                'Debug.Print(rptItem.Body)
+            Else 'Found Something else besides email / undeliverable
+                Debug.Print("********** " & TypeName(newMail) & " ***************")
+            End If
+
+            'If newMail.UnRead Then
+            'Dim des As String = newMail.Body
+            'if u want to delete
+            'newMail.Delete()
+
+            'End If
+        Next
+        InboxItems = Nothing
+        tempInbox = Nothing
+        tempApp = Nothing
+        Return dt
+    End Function
 End Module

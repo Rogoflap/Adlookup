@@ -6,6 +6,22 @@ It also shows some Computer SCCM info if you, the user are in an SCCM Group.
 Don't hesitate to use the Send Suggestion (Bug, or New Idea etc) this will help make 
 the program better for everyone.
 
+Version 2.1.18
+    Added Empower Email 
+
+Version 2.1.17
+     Added some functionality to select on STL01DB
+
+Version 2.1.16
+	Fixed many small bugs in Exact Query Form
+	Added ability to "Refresh Query List" when XML changes made 
+	   without having to exit program.
+
+Version  2.1.15
+    Added email to User Groups form
+	Fixed Issue with Exact Button
+	Addes XML file to hold SQL list for Exact Form
+
 
 Version 2.1.14
 	Added Printer Info Form

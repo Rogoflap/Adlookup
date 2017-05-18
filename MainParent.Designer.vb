@@ -91,14 +91,15 @@ Partial Class MainParent
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbUserGroup = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbPrinterInfo = New System.Windows.Forms.ToolStripButton()
         Me.tsbSCCMReports = New System.Windows.Forms.ToolStripButton()
+        Me.tsbExact = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsbSendSuggestion = New System.Windows.Forms.ToolStripLabel()
-        Me.tsbExact = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.tsbPrinterInfo = New System.Windows.Forms.ToolStripButton()
+        Me.EmpowerEmailButton = New System.Windows.Forms.ToolStripButton()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
@@ -110,7 +111,7 @@ Partial Class MainParent
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(845, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(1045, 24)
         Me.MenuStrip.TabIndex = 5
         Me.MenuStrip.Text = "MenuStrip"
         '
@@ -467,10 +468,10 @@ Partial Class MainParent
         '
         'ToolStrip
         '
-        Me.ToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.tsbUser, Me.OpenToolStripButton, Me.SaveToolStripButton, Me.ToolStripSeparator1, Me.PrintToolStripButton, Me.PrintPreviewToolStripButton, Me.ToolStripSeparator2, Me.HelpToolStripButton, Me.ToolStripSeparator9, Me.ToolStripSeparator10, Me.tbComputerInfo, Me.ToolStripSeparator11, Me.tsbUserGroup, Me.ToolStripSeparator12, Me.tsbPrinterInfo, Me.tsbSCCMReports, Me.tsbExact, Me.ToolStripSeparator13, Me.tsbSendSuggestion})
+        Me.ToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripButton, Me.tsbUser, Me.OpenToolStripButton, Me.SaveToolStripButton, Me.ToolStripSeparator1, Me.PrintToolStripButton, Me.PrintPreviewToolStripButton, Me.ToolStripSeparator2, Me.HelpToolStripButton, Me.ToolStripSeparator9, Me.ToolStripSeparator10, Me.tbComputerInfo, Me.ToolStripSeparator11, Me.tsbUserGroup, Me.ToolStripSeparator12, Me.tsbPrinterInfo, Me.tsbSCCMReports, Me.tsbExact, Me.ToolStripSeparator13, Me.EmpowerEmailButton, Me.tsbSendSuggestion})
         Me.ToolStrip.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip.Name = "ToolStrip"
-        Me.ToolStrip.Size = New System.Drawing.Size(845, 25)
+        Me.ToolStrip.Size = New System.Drawing.Size(1045, 25)
         Me.ToolStrip.TabIndex = 6
         Me.ToolStrip.Text = "ToolStrip"
         '
@@ -591,6 +592,14 @@ Partial Class MainParent
         Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
         Me.ToolStripSeparator12.Size = New System.Drawing.Size(6, 25)
         '
+        'tsbPrinterInfo
+        '
+        Me.tsbPrinterInfo.Image = CType(resources.GetObject("tsbPrinterInfo.Image"), System.Drawing.Image)
+        Me.tsbPrinterInfo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbPrinterInfo.Name = "tsbPrinterInfo"
+        Me.tsbPrinterInfo.Size = New System.Drawing.Size(86, 22)
+        Me.tsbPrinterInfo.Text = "Printer Info"
+        '
         'tsbSCCMReports
         '
         Me.tsbSCCMReports.Image = CType(resources.GetObject("tsbSCCMReports.Image"), System.Drawing.Image)
@@ -598,6 +607,14 @@ Partial Class MainParent
         Me.tsbSCCMReports.Name = "tsbSCCMReports"
         Me.tsbSCCMReports.Size = New System.Drawing.Size(86, 22)
         Me.tsbSCCMReports.Text = "Printer Info"
+        '
+        'tsbExact
+        '
+        Me.tsbExact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.tsbExact.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbExact.Name = "tsbExact"
+        Me.tsbExact.Size = New System.Drawing.Size(56, 22)
+        Me.tsbExact.Text = "Exact DB"
         '
         'ToolStripSeparator13
         '
@@ -608,23 +625,15 @@ Partial Class MainParent
         '
         Me.tsbSendSuggestion.Image = CType(resources.GetObject("tsbSendSuggestion.Image"), System.Drawing.Image)
         Me.tsbSendSuggestion.Name = "tsbSendSuggestion"
-        Me.tsbSendSuggestion.Size = New System.Drawing.Size(111, 22)
+        Me.tsbSendSuggestion.Size = New System.Drawing.Size(111, 16)
         Me.tsbSendSuggestion.Text = "Send Suggestion"
-        '
-        'tsbExact
-        '
-        Me.tsbExact.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.tsbExact.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbExact.Name = "tsbExact"
-        Me.tsbExact.Size = New System.Drawing.Size(56, 22)
-        Me.tsbExact.Text = "Exact DB"
         '
         'StatusStrip
         '
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 571)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 558)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(845, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(1045, 22)
         Me.StatusStrip.TabIndex = 7
         Me.StatusStrip.Text = "StatusStrip"
         '
@@ -634,23 +643,24 @@ Partial Class MainParent
         Me.ToolStripStatusLabel.Size = New System.Drawing.Size(39, 17)
         Me.ToolStripStatusLabel.Text = "Status"
         '
-        'tsbPrinterInfo
+        'EmpowerEmailButton
         '
-        Me.tsbPrinterInfo.Image = CType(resources.GetObject("tsbPrinterInfo.Image"), System.Drawing.Image)
-        Me.tsbPrinterInfo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbPrinterInfo.Name = "tsbPrinterInfo"
-        Me.tsbPrinterInfo.Size = New System.Drawing.Size(86, 22)
-        Me.tsbPrinterInfo.Text = "Printer Info"
+        Me.EmpowerEmailButton.Image = CType(resources.GetObject("EmpowerEmailButton.Image"), System.Drawing.Image)
+        Me.EmpowerEmailButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.EmpowerEmailButton.Name = "EmpowerEmailButton"
+        Me.EmpowerEmailButton.Size = New System.Drawing.Size(80, 22)
+        Me.EmpowerEmailButton.Text = "EmpEmail"
         '
         'MainParent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(845, 593)
+        Me.ClientSize = New System.Drawing.Size(1045, 580)
         Me.Controls.Add(Me.ToolStrip)
         Me.Controls.Add(Me.MenuStrip)
         Me.Controls.Add(Me.StatusStrip)
         Me.IsMdiContainer = True
+        Me.KeyPreview = True
         Me.MainMenuStrip = Me.MenuStrip
         Me.Name = "MainParent"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -739,4 +749,5 @@ Partial Class MainParent
     Friend WithEvents BugFixesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsbExact As ToolStripButton
     Friend WithEvents tsbPrinterInfo As ToolStripButton
+    Friend WithEvents EmpowerEmailButton As ToolStripButton
 End Class

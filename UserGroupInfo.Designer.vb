@@ -56,6 +56,8 @@ Partial Class UserGroupInfo
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.gbUserAdGroup = New System.Windows.Forms.GroupBox()
+        Me.txtMail = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.txtMemberOf = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -83,6 +85,7 @@ Partial Class UserGroupInfo
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
+        Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -102,7 +105,6 @@ Partial Class UserGroupInfo
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Location = New System.Drawing.Point(12, 155)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -111,7 +113,7 @@ Partial Class UserGroupInfo
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DataGridView1.Size = New System.Drawing.Size(908, 336)
         Me.DataGridView1.TabIndex = 1
         Me.DataGridView1.TabStop = False
@@ -212,7 +214,7 @@ Partial Class UserGroupInfo
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(168, 23)
+        Me.Label10.Location = New System.Drawing.Point(329, 23)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(60, 13)
         Me.Label10.TabIndex = 37
@@ -220,7 +222,7 @@ Partial Class UserGroupInfo
         '
         'txtDescription
         '
-        Me.txtDescription.Location = New System.Drawing.Point(171, 39)
+        Me.txtDescription.Location = New System.Drawing.Point(332, 39)
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.Size = New System.Drawing.Size(176, 20)
         Me.txtDescription.TabIndex = 35
@@ -302,6 +304,8 @@ Partial Class UserGroupInfo
         '
         'gbUserAdGroup
         '
+        Me.gbUserAdGroup.Controls.Add(Me.txtMail)
+        Me.gbUserAdGroup.Controls.Add(Me.Label1)
         Me.gbUserAdGroup.Controls.Add(Me.Label20)
         Me.gbUserAdGroup.Controls.Add(Me.txtMemberOf)
         Me.gbUserAdGroup.Controls.Add(Me.Label14)
@@ -312,15 +316,31 @@ Partial Class UserGroupInfo
         Me.gbUserAdGroup.Controls.Add(Me.Label11)
         Me.gbUserAdGroup.Location = New System.Drawing.Point(12, 56)
         Me.gbUserAdGroup.Name = "gbUserAdGroup"
-        Me.gbUserAdGroup.Size = New System.Drawing.Size(809, 65)
+        Me.gbUserAdGroup.Size = New System.Drawing.Size(908, 65)
         Me.gbUserAdGroup.TabIndex = 25
         Me.gbUserAdGroup.TabStop = False
         Me.gbUserAdGroup.Text = "User Group"
         '
+        'txtMail
+        '
+        Me.txtMail.Location = New System.Drawing.Point(166, 39)
+        Me.txtMail.Name = "txtMail"
+        Me.txtMail.Size = New System.Drawing.Size(159, 20)
+        Me.txtMail.TabIndex = 49
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(164, 23)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(26, 13)
+        Me.Label1.TabIndex = 50
+        Me.Label1.Text = "Mail"
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(350, 23)
+        Me.Label20.Location = New System.Drawing.Point(514, 23)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(56, 13)
         Me.Label20.TabIndex = 48
@@ -328,7 +348,7 @@ Partial Class UserGroupInfo
         '
         'txtMemberOf
         '
-        Me.txtMemberOf.Location = New System.Drawing.Point(353, 39)
+        Me.txtMemberOf.Location = New System.Drawing.Point(514, 39)
         Me.txtMemberOf.Name = "txtMemberOf"
         Me.txtMemberOf.Size = New System.Drawing.Size(176, 20)
         Me.txtMemberOf.TabIndex = 36
@@ -336,7 +356,7 @@ Partial Class UserGroupInfo
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(532, 23)
+        Me.Label14.Location = New System.Drawing.Point(693, 23)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(50, 13)
         Me.Label14.TabIndex = 46
@@ -344,7 +364,7 @@ Partial Class UserGroupInfo
         '
         'txtMembers
         '
-        Me.txtMembers.Location = New System.Drawing.Point(535, 39)
+        Me.txtMembers.Location = New System.Drawing.Point(696, 39)
         Me.txtMembers.Name = "txtMembers"
         Me.txtMembers.Size = New System.Drawing.Size(155, 20)
         Me.txtMembers.TabIndex = 34
@@ -458,4 +478,6 @@ End Sub
     Friend WithEvents AllRowsToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SelectedRowsToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents labelLastUpdate As ToolStripStatusLabel
+    Friend WithEvents txtMail As TextBox
+    Friend WithEvents Label1 As Label
 End Class
