@@ -261,6 +261,14 @@ Public Class MainParent
                 ShowSCCMReports()
             End If
 
+            If GetCurrentUserName().ToUpper = "RDAVIS" Then
+                EmpowerEmailButton.Visible = True
+                tsbExact.Visible = True
+            Else
+                EmpowerEmailButton.Visible = False
+                tsbExact.Visible = False
+            End If
+
             My.Settings.ComputerFormOpen = "N"
             My.Settings.UserFormOpen = "N"
             My.Settings.UserGroupOpen = "N"

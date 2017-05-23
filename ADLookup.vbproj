@@ -32,7 +32,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\stl01dc\Public\Information Technology\ADlookup\</InstallUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>39</ApplicationRevision>
+    <ApplicationRevision>40</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -126,6 +126,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminInfo.Designer.vb">
+      <DependentUpon>AdminInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdminInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="BugFixes.Designer.vb">
       <DependentUpon>BugFixes.vb</DependentUpon>
@@ -256,6 +262,9 @@
     <Compile Include="Utility.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdminInfo.resx">
+      <DependentUpon>AdminInfo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BugFixes.resx">
       <DependentUpon>BugFixes.vb</DependentUpon>
     </EmbeddedResource>

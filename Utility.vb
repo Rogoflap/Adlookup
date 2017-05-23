@@ -35,6 +35,8 @@ Module Utility
     Public sSiteID As String = "EAI"
     Public sLoadType As String
     Public dcUserIDFullname As Dictionary(Of String, String)
+    Public sAdminUserName As String
+    Public sAdminPassword As String
 
     <DllImport("User32.dll")>
     Public Function RegisterHotKey(ByVal hwnd As IntPtr,
@@ -1491,6 +1493,98 @@ Module Utility
             'System.Diagnostics.Debug.WriteLine("error   sending to answer midwest " & Now)
         End Try
     End Sub
+
+
+    Friend Function AdUnlockUser(ByVal UserName As String) As String
+        Dim de As New DirectoryEntry()
+        Try
+            If sAdminPassword = "" Or sAdminUserName = "" Then
+                Dim frm As New AdminInfo
+                frm.ShowDialog()
+                AdUnlockUser("Please try again now that Admin Account Info Set")
+                Exit Function
+            End If
+            de.Username = sAdminUserName
+            de.Password = sAdminPassword
+            de.AuthenticationType = AuthenticationTypes.Secure
+            de.Path = My.Settings.LDAP  'Replace with your LDAP path such as LDAP://ServerName:389/OU=OrgUnit,DC=Domain
+            Dim deSearch As DirectorySearcher = New DirectorySearcher
+            deSearch.SearchRoot = de
+            deSearch.Filter = "(&(objectClass=user) (SAMAccountName=" + UserName + "))"
+            Dim results As SearchResultCollection = deSearch.FindAll
+            If (results.Count = 1) Then
+                Dim OneSearchResult As SearchResult
+                For Each OneSearchResult In results
+                    Dim AlterUser As DirectoryEntry = OneSearchResult.GetDirectoryEntry()
+                    AlterUser.AuthenticationType = AuthenticationTypes.Secure
+                    ' If Convert.ToBoolean(AlterUser.Properties("msDS-User-Account-Control-Computed").Value And &H10) Then
+                    AlterUser.Properties("lockoutTime").Value = 0  ' Unlock User
+                    AlterUser.CommitChanges()
+                    AlterUser.Close()
+                    'End If
+                Next
+                AdUnlockUser = "User: " & UserName & " Unlocked!"
+            Else
+                AdUnlockUser = "More then one account was found for " & UserName & ", which should Not occurr.  User was Not Unloced."
+            End If
+        Catch ex As Exception
+            AdUnlockUser = "A Error has occured unlocking " & UserName & " with AD Account: " & sAdminUserName & ". " & Err.Number & " - " & Err.Description & vbCrLf & "Exception message: " & ex.Message
+            LogError(AdUnlockUser)
+            'My.Application.Log.WriteEntry("MyApplicationNameHere encountered a error while changing the password for " & UserName & "." & vbCrLf & vbCrLf & "Exception: " & ex.Message & vbCrLf & "Inner Exception: " & ex.InnerException.Message.ToString)
+            Debug.WriteLine(ex.Message)
+        Finally
+            de.Close()
+            de = Nothing
+        End Try
+        Return AdUnlockUser
+    End Function
+
+
+
+    Friend Function ResetPassword(ByVal NewPassword As String, ByVal UserName As String) As String
+        Dim de As New DirectoryEntry()
+        Try
+            If sAdminPassword = "" Or sAdminUserName = "" Then
+                Dim frm As New AdminInfo
+                frm.ShowDialog()
+                AdUnlockUser("Please try again now that Admin Account Info Set")
+                Exit Function
+            End If
+
+            de.Username = sAdminUserName
+            de.Password = sAdminPassword
+            de.AuthenticationType = AuthenticationTypes.Secure
+            de.Path = My.Settings.LDAP  'Replace with your LDAP path such as LDAP://ServerName:389/OU=OrgUnit,DC=Domain
+            Dim deSearch As DirectorySearcher = New DirectorySearcher
+            deSearch.SearchRoot = de
+            deSearch.Filter = "(&(objectClass=user) (SAMAccountName=" + UserName + "))"
+            Dim results As SearchResultCollection = deSearch.FindAll
+            If (results.Count = 1) Then
+                Dim OneSearchResult As SearchResult
+                For Each OneSearchResult In results
+                    Dim AlterUser As DirectoryEntry = OneSearchResult.GetDirectoryEntry()
+                    AlterUser.AuthenticationType = AuthenticationTypes.Secure
+                    AlterUser.Properties("LockOutTime").Value = 0  ' Unlock User
+                    AlterUser.Invoke("SetPassword", NewPassword)
+                    AlterUser.Properties("pwdLastSet").Value = 0  'Must Change Flag
+                    AlterUser.CommitChanges()
+                    AlterUser.Close()
+                Next
+                ResetPassword = "User: " & UserName & " Password Changed to " & NewPassword
+            Else
+                ResetPassword = "More Then one account was found For " & UserName & ", which should Not occure.  Password was Not changed."
+            End If
+        Catch ex As Exception
+            ResetPassword = "A error has occured changing the password for " & UserName & " with AD Account : " & sAdminUserName & ". " & Err.Number & " - " & Err.Description & vbCrLf & "Exception message:  " & ex.Message
+            LogError(ResetPassword)
+            '    My.Application.Log.WriteEntry("MyApplicationNameHere encountered a error while changing the password for " & UserName & "." & vbCrLf & vbCrLf & "Exception: " & ex.Message & vbCrLf & "Inner Exception: " & ex.InnerException.Message.ToString)
+            Debug.WriteLine(ex.Message)
+        Finally
+            de.Close()
+            de = Nothing
+        End Try
+        Return ResetPassword
+    End Function
 
     Public Function RunDosCommand(sCommand As String) As String
         Try

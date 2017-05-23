@@ -330,10 +330,10 @@ order by runtime desc
   <DataBase>KS_Object</DataBase>
     <SQL>
 
- select 
+  select 
     em.description,em.smtpfromname,
 	convert(int,evt.active) As Active, evt.application,evt.description,s.description as Sched,evt.unique_column,evt.email_address,evt.email_cc,evt.subject,
-	r.description,r.printfilename,r.parameter_names,r.filespec,evt.created_dt,evt.created_user,evt.changed_user,evt.changed_dt
+	r.description,r.printfilename,r.parameter_names,r.filespec,evt.changed_user,evt.changed_dt
 	from sqlalert Evt 
 	inner join schedule s on s.id = evt.schedule_id
 	left join report r on r.id = evt.report
@@ -342,21 +342,9 @@ order by runtime desc
 </SQL>
   </Query>
   
-  
-  
-  <Query>
-    <QueryName>Exact Custom Fields </QueryName>
-	<DBServer>STL01APP</DBServer>
-    <SQL>
-		Select * from Terms
-	</SQL>
-  </Query>
-  
-  
-  
-  
     <Query>
-    <QueryName>Event Manager Query List </QueryName>
+	
+    <QueryName>Event Manager Query List</QueryName>
 	<DBServer>STL01APP</DBServer>
     <SQL>
 		Use [KS_Object]
@@ -670,6 +658,7 @@ FROM dbo.cicntp ctp
     left join out_report orp on orp.package_id = p.id
     left join out_email om on om.package_id = p.id
     left join out_sql s on s.section_id = p.section_id
+    where p.created_dt > getdate() - 5
     order by p.created_dt desc
    
    </SQL>

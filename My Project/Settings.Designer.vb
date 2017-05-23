@@ -387,6 +387,18 @@ Namespace My
                 Return CType(Me("ExactDBServer"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Welcome2017")>  _
+        Public Property DefaultPassword() As String
+            Get
+                Return CType(Me("DefaultPassword"),String)
+            End Get
+            Set
+                Me("DefaultPassword") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

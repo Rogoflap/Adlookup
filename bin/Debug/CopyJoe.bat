@@ -1,0 +1,1 @@
+copy adlookup.* \\LTACCHR-OT\c$\Work\vbnet\Adlookup

@@ -15,6 +15,7 @@ Public Class UserInfo
     Public dtMemberof As DataTable
     Public sDataTableType As String
     Public sFormtype As String
+    Dim sUserSelected As String
 
     Private Sub SetColumnWidths()
         Dim i As Integer = 0
@@ -399,6 +400,14 @@ Public Class UserInfo
         PrintDGV.Print_DataGridView(Me.DataGridView1, "Results for " & dt.TableName, False)
     End Sub
 
+    Private Sub DataGridView1_CellMouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDown
+        If e.Button = Windows.Forms.MouseButtons.Right AndAlso e.RowIndex >= 0 Then
+            DataGridView1.Rows(e.RowIndex).Selected = True
+            sUserSelected = DataGridView1.Rows(e.RowIndex).Cells("UserID").Value
+            'MsgBox("User: " & DataGridView1.Rows(e.RowIndex).Cells("UserID").Value & " was selected.")
+        End If
+    End Sub
+
     Private Sub DataGridView1_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles DataGridView1.MouseDown
 
         'ShowUserInfoSummaryToolStripMenuItem.Visible = False
@@ -537,4 +546,23 @@ Public Class UserInfo
         My.Computer.Keyboard.SendKeys("^{C}")
     End Sub
 
+    Private Sub ResetPasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetPasswordToolStripMenuItem.Click
+        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.Rows(iRowSelected)
+        Dim sPassword As String
+        If dataGridViewRow1.Cells("USERID").Value.ToString.Trim.Length > 0 Then
+            sPassword = InputBox("New Password for :" & sUserSelected, "Reset Password for :" & sUserSelected, My.Settings.DefaultPassword)
+            If sPassword.Length > 0 Then
+                MsgBox(ResetPassword(sPassword, sUserSelected), vbInformation)
+            Else
+                MsgBox("Password Reset Canceled.", vbInformation)
+            End If
+        End If
+    End Sub
+
+    Private Sub UnlockPasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnlockPasswordToolStripMenuItem.Click
+        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.Rows(iRowSelected)
+        If dataGridViewRow1.Cells("USERID").Value.ToString.Trim.Length > 0 Then
+            MsgBox(AdUnlockUser(sUserSelected))
+        End If
+    End Sub
 End Class

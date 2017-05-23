@@ -90,5 +90,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">stl01app</Value>
     </Setting>
+    <Setting Name="DefaultPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Welcome2017</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

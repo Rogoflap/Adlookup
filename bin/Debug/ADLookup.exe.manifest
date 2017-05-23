@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ADLookup.exe" version="1.0.2.39" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ADLookup.exe" version="1.0.2.40" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="phone2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ADLookup" version="2.1.18.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ADLookup" version="2.1.19.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
     <commandLine file="ADLookup.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1680768">
-      <assemblyIdentity name="ADLookup" version="2.1.18.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1689472">
+      <assemblyIdentity name="ADLookup" version="2.1.19.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>0vWNzXfAgPC2u6e2k7i/fY5aQ8Y=</dsig:DigestValue>
+        <dsig:DigestValue>cHd5vJG8Bq6ujMPZP5kf2cr+JZ0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,31 +63,31 @@
       <dsig:DigestValue>24V48SW2BXwgVH358bbaUtKbQx8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ADLookup.exe.config" size="5397">
+  <file name="ADLookup.exe.config" size="5532">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>nQiXXdNHLn+Awi3CNIl5KJYTI3E=</dsig:DigestValue>
+      <dsig:DigestValue>nkXW4RJINA+yl6B2WWjkIIg/f6c=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ADLookup.pdb" size="1080832">
+  <file name="ADLookup.pdb" size="1089024">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>R8xiRVy/opq61Xd7IWIe8Y5gcjE=</dsig:DigestValue>
+      <dsig:DigestValue>TBe5ek4+Ej5PHTpHvf8bJdbWgRE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\SQL.xml" size="37799">
+  <file name="bin\Debug\SQL.xml" size="37959">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>6GAZ1sT9nBSPrpFEI+RzVDbpGfQ=</dsig:DigestValue>
+      <dsig:DigestValue>4g+ZdLt2+tibcA47UlHTG40/woI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="phone2.ico" size="203470">
