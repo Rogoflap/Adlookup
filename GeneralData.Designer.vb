@@ -85,6 +85,7 @@ Partial Class GeneralData
         Me.AllRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectedRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyCtrlCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,9 +95,9 @@ Partial Class GeneralData
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsslStatus, Me.labelLastUpdate})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 655)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 704)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1411, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1429, 22)
         Me.StatusStrip1.TabIndex = 36
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -493,7 +494,7 @@ Partial Class GeneralData
         Me.txtSQL.Name = "txtSQL"
         Me.txtSQL.ReadOnly = True
         Me.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtSQL.Size = New System.Drawing.Size(445, 86)
+        Me.txtSQL.Size = New System.Drawing.Size(463, 86)
         Me.txtSQL.TabIndex = 47
         '
         'cmbServer
@@ -572,7 +573,7 @@ Partial Class GeneralData
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(1399, 509)
+        Me.DataGridView1.Size = New System.Drawing.Size(1417, 558)
         Me.DataGridView1.TabIndex = 52
         Me.DataGridView1.TabStop = False
         '
@@ -626,11 +627,22 @@ Partial Class GeneralData
         Me.CopyCtrlCToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.CopyCtrlCToolStripMenuItem.Text = "Copy - Ctrl + C"
         '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(1324, 14)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(93, 23)
+        Me.Button1.TabIndex = 53
+        Me.Button1.Text = "Get Email List"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'GeneralData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1411, 677)
+        Me.ClientSize = New System.Drawing.Size(1429, 726)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.cmbReloadCombo)
@@ -717,4 +729,5 @@ Partial Class GeneralData
     Friend WithEvents AllRowsToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents SelectedRowsToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CopyCtrlCToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button1 As Button
 End Class

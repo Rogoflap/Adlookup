@@ -529,4 +529,21 @@ Public Class GeneralData
 
     End Sub
 
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+
+        ClearFilters()
+        HideFilters()
+
+        dt = GetEmailsFromAD()
+
+        DataGridView1.DataSource = dt
+        dtfReports = dt
+        Me.DataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet
+        Me.DataGridView1.Refresh()
+
+        Me.DataGridView1.ContextMenuStrip = Me.cmsUser
+        'DataGridView1.DataSource = dt
+        SetRowsFound()
+        SetUpFilter()
+    End Sub
 End Class

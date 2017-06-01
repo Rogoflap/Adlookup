@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1689472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1691520">
       <assemblyIdentity name="ADLookup" version="2.1.19.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Y0TRhcQfGcEiE4E9wE0Vtmi82TY=</dsig:DigestValue>
+        <dsig:DigestValue>fniujQ0NyMtfDnlRKhhyH9GofsM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,31 +63,31 @@
       <dsig:DigestValue>24V48SW2BXwgVH358bbaUtKbQx8=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ADLookup.exe.config" size="5397">
+  <file name="ADLookup.exe.config" size="5532">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>nQiXXdNHLn+Awi3CNIl5KJYTI3E=</dsig:DigestValue>
+      <dsig:DigestValue>nkXW4RJINA+yl6B2WWjkIIg/f6c=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ADLookup.pdb" size="1086976">
+  <file name="ADLookup.pdb" size="1091072">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>amSQxabjEAFD+X0IwljkcQ+e0FY=</dsig:DigestValue>
+      <dsig:DigestValue>REDFnoGBHkpyWvvFFWbk3CNXXuE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\SQL.xml" size="37959">
+  <file name="bin\Debug\SQL.xml" size="38787">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>4g+ZdLt2+tibcA47UlHTG40/woI=</dsig:DigestValue>
+      <dsig:DigestValue>fzfPp3sUR4CHUNLB2lyG9+GMRJ8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="phone2.ico" size="203470">

@@ -1216,6 +1216,92 @@ Module Utility
         Return sOut
     End Function
 
+    Public Function GetEmailsFromAD() As DataTable
+        Dim directory As DirectoryEntry = New DirectoryEntry(sLdap)
+        Dim filter As String = "(&(proxyAddresses=smtp:*))"
+        Dim findEmails As DirectorySearcher = New DirectorySearcher(directory, filter)
+        Dim dt As DataTable
+
+        'findEmails.PropertiesToLoad.Clear()
+        'findEmails.PropertiesToLoad.Add("proxyAddresses")
+
+        Dim adResults As SearchResultCollection
+        findEmails.SizeLimit = 20000
+        findEmails.PageSize = 20000
+        dt = New DataTable("Emails")
+
+        dt.Columns.Add(New DataColumn("DisplayName", GetType(System.String)))
+        dt.Columns.Add(New DataColumn("Mail", GetType(System.String)))
+        dt.Columns.Add(New DataColumn("Company", GetType(System.String)))
+        dt.Columns.Add(New DataColumn("Location", GetType(System.String)))  'Description
+        dt.Columns.Add(New DataColumn("Department", GetType(System.String)))
+        dt.Columns.Add(New DataColumn("WhenCreated", GetType(System.DateTime)))
+
+        Dim dr As DataRow
+        adResults = findEmails.FindAll
+        For Each adResult As SearchResult In adResults
+            ' add the results to the datatable 
+
+            Dim iRow As Integer = 0
+            dr = dt.NewRow()
+            Try
+                If adResult.Properties("DisplayName").Count > 0 Then
+                    dr(0) = adResult.Properties("DisplayName")(0).ToString()
+                End If
+            Catch ex As Exception
+            End Try
+
+            Try
+                dr(1) = adResult.Properties("mail")(0).ToString()
+            Catch ex As Exception
+            End Try
+
+
+            Try
+                dr(2) = adResult.Properties("company")(0).ToString()
+            Catch ex As Exception
+            End Try
+
+
+            Try
+
+                dr(3) = adResult.Properties("description")(0).ToString()
+
+            Catch ex As Exception
+            End Try
+
+            Try
+
+                dr(4) = adResult.Properties("department")(0).ToString()
+
+            Catch ex As Exception
+            End Try
+
+            Try
+
+                dr(5) = adResult.Properties("whencreated")(0).ToString()
+
+            Catch ex As Exception
+            End Try
+
+            dt.Rows.Add(dr)
+        Next
+        '        DirectoryEntry de = New DirectoryEntry();
+        '        DirectorySearcher ds = New DirectorySearcher(de);
+        '        ds.PropertiesToLoad.Add("proxyAddresses");
+        '        ds.Filter = "(&(proxyAddresses=smtp:*))";
+        '        SearchResultCollection ss = ds.FindAll(); // count = 0
+
+        '        foreach(SearchResult sr In ss)
+        '        {// you might still need to filter out other addresstypes, ex: sip
+        '        foreach(String addr In sr.Properties["proxyAddresses"])
+        '        Console.WriteLine(addr);
+        '//Or whithout the 'smtp:' prefix Console.WriteLine(addr.SubString(5));
+
+        '        }
+        Return dt
+    End Function
+
     Public Function getComputerADInfo() As DataTable
         Try
 

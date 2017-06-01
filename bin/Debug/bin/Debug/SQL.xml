@@ -342,13 +342,46 @@ order by runtime desc
 </SQL>
   </Query>
   
+  <Query>
+    <QueryName>Exact Custom Screen Assignments </QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+	      select u.res_id,h.usr_id,pkg,screen_id,group_name
+from usermods_sql u left join humres h on h.res_id = u.res_id
+
+	</SQL>
+  </Query>
+  
+  <Query>
+    <QueryName>Exact Custom Screens </QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+	    -- Custom Screens
+		select pkg,screen_id,group_name 
+		from usermods_sql
+		group by pkg,screen_id,group_name 
+		order by pkg,screen_id,Group_Name
+	</SQL>
+  </Query>
+  
+  
+  
+  <Query>
+    <QueryName>Admin - SQL - Exec sp_who2 </QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+	    Exec sp_who2
+	</SQL>
+  </Query>
+  
   
   
   <Query>
     <QueryName>Exact Custom Fields </QueryName>
 	<DBServer>STL01APP</DBServer>
     <SQL>
-		Select * from Terms
+		select ddc.Tablename,ddc.Description,t.description [Label Text],ddc.*
+        from DDColumns ddc inner join terms t on t.ID = ddc.TermId
 	</SQL>
   </Query>
   
