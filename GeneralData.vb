@@ -6,6 +6,7 @@ Imports System.DirectoryServices.AccountManagement
 Imports System.Runtime.InteropServices
 Imports System.Diagnostics
 Imports System.Data.SqlClient
+Imports System.Data.OleDb
 Imports System.Text
 Imports System.Collections.Generic
 Imports Microsoft.Office.Interop
@@ -452,25 +453,35 @@ Public Class GeneralData
             For i As Integer = 1 To 16
                 ctrltb = GroupBox1.Controls.Find("txt" & i, False)
                 If ctrltb(0).Text.Length > 0 Then
-                    ctrllb = GroupBox1.Controls.Find("lbl" & i, False)
-                    If sTemp.Length > 0 Then
-                        If ctrllb(0).Tag = "Text" Then
-                            sTemp += " and [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                    If ctrltb(0).Text.Length > 1 Or Not hasoperator(ctrltb(0).Text) Then
+                        ctrllb = GroupBox1.Controls.Find("lbl" & i, False)
+                        If sTemp.Length > 0 Then
+                            If ctrllb(0).Tag = "Text" Then
+                                If Not hasoperator(ctrltb(0).Text) Then
+                                    sTemp += " and [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                                Else
+                                    sTemp += " and [" & ctrllb(0).Text & "]" & getOperatorAndString(ctrltb(0).Text)
+                                End If
+                            Else
+                                sTemp += " And [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
+                            End If
                         Else
-                            sTemp += " and [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
-                        End If
-                    Else
-                        If ctrllb(0).Tag = "Text" Then
-                            sTemp += " [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
-                        Else
-                            sTemp += " [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
+                            If ctrllb(0).Tag = "Text" Then
+                                If Not hasoperator(ctrltb(0).Text) Then
+                                    sTemp += " [" & ctrllb(0).Text & "] like '*" & ctrltb(0).Text & "*'"
+                                Else
+                                    sTemp += "[" & ctrllb(0).Text & "]" & getOperatorAndString(ctrltb(0).Text)
+                                End If
+                            Else
+                                sTemp += " [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
+                            End If
                         End If
                     End If
-
                 End If
             Next
 
             Dim DV As New DataView(dt)
+
             DV.RowFilter = sTemp
             dtfReports = DV.ToTable
             DataGridView1.DataSource = dtfReports
@@ -545,5 +556,96 @@ Public Class GeneralData
         'DataGridView1.DataSource = dt
         SetRowsFound()
         SetUpFilter()
+    End Sub
+
+    Private Sub LoadCSV()
+
+        Dim myStream As Stream = Nothing
+        Dim sOpenFile As String
+        Dim openFileDialog1 As New OpenFileDialog()
+
+        openFileDialog1.InitialDirectory = "c:\"
+        openFileDialog1.Filter = "csv files (*.csv)|*.csv|All files (*.*)|*.*"
+        openFileDialog1.FilterIndex = 2
+        openFileDialog1.RestoreDirectory = True
+
+        If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            sOpenFile = openFileDialog1.SafeFileName
+
+            Dim folder = Path.GetDirectoryName(openFileDialog1.FileName)
+            Dim CnStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & folder & ";Extended Properties=""text;HDR=Yes;FMT=Delimited"";"
+            'Dim dt As New DataTable
+            dt = New DataTable
+            Using Adp As New OleDbDataAdapter("select * from [" & sOpenFile & "]", CnStr)
+                Adp.Fill(dt)
+            End Using
+            DataGridView1.DataSource = dt
+            dtfReports = dt
+            Me.DataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet
+            Me.DataGridView1.Refresh()
+
+            Me.DataGridView1.ContextMenuStrip = Me.cmsUser
+            'DataGridView1.DataSource = dt
+
+            SetRowsFound()
+            SetUpFilter()
+        Else
+            MsgBox("No File Selected.", vbInformation)
+        End If
+    End Sub
+
+    Private Sub btnLoadCSV_Click(sender As Object, e As EventArgs) Handles btnLoadCSV.Click
+        LoadCSV()
+    End Sub
+
+    Private Sub PasteFromClipboard()
+        'When you copy the Excel Cells in Clipboard it goes in Tab delimited columns and Rows in New Lines
+        'So Get all the Rows by splitting it on a NewLine Character
+
+        dt = New DataTable
+
+        Dim Rows() As String = Clipboard.GetText().Split(Environment.NewLine)
+        Dim Cols() As String
+        Dim DR As DataRow
+
+        For i As Int32 = 0 To Rows.Length - 1
+            'Then For Each Row get the Columns which are tab Seperated
+            Cols = Rows(i).Split(vbTab)
+            'DT.NewRow()
+            DR = dt.NewRow() 'ProductionDataSet1.Tables("ProductionData").NewRow()
+            'Now create a DataRow to be added to the underlying DataTable
+            For j As Int32 = 0 To Cols.Length - 1
+                'Now loop for each Column and Add the column data
+                If dt.Columns.Count > j Then
+                    'If (j = 2) Then
+                    'This is just for eg. that I have assumed that the Third COlumn (index 2) is say a Numeric Column
+                    'then you need to convert it to numeric before adding to the DataRow, similarly for other data types
+                    'DR(j) = Convert.ToInt32(Cols(j))
+                    'Else
+                    If IsNumeric(Cols(j)) Then
+                        DR(j) = Convert.ToDouble(Cols(j))
+                    Else
+                        DR(j) = 0
+                    End If
+                    'End If
+                End If
+            Next
+            dt.Rows.Add(DR)
+
+        Next
+        DataGridView1.DataSource = dt
+        dtfReports = dt
+        Me.DataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.NotSet
+        Me.DataGridView1.Refresh()
+
+        Me.DataGridView1.ContextMenuStrip = Me.cmsUser
+        'DataGridView1.DataSource = dt
+
+        SetRowsFound()
+        SetUpFilter()
+    End Sub
+
+    Private Sub btnPasteFromClip_Click(sender As Object, e As EventArgs) Handles btnPasteFromClip.Click
+        PasteFromClipboard()
     End Sub
 End Class

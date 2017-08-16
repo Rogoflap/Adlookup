@@ -1215,6 +1215,50 @@ Module Utility
 
         Return sOut
     End Function
+    Public Function getOperatorAndString(sIn As String) As String
+        Dim sOut As String = ""
+
+        If sIn.ToUpper = "IS NULL" Then
+            sOut = " Is Null"
+        End If
+
+        If sIn.ToUpper = "IS NOT NULL" Then
+            sOut = " Is Not Null"
+        End If
+
+
+        If Mid(sIn, 1, 1) = ">" Or Mid(sIn, 1, 1) = "<" Then
+            sOut = Mid(sIn, 1, 1) & " '" & Mid(sIn, 2) & "'"
+        End If
+
+        If Mid(sIn, 1, 2) = "<>" Then
+            sOut = "<> '" & Mid(sIn, 3) & "'"
+        End If
+
+
+        Return sOut
+    End Function
+
+
+    Public Function hasoperator(sIn As String) As Boolean
+        Dim bOperator As Boolean = False
+        If InStr(sIn, "<") > 0 Then
+            bOperator = True
+        ElseIf InStr(sIn.ToUpper, ">") > 0 Then
+            bOperator = True
+        ElseIf InStr(sIn.ToUpper, "<>") > 0 Then
+            bOperator = True
+        ElseIf InStr(sIn.ToUpper, "IS NOT NULL") > 0 Then
+            bOperator = True
+        ElseIf InStr(sIn.ToUpper, "IS NULL") > 0 Then
+            bOperator = True
+        End If
+
+        Return bOperator
+
+    End Function
+
+
 
     Public Function GetEmailsFromAD() As DataTable
         Dim directory As DirectoryEntry = New DirectoryEntry(sLdap)

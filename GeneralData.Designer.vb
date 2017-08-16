@@ -86,6 +86,8 @@ Partial Class GeneralData
         Me.SelectedRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyCtrlCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnLoadCSV = New System.Windows.Forms.Button()
+        Me.btnPasteFromClip = New System.Windows.Forms.Button()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,6 +182,8 @@ Partial Class GeneralData
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btnPasteFromClip)
+        Me.GroupBox1.Controls.Add(Me.btnLoadCSV)
         Me.GroupBox1.Controls.Add(Me.lbl16)
         Me.GroupBox1.Controls.Add(Me.txt16)
         Me.GroupBox1.Controls.Add(Me.lbl8)
@@ -637,6 +641,24 @@ Partial Class GeneralData
         Me.Button1.Text = "Get Email List"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'btnLoadCSV
+        '
+        Me.btnLoadCSV.Location = New System.Drawing.Point(7, 20)
+        Me.btnLoadCSV.Name = "btnLoadCSV"
+        Me.btnLoadCSV.Size = New System.Drawing.Size(34, 23)
+        Me.btnLoadCSV.TabIndex = 66
+        Me.btnLoadCSV.Text = "CSV"
+        Me.btnLoadCSV.UseVisualStyleBackColor = True
+        '
+        'btnPasteFromClip
+        '
+        Me.btnPasteFromClip.Location = New System.Drawing.Point(7, 60)
+        Me.btnPasteFromClip.Name = "btnPasteFromClip"
+        Me.btnPasteFromClip.Size = New System.Drawing.Size(34, 23)
+        Me.btnPasteFromClip.TabIndex = 67
+        Me.btnPasteFromClip.Text = "PST"
+        Me.btnPasteFromClip.UseVisualStyleBackColor = True
+        '
         'GeneralData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -730,4 +752,6 @@ Partial Class GeneralData
     Friend WithEvents SelectedRowsToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CopyCtrlCToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnLoadCSV As Button
+    Friend WithEvents btnPasteFromClip As Button
 End Class

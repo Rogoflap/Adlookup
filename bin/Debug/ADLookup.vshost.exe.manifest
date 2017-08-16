@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ADLookup.exe" version="1.0.2.40" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ADLookup.exe" version="1.0.2.40" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <description asmv2:iconFile="phone2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ADLookup" version="2.1.19.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ADLookup" version="2.1.22.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="x86" />
     <commandLine file="ADLookup.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1691520">
-      <assemblyIdentity name="ADLookup" version="2.1.19.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1694592">
+      <assemblyIdentity name="ADLookup" version="2.1.22.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fniujQ0NyMtfDnlRKhhyH9GofsM=</dsig:DigestValue>
+        <dsig:DigestValue>9+XoBnISUn/qQ1CTw5dU+OXmBdQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -72,22 +72,22 @@
       <dsig:DigestValue>nkXW4RJINA+yl6B2WWjkIIg/f6c=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ADLookup.pdb" size="1091072">
+  <file name="ADLookup.pdb" size="1095168">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>REDFnoGBHkpyWvvFFWbk3CNXXuE=</dsig:DigestValue>
+      <dsig:DigestValue>BF50oNwGZ2xr2KDUF74a71rnN9A=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\SQL.xml" size="38787">
+  <file name="bin\Debug\SQL.xml" size="42986">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>fzfPp3sUR4CHUNLB2lyG9+GMRJ8=</dsig:DigestValue>
+      <dsig:DigestValue>mpW4ItRw6kMHP9++mbUQi+Wqg38=</dsig:DigestValue>
     </hash>
   </file>
   <file name="phone2.ico" size="203470">
@@ -99,13 +99,13 @@
       <dsig:DigestValue>avNsHOC/UK3moDfh2pUrOaVYVPE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="ReadMe.txt" size="2672">
+  <file name="ReadMe.txt" size="2816">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>jiW1wUGhohVtZ5TFhGZGl0j0NwM=</dsig:DigestValue>
+      <dsig:DigestValue>mg852JamZAlN8tI4FkEBAZWMS+w=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

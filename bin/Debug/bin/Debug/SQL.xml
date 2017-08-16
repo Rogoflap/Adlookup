@@ -16,6 +16,65 @@
 	</SQL>
   </Query>
   
+  
+<Query>
+  <QueryName>Admin List Views and contents in All Databases on Server </QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <SQL>
+
+  select * 
+from INFORMATION_SCHEMA.VIEWS
+  
+  </SQL>
+  </Query>
+    
+	<Query>
+  <QueryName>Event Manager Automatic Invoice Summary</QueryName>  
+  <DBServer>STL01APP</DBServer>
+  <DataBase>KS_Object</DataBase>
+   <SQL>
+	    
+      Select 
+    case when oc.location is null
+    then
+     'Email'
+    else
+     'Copy Report'
+    end as [Type],
+    convert(varchar(10),p.created_dt,101) as RunDt,datename(dw,p.created_dt) DOW,p.application,p.event,Count(0) as [Count]
+    from package p 
+    left join attachment a on a.package_id = p.id
+    left join report r on r.id = a.report_id
+    left join out_copy oc on oc.package_id = p.id
+    left join out_report orp on orp.package_id = p.id
+    left join out_email om on om.package_id = p.id
+    left join out_sql s on s.section_id = p.section_id
+    where p.event like 'Customer Inv%'
+    group by oc.location,convert(varchar(10),p.created_dt,101),datename(dw,p.created_dt),p.application,p.event
+    order by convert(varchar(10),p.created_dt,101)  desc,p.application,[Type] Desc
+	</SQL>
+  </Query>
+    
+	
+	
+  <Query>
+  <QueryName>Admin List Tables in All  Database on Server</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <SQL>
+ Select top 0 * 
+    into #temp
+    from INFORMATION_SCHEMA.TABLES
+
+insert into #temp
+    exec sp_msforeachdb 'select * from [?].INFORMATION_SCHEMA.TABLES'
+
+select * from #temp
+
+drop table #temp
+  </SQL>
+  </Query>
+  
+  
   <Query>
   <QueryName>Admin List Tables and Columns in Database</QueryName>  
   <DBServer>STL01APP</DBServer>
@@ -366,6 +425,68 @@ from usermods_sql u left join humres h on h.res_id = u.res_id
   
   
   
+  
+  <Query>
+    <QueryName>Exact Automated Invoices Contacts Missing Emails </QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+use [200]
+
+
+SELECT db_Name() as [DB],cc.cmp_code,cc.cmp_name [CustomerName],c.FullName [ContactFullName],cnt_f_tel,c.YesNoField1 as EmailInvoice
+into #TempList
+FROM        dbo.cicntp c INNER JOIN
+                  dbo.cicmpy cc ON c.cmp_wwn = cc.cmp_wwn 
+WHERE     (c.YesNoField1 = 1) and c.cnt_email is null
+
+
+Use [215]
+
+insert into #TempList
+SELECT db_Name() as [DB],cc.cmp_code,cc.cmp_name [CustomerName],c.FullName [ContactFullName],cnt_f_tel,c.YesNoField1 as EmailInvoice
+FROM        dbo.cicntp c INNER JOIN
+                  dbo.cicmpy cc ON c.cmp_wwn = cc.cmp_wwn 
+WHERE     (c.YesNoField1 = 1) and c.cnt_email is null
+
+Use [270]
+
+insert into #TempList
+SELECT db_Name() as [DB],cc.cmp_code,cc.cmp_name [CustomerName],c.FullName [ContactFullName],cnt_f_tel,c.YesNoField1 as EmailInvoice
+FROM        dbo.cicntp c INNER JOIN
+                  dbo.cicmpy cc ON c.cmp_wwn = cc.cmp_wwn 
+WHERE     (c.YesNoField1 = 1) and c.cnt_email is null
+
+Use [630]
+
+insert into #TempList
+SELECT db_Name() as [DB],cc.cmp_code,cc.cmp_name [CustomerName],c.FullName [ContactFullName],cnt_f_tel,c.YesNoField1 as EmailInvoice
+FROM        dbo.cicntp c INNER JOIN
+                  dbo.cicmpy cc ON c.cmp_wwn = cc.cmp_wwn 
+WHERE     (c.YesNoField1 = 1) and c.cnt_email is null
+
+
+Use [680]
+
+insert into #TempList
+SELECT db_Name() as [DB],cc.cmp_code,cc.cmp_name [CustomerName],c.FullName [ContactFullName],cnt_f_tel,c.YesNoField1 as EmailInvoice
+FROM        dbo.cicntp c INNER JOIN
+                  dbo.cicmpy cc ON c.cmp_wwn = cc.cmp_wwn 
+WHERE     (c.YesNoField1 = 1) and c.cnt_email is null
+
+
+select * from #TempList
+
+drop table #TempList
+
+	</SQL>
+  </Query>
+  
+  
+  
+  
+  
+  
+  
   <Query>
     <QueryName>Admin - SQL - Exec sp_who2 </QueryName>
 	<DBServer>STL01APP</DBServer>
@@ -409,7 +530,57 @@ from usermods_sql u left join humres h on h.res_id = u.res_id
   <Query>
     <QueryName>WISYS Users</QueryName>
 	<DBServer>STL01APP</DBServer>
-    <SQL>Select db_name() as Company,username,fullname,admin,securitylvl,isdeleted From wsUsers</SQL>
+    <SQL>
+	
+IF OBJECT_ID('tempdb..#WISYSUsers') IS NOT NULL
+    DROP TABLE #WISYSUsers
+	
+	use [200]
+SELECT DB_NAME() AS Company,
+       username,
+       fullname,
+       admin,
+       securitylvl,
+       isdeleted
+	  into #WISYSUsers
+FROM wsUsers 
+
+use [270]
+Insert into #WISYSUsers
+SELECT DB_NAME() AS Company,
+       username,
+       fullname,
+       admin,
+       securitylvl,
+       isdeleted
+FROM  wsUsers
+
+
+use [630]
+Insert into #WISYSUsers
+SELECT DB_NAME() AS Company,
+       username,
+       fullname,
+       admin,
+       securitylvl,
+       isdeleted
+FROM  wsUsers
+
+use [680]
+Insert into #WISYSUsers
+SELECT DB_NAME() AS Company,
+       username,
+       fullname,
+       admin,
+       securitylvl,
+       isdeleted
+FROM  wsUsers
+
+Select * 
+from #WISYSUsers
+ORDER BY Company, Fullname
+
+</SQL>
   </Query>
 
   <Query>
