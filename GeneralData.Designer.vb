@@ -38,6 +38,8 @@ Partial Class GeneralData
         Me.LabelHeader = New System.Windows.Forms.Label()
         Me.BtnRefresh = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnPasteFromClip = New System.Windows.Forms.Button()
+        Me.btnLoadCSV = New System.Windows.Forms.Button()
         Me.lbl16 = New System.Windows.Forms.Label()
         Me.txt16 = New System.Windows.Forms.TextBox()
         Me.lbl8 = New System.Windows.Forms.Label()
@@ -86,8 +88,6 @@ Partial Class GeneralData
         Me.SelectedRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyCtrlCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnLoadCSV = New System.Windows.Forms.Button()
-        Me.btnPasteFromClip = New System.Windows.Forms.Button()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,6 +222,24 @@ Partial Class GeneralData
         Me.GroupBox1.TabIndex = 45
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Filter"
+        '
+        'btnPasteFromClip
+        '
+        Me.btnPasteFromClip.Location = New System.Drawing.Point(7, 60)
+        Me.btnPasteFromClip.Name = "btnPasteFromClip"
+        Me.btnPasteFromClip.Size = New System.Drawing.Size(34, 23)
+        Me.btnPasteFromClip.TabIndex = 67
+        Me.btnPasteFromClip.Text = "PST"
+        Me.btnPasteFromClip.UseVisualStyleBackColor = True
+        '
+        'btnLoadCSV
+        '
+        Me.btnLoadCSV.Location = New System.Drawing.Point(7, 20)
+        Me.btnLoadCSV.Name = "btnLoadCSV"
+        Me.btnLoadCSV.Size = New System.Drawing.Size(34, 23)
+        Me.btnLoadCSV.TabIndex = 66
+        Me.btnLoadCSV.Text = "CSV"
+        Me.btnLoadCSV.UseVisualStyleBackColor = True
         '
         'lbl16
         '
@@ -504,7 +522,7 @@ Partial Class GeneralData
         'cmbServer
         '
         Me.cmbServer.FormattingEnabled = True
-        Me.cmbServer.Items.AddRange(New Object() {"STL01APP", "STL01DB", "DMC01QA"})
+        Me.cmbServer.Items.AddRange(New Object() {"STL01APP", "STL01DB", "STLQADB", "DMC01QA"})
         Me.cmbServer.Location = New System.Drawing.Point(10, 21)
         Me.cmbServer.Name = "cmbServer"
         Me.cmbServer.Size = New System.Drawing.Size(80, 21)
@@ -640,24 +658,6 @@ Partial Class GeneralData
         Me.Button1.TabIndex = 53
         Me.Button1.Text = "Get Email List"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'btnLoadCSV
-        '
-        Me.btnLoadCSV.Location = New System.Drawing.Point(7, 20)
-        Me.btnLoadCSV.Name = "btnLoadCSV"
-        Me.btnLoadCSV.Size = New System.Drawing.Size(34, 23)
-        Me.btnLoadCSV.TabIndex = 66
-        Me.btnLoadCSV.Text = "CSV"
-        Me.btnLoadCSV.UseVisualStyleBackColor = True
-        '
-        'btnPasteFromClip
-        '
-        Me.btnPasteFromClip.Location = New System.Drawing.Point(7, 60)
-        Me.btnPasteFromClip.Name = "btnPasteFromClip"
-        Me.btnPasteFromClip.Size = New System.Drawing.Size(34, 23)
-        Me.btnPasteFromClip.TabIndex = 67
-        Me.btnPasteFromClip.Text = "PST"
-        Me.btnPasteFromClip.UseVisualStyleBackColor = True
         '
         'GeneralData
         '

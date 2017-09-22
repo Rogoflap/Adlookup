@@ -648,4 +648,19 @@ Public Class GeneralData
     Private Sub btnPasteFromClip_Click(sender As Object, e As EventArgs) Handles btnPasteFromClip.Click
         PasteFromClipboard()
     End Sub
+
+    Private Sub cmbServer_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbServer.SelectedIndexChanged
+        Dim sSql As String
+        Dim dr As SqlDataReader
+        Dim sConnection As String = "server=" & Me.cmbServer.Text & ";database=Master;Trusted_Connection=True;"
+        sSql = "SELECT name FROM master.dbo.sysdatabases"
+        dr = FillDataReaderFromSQL(sSql, sConnection)
+        If Not dr.IsClosed Then
+            cmbCompany.Items.Clear()
+            Do While dr.Read
+                cmbCompany.Items.Add(dr.GetString(0))
+                'cmbCompany.Items.Add(dr.GetString(1))
+            Loop
+        End If
+    End Sub
 End Class

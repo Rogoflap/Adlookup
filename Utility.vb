@@ -1488,6 +1488,28 @@ Module Utility
         Ping = sOut
     End Function
 
+
+    Public Function FillDataReaderFromSQL(sSql As String, sConnString As String) As SqlDataReader
+        Dim Con = New SqlConnection(sConnString)
+        Dim cmd As New SqlCommand
+
+        Dim dr As SqlDataReader
+
+        Try
+            If Con.State = ConnectionState.Closed Then
+                Con.Open()
+                cmd.Connection = Con
+                cmd.CommandText = sSql
+                dr = cmd.ExecuteReader()
+                Return dr
+                Con.Close()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Function
+
     Public Function PingSimple(sComputerName As String) As Boolean
         Dim bGood As Boolean = False
 

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1694592">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1695104">
       <assemblyIdentity name="ADLookup" version="2.1.22.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9+XoBnISUn/qQ1CTw5dU+OXmBdQ=</dsig:DigestValue>
+        <dsig:DigestValue>2INQa8H+8KyZ83DGpgMJKfqoNPc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,16 +78,16 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>BF50oNwGZ2xr2KDUF74a71rnN9A=</dsig:DigestValue>
+      <dsig:DigestValue>GpS9v+0OT5dcMG2RjT/pD3E4NTo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\SQL.xml" size="42986">
+  <file name="bin\Debug\SQL.xml" size="78965">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>mpW4ItRw6kMHP9++mbUQi+Wqg38=</dsig:DigestValue>
+      <dsig:DigestValue>+4OmBfieBWsRwKY91zCrmOOejXs=</dsig:DigestValue>
     </hash>
   </file>
   <file name="phone2.ico" size="203470">
