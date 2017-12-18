@@ -64,5 +64,5 @@ C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.exe
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.xml
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.pdb
 C:\Work\VBNet\ADLookup\bin\Debug\bin\Debug\SQL.xml
-C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.vbprojResolveAssemblyReference.cache
 C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.AdminInfo.resources
+C:\Work\VBNet\ADLookup\obj\x86\Debug\ADLookup.vbprojResolveAssemblyReference.cache

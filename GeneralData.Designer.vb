@@ -72,7 +72,6 @@ Partial Class GeneralData
         Me.txt9 = New System.Windows.Forms.TextBox()
         Me.txt1 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.chkShowSQL = New System.Windows.Forms.CheckBox()
         Me.txtSQL = New System.Windows.Forms.TextBox()
         Me.cmbServer = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -497,16 +496,6 @@ Partial Class GeneralData
         Me.Label2.TabIndex = 35
         Me.Label2.Text = "DB"
         '
-        'chkShowSQL
-        '
-        Me.chkShowSQL.AutoSize = True
-        Me.chkShowSQL.Location = New System.Drawing.Point(749, 23)
-        Me.chkShowSQL.Name = "chkShowSQL"
-        Me.chkShowSQL.Size = New System.Drawing.Size(77, 17)
-        Me.chkShowSQL.TabIndex = 46
-        Me.chkShowSQL.Text = "Show SQL"
-        Me.chkShowSQL.UseVisualStyleBackColor = True
-        '
         'txtSQL
         '
         Me.txtSQL.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -565,7 +554,6 @@ Partial Class GeneralData
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
@@ -671,7 +659,6 @@ Partial Class GeneralData
         Me.Controls.Add(Me.cmbServer)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtSQL)
-        Me.Controls.Add(Me.chkShowSQL)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.BtnRefresh)
         Me.Controls.Add(Me.LabelHeader)
@@ -736,7 +723,6 @@ Partial Class GeneralData
     Friend WithEvents Label2 As Label
     Friend WithEvents txt1 As TextBox
     Friend WithEvents labelLastUpdate As ToolStripStatusLabel
-    Friend WithEvents chkShowSQL As CheckBox
     Friend WithEvents txtSQL As TextBox
     Friend WithEvents cmbServer As ComboBox
     Friend WithEvents Label3 As Label

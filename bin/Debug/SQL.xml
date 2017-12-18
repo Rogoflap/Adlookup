@@ -17,6 +17,54 @@
   </Query>
   
   
+
+<Query>
+  <QueryName>Exact Buyer / CSR Query ALL Databases</QueryName>  
+  <DBServer>STL01APP</DBServer>
+   <SQL>
+ 
+use [200]
+select db_name() DBName, oh.ord_no,ord_dt,user_def_fld_4 as CSR, user_def_fld_5 as Buyer, filler_0001 as Contact_CNT_ID,c.FullName,c.YesNoField1 EmailInvoice,c.YesNoField2 as SendOrdReceipt,c.YesNoField4 as SendACH
+Into #TempTbl
+from oeordhdr_sql oh
+left join cicntp c on c.cnt_id = oh.filler_0001
+--where user_def_fld_4 is not null
+ where ord_dt > '12/12/2017 23:59:00'
+
+use [270]
+Insert into #TempTbl
+select db_name() DBName, oh.ord_no,ord_dt,user_def_fld_4 as CSR, user_def_fld_5 as Buyer, filler_0001 as Contact_CNT_ID,c.FullName,c.YesNoField1 EmailInvoice,c.YesNoField2 as SendOrdReceipt,c.YesNoField4 as SendACH
+from oeordhdr_sql oh
+left join cicntp c on c.cnt_id = oh.filler_0001
+--where user_def_fld_4 is not null
+Where ord_dt > '12/12/2017 23:59:00'
+
+use [630]
+
+Insert into #TempTbl
+select db_name() DBName, oh.ord_no,ord_dt,user_def_fld_4 as CSR, user_def_fld_5 as Buyer, filler_0001 as Contact_CNT_ID,c.FullName,c.YesNoField1 EmailInvoice,c.YesNoField2 as SendOrdReceipt,c.YesNoField4 as SendACH
+from oeordhdr_sql oh
+left join cicntp c on c.cnt_id = oh.filler_0001
+--where user_def_fld_4 is not null
+Where ord_dt > '12/12/2017 23:59:00'
+
+use [680]
+Insert into #TempTbl
+select db_name() DBName, oh.ord_no,ord_dt,user_def_fld_4 as CSR, user_def_fld_5 as Buyer, filler_0001 as Contact_CNT_ID,c.FullName,c.YesNoField1 EmailInvoice,c.YesNoField2 as SendOrdReceipt,c.YesNoField4 as SendACH
+from oeordhdr_sql oh
+left join cicntp c on c.cnt_id = oh.filler_0001
+--where user_def_fld_4 is not null
+Where ord_dt > '12/12/2017 23:59:00'
+
+select * from #TempTbl
+order by DBName,Ord_no desc
+
+drop table #TempTbl
+ 
+  </SQL>
+  </Query>
+  
+  
 <Query>
   <QueryName>Admin List Views and contents in All Databases on Server </QueryName>  
   <DBServer>STL01APP</DBServer>
@@ -132,7 +180,9 @@ drop table #temp
   <DBServer>STL01APP</DBServer>
    <DataBase>KS_Object</DataBase>
       <SQL>
-   select * from out_email
+   select p.application,p.event,oe.*
+   from out_email oe inner join package p on p.id = oe.package_id
+   where oe.changed_user = 'DB'
   </SQL>
   </Query>
   
@@ -617,18 +667,44 @@ drop table #TempList
   
   
 <Query>
+    <QueryName>SolarWinds Alert History (DMC01QA)</QueryName>
+	<DBServer>DMC01QA</DBServer>
+	<DataBase>SolarWindsOrion</DataBase>
+    <SQL>
+     select n.SysName,A.* 
+     from  APM_AlertsData A inner join Nodes n on n.nodeid = a.nodeid
+	 where a.timestamp > dateadd(d,-30,getdate())
+  </SQL>
+  </Query>
+  
+
+<Query>
+    <QueryName>SolarWinds Alert History (STL01DB)</QueryName>
+	<DBServer>STL01DB</DBServer>
+	<DataBase>SolarWindsOrion</DataBase>
+    <SQL>
+     select n.SysName,A.* 
+     from  APM_AlertsData A inner join Nodes n on n.nodeid = a.nodeid
+     where a.timestamp > dateadd(d,-30,getdate())
+  </SQL>
+  </Query>
+
+  
+  
+<Query>
     <QueryName>SolarWinds Hardware Query (DMC01QA)</QueryName>
 	<DBServer>DMC01QA</DBServer>
 	<DataBase>SolarWindsOrion</DataBase>
     <SQL>
-SELECT 
+ SELECT 
 	  n.SysName,
 	  n.IP_Address,
        n.LastBoot,
        n.Caption,
        n.dns,
        n.Vendor,
-       --n.Description,
+       n.Description,
+	  N.ObjectSubType,
        n.MachineType,
        n.IOSVersion,
        n.IsServer,
@@ -647,27 +723,37 @@ SELECT
        n.CPULoad
 FROM nodes n WITH (nolock)
 --left join CPUMultiLoad c with (noLock) on c.NodeID = n.NodeID
-     WHERE ObjectSubType IN('Agent', 'WMI')
+     --WHERE ObjectSubType IN('Agent', 'WMI')
 order by SysName;
+  
   
   </SQL>
   </Query>
   
+<Query>
+    <QueryName>Admin List All Table Info</QueryName>
+	<SQL>
+  select *
+    from sys.tables
+  </SQL>
+  </Query>
 
+  
 
 <Query>
     <QueryName>SolarWinds Hardware Query (STL01DB)</QueryName>
 	<DBServer>STL01DB</DBServer>
 	<DataBase>SolarWindsOrion</DataBase>
     <SQL>
-  SELECT 
+ SELECT 
 	  n.SysName,
 	  n.IP_Address,
        n.LastBoot,
        n.Caption,
        n.dns,
        n.Vendor,
-       --n.Description,
+       n.Description,
+	  N.ObjectSubType,
        n.MachineType,
        n.IOSVersion,
        n.IsServer,
@@ -686,8 +772,9 @@ order by SysName;
        n.CPULoad
 FROM nodes n WITH (nolock)
 --left join CPUMultiLoad c with (noLock) on c.NodeID = n.NodeID
-     WHERE ObjectSubType IN('Agent', 'WMI')
+     --WHERE ObjectSubType IN('Agent', 'WMI')
 order by SysName;
+  
   
   </SQL>
   </Query>
@@ -1118,10 +1205,65 @@ FROM dbo.cicntp ctp
   </SQL>
 </Query>
 
+
+<Query>
+    <QueryName>Solarwinds New</QueryName>
+	<DBServer>STL01DB</DBServer>
+	<DataBase>SolarWindsOrion</DataBase>
+    <SQL>
+   Select a.ActionTypeID,a.Title,a.Description,a.Enabled,a.SortOrder,ap.*
+   From actions a inner join ActionsProperties ap on a.ActionID = ap.ActionID
+  </SQL>
+</Query>
+
+
+<Query>
+    <QueryName>Solarwinds New Auditing Events</QueryName>
+	<DBServer>STL01DB</DBServer>
+	<DataBase>SolarWindsOrion</DataBase>
+    <SQL>
+   Select * from AuditingEvents
+  </SQL>
+</Query>
+
+
+
+<Query>
+    <QueryName>Solarwinds New Alert Configurations</QueryName>
+	<DBServer>STL01DB</DBServer>
+	<DataBase>SolarWindsOrion</DataBase>
+    <SQL>
+   select * from AlertConfigurations
+  </SQL>
+</Query>
+
+
+<Query>
+    <QueryName>Solarwinds Old</QueryName>
+	<DBServer>DMC01QA</DBServer>
+	<DataBase>SolarWindsOrion</DataBase>
+    <SQL>
+   Select a.ActionTypeID,a.Title,a.Description,a.Enabled,a.SortOrder,ap.*
+   From actions a inner join ActionsProperties ap on a.ActionID = ap.ActionID
+  </SQL>
+</Query>
+
+
+
+
+ <Query>
+    <QueryName>Item Master set to Pull</QueryName>
+	<DBServer>STL01APP</DBServer>
+    <SQL>
+   Select *
+ from imitmidx_sql im
+ where forced_demand = 'P'
+ order by item_no
+ </SQL>
+</Query>
   
   <Query>
-  
-    <QueryName>Z UserControl</QueryName>
+      <QueryName>Z UserControl</QueryName>
 	<DBServer>STL01APP</DBServer>
     <SQL>
      Use [Z_UserControl]
@@ -1137,7 +1279,7 @@ FROM dbo.cicntp ctp
 	<DataBase>KS_Object</DataBase>
 	
     <SQL>
-    Use [KS_Object]
+     Use [KS_Object]
     Select 
     case when oc.location is null
     then
@@ -1150,7 +1292,8 @@ FROM dbo.cicntp ctp
     om.status EmailStatus,om.description,om.address,om.address_cc,om.address_bcc,
     a.filename,r.filespec,r.name,r.printfilename,
     oc.location,
-    orp.status RptStatus,orp.description,orp.printfilename,orp.dbparams
+    orp.status RptStatus,orp.description,orp.printfilename,orp.dbparams,
+    oa.runprogram,oa.runcommand
     from package p 
     left join attachment a on a.package_id = p.id
     left join report r on r.id = a.report_id
@@ -1158,6 +1301,7 @@ FROM dbo.cicntp ctp
     left join out_report orp on orp.package_id = p.id
     left join out_email om on om.package_id = p.id
     left join out_sql s on s.section_id = p.section_id
+    left join out_action oa on oa.package_id = p.id
     order by p.created_dt desc
    
    </SQL>
@@ -1259,19 +1403,6 @@ where Fullname like @FullName
 
 
 Use [215]
-
-Insert into #UserInfo
-select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
-hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
-hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
-hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
-from [humres] hr 
-left join pwruc uru on uru.res_id = hr.res_id
-left join pwrole pwr on pwr.role_id = uru.role_id
-where Fullname like @FullName
-
-
-Use [215_TEST]
 
 Insert into #UserInfo
 select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
@@ -1658,19 +1789,6 @@ left join pwrole pwr on pwr.role_id = uru.role_id
 where Fullname like @FullName
 
 
-Use [215_TEST]
-
-Insert into #UserInfo
-select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
-hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
-hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
-hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
-from [humres] hr 
-left join pwruc uru on uru.res_id = hr.res_id
-left join pwrole pwr on pwr.role_id = uru.role_id
-where Fullname like @FullName
-
-
 Use [240]
 
 Insert into #UserInfo
@@ -2043,19 +2161,6 @@ left join pwrole pwr on pwr.role_id = uru.role_id
 where Fullname like @FullName
 
 
-Use [215_TEST]
-
-Insert into #UserInfo
-select DB_Name() [DB],pwr.role_name,pwr.descr64,hr.syscreated,
-hr.fullname,hr.sur_name,hr.first_name,hr.mail,hr.job_title,
-hr.adres1,hr.adres2,hr.woonpl,hr.postcode,hr.telnr_prv,hr.faxnr,
-hr.usr_id,hr.job_level as [Sec Lev],hr.pur_limit,hr.VacancyStartDate,hr.blocked,BackOfficeBlocked,hr.Loc
-from [humres] hr 
-left join pwruc uru on uru.res_id = hr.res_id
-left join pwrole pwr on pwr.role_id = uru.role_id
-where Fullname like @FullName
-
-
 Use [240]
 
 Insert into #UserInfo
@@ -2321,8 +2426,8 @@ drop table #UserInfo
 
 <Query>
 	
-    <QueryName>Exact Customers Contacts </QueryName>
 	<DBServer>STL01APP</DBServer>
+    <QueryName>Exact Customers Contacts All Databases</QueryName>
     <SQL>
 
 Use [200]
@@ -2339,9 +2444,12 @@ SELECT Db_Name() as DB,'Customer' AS RecType,
 	  t.FullName [Contact Name],
 	  T.cnt_email [Contact Email],
 	  t.cnt_f_tel, 
-	  T.YesNoField1 as EmailInvoice 
+	  T.YesNoField1 as EmailInvoice ,
+	  h.usr_id as ContactModBy,
+	  t.sysmodified ContactModDate
 	  into #CustomerInfo
 FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+inner join humres h on t.sysmodifier = h.res_id
 	  
 
 Use [215]
@@ -2359,8 +2467,12 @@ SELECT Db_Name() as DB,'Customer' AS RecType,
 	  t.FullName [Contact Name],
 	  T.cnt_email [Contact Email],
 	  t.cnt_f_tel, 
-	  T.YesNoField1 as EmailInvoice 
+	  T.YesNoField1 as EmailInvoice ,
+	  h.usr_id as ContactModBy,
+	  t.sysmodified ContactModDate
 FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+inner join humres h on t.sysmodifier = h.res_id
+
 
 Use [270]
 Insert into #CustomerInfo
@@ -2377,8 +2489,11 @@ SELECT Db_Name() as DB,'Customer' AS RecType,
 	  t.FullName [Contact Name],
 	  T.cnt_email [Contact Email],
 	  t.cnt_f_tel, 
-	  T.YesNoField1 as EmailInvoice 
+	  T.YesNoField1 as EmailInvoice ,
+	  h.usr_id as ContactModBy,
+	  t.sysmodified ContactModDate
 FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+inner join humres h on t.sysmodifier = h.res_id
 
 Use [630]
 Insert into #CustomerInfo
@@ -2395,8 +2510,11 @@ SELECT Db_Name() as DB,'Customer' AS RecType,
 	  t.FullName [Contact Name],
 	  T.cnt_email [Contact Email],
 	  t.cnt_f_tel, 
-	  T.YesNoField1 as EmailInvoice 
+	  T.YesNoField1 as EmailInvoice ,
+	  h.usr_id as ContactModBy,
+	  t.sysmodified ContactModDate
 FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+inner join humres h on t.sysmodifier = h.res_id
 
 Use [680]
 Insert into #CustomerInfo
@@ -2413,14 +2531,44 @@ SELECT Db_Name() as DB,'Customer' AS RecType,
 	  t.FullName [Contact Name],
 	  T.cnt_email [Contact Email],
 	  t.cnt_f_tel, 
-	  T.YesNoField1 as EmailInvoice 
+T.YesNoField1 as EmailInvoice ,
+	  h.usr_id as ContactModBy,
+	  t.sysmodified ContactModDate
 FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+inner join humres h on t.sysmodifier = h.res_id
 
 Select * from #CustomerInfo
 
 drop table #CustomerInfo
 
+  </SQL>
+</Query>
 
+
+<Query>
+	<DBServer>STL01APP</DBServer>
+    <QueryName>Exact Customers Contacts One DB</QueryName>
+    <SQL>
+
+SELECT Db_Name() as DB,'Customer' AS RecType,
+       cmp_parent AS Parent,
+       cmp_code CompCode,
+       cmp_name CompName,
+       cmp_e_mail Email,
+	  c.cmp_tel,
+	  c.cmp_fadd1,
+	  c.cmp_fcity,
+	  c.cmp_fpc,
+	  c.cmp_status,
+	  t.FullName [Contact Name],
+	  T.cnt_email [Contact Email],
+	  t.cnt_f_tel, 
+	  T.YesNoField1 as EmailInvoice ,
+	  h.usr_id as ContactModBy,
+	  t.sysmodified ContactModDate
+FROM cicmpy c inner join cicntp t on t.cmp_wwn = c.cmp_wwn
+inner join humres h on t.sysmodifier = h.res_id
+	  
 
   </SQL>
 </Query>
@@ -2464,15 +2612,133 @@ order by poh.ord_dt desc
 </Query>
 
 <Query>
-	<QueryName>Exact Customer Parent / Child </QueryName>
+	<QueryName>Exact Customer / Vendor </QueryName>
+	<DBServer>STL01APP</DBServer>
+	 <SQL>
+SELECT c.cmp_type,
+       c.cmp_code,
+       c.cmp_name,
+       c2.cmp_code AS ParentCode,
+       c2.cmp_name AS ParentName,
+       c.InvoiceDebtor,
+	  c.cmp_fadd1,
+	  c.cmp_fadd2,
+	  c.cmp_fadd3,
+	  c.cmp_fcity,
+	  c.StateCode,
+	  c.cmp_fpc,
+	  c.cmp_tel,
+	  c.cmp_fax,
+	  c.cmp_status,
+	  c.PayeeName,
+	  c.textfield1,
+	  c.sysmodified,
+	  h.usr_id as ModifiedBy
+FROM cicmpy c
+      inner join humres h on h.res_id = c.sysmodifier
+     LEFT JOIN cicmpy c2 ON c2.cmp_wwn = c.cmp_parent	
+ORDER BY c.cmp_name;
+
+
+</SQL>
+</Query>
+
+
+
+
+<Query>
+	<QueryName>Event Manager AutoInvoice Check</QueryName>
 	<DBServer>STL01APP</DBServer>
 	 <SQL>
 
-select c.cmp_code,c.cmp_name 'Parent Company',c2.cmp_code,c2.cmp_name 'Child'
-from cicmpy c left join cicmpy c2 on c.cmp_wwn = c2.cmp_parent
-order by c.cmp_Name,c2.cmp_Name
+
+Declare @RunDt as datetime
+Declare @PostDt as dateTime
+
+Set @RunDt = CONVERT(varchar(10),getDate(),101)
+set @PostDt = dateadd(d,-7,@RunDt)
+
+
+/*
+
+Collect what invoices posted the night before
+
+*/
+
+use [200]
+
+select db_name() as DB,oh.hist_dt,oh.inv_no,oh.ord_no,oh.cus_no,oh.bill_to_no
+into #TempHst
+from oehdrhst_sql oh
+where hist_dt > @PostDt
+order by oh.inv_no
+
+use [270]
+insert into #TempHst
+select db_name() as DB,oh.hist_dt,oh.inv_no,oh.ord_no,oh.cus_no,oh.bill_to_no
+from oehdrhst_sql oh
+where hist_dt > @PostDt
+order by oh.inv_no
+
+use [630]
+insert into #TempHst
+select db_name() as DB,oh.hist_dt,oh.inv_no,oh.ord_no,oh.cus_no,oh.bill_to_no
+from oehdrhst_sql oh
+where hist_dt > @PostDt
+order by oh.inv_no
+
+use [680]
+insert into #TempHst
+select db_name() as DB,oh.hist_dt,oh.inv_no,oh.ord_no,oh.cus_no,oh.bill_to_no
+from oehdrhst_sql oh
+where hist_dt > @PostDt
+order by oh.inv_no
+
+
+ Use [KS_Object]
+    Select 
+    case when oc.location is null
+    then
+     'Email'
+    else
+     'Copy Report'
+    end as [Type],
+    p.created_dt,convert(varchar(10),p.created_dt,101) as RunDt,p.application,p.event,p.subject,p.message,
+    om.status EmailStatus,om.description,om.address,om.address_cc,om.address_bcc,a.filename,
+    case SUBSTRING(p.application,1,3)
+    When '680' then
+    SUBSTRING(a.filename,len(a.filename)-8,5)
+    else
+    SUBSTRING(a.filename,len(a.filename)-9,6)
+    end as Inv_No
+    into #EvtMgrHst
+    from package p 
+    left join attachment a on a.package_id = p.id
+    left join report r on r.id = a.report_id
+    left join out_copy oc on oc.package_id = p.id
+    left join out_report orp on orp.package_id = p.id
+    left join out_email om on om.package_id = p.id
+    left join out_sql s on s.section_id = p.section_id
+    where convert(varchar(10),p.created_dt,101) > dateadd(d,-7,@RunDt)
+    and p.event like 'Customer inv%'
+    order by p.created_dt desc
+
+    select * from #TempHst
+    where hist_dt &lt;  convert(varchar(10),getDate(),101) and 
+    ltrim(inv_no) not in 
+    (select distinct ltrim(Inv_No) from #EvtMgrHst)
+  
+  drop table #TempHST
+  drop table #EvtMgrHst
+
+
+
+
+
+
 </SQL>
 </Query>
+
 
 
 <Query>

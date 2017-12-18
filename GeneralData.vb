@@ -98,9 +98,9 @@ Public Class GeneralData
 
                 LabelHeader.Text = "DB " & Me.cmbCompany.Text & " " & cmbQuery.Text
             End If
-            If chkShowSQL.Checked Then
-                Me.txtSQL.Text = sSql
-            End If
+
+            Me.txtSQL.Text = sSql
+
             dt = GetDTfromSQL(sSql)
 
             DataGridView1.DataSource = dt
@@ -473,7 +473,7 @@ Public Class GeneralData
                                     sTemp += "[" & ctrllb(0).Text & "]" & getOperatorAndString(ctrltb(0).Text)
                                 End If
                             Else
-                                sTemp += " [" & ctrllb(0).Text & "] = " & ctrltb(0).Text
+                                sTemp += " [" & ctrllb(0).Text & "] = #" & ctrltb(0).Text & "#"
                             End If
                         End If
                     End If

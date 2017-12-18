@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2INQa8H+8KyZ83DGpgMJKfqoNPc=</dsig:DigestValue>
+        <dsig:DigestValue>SDSKd5NchymRqeTXKUNtAYQDIEw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,16 +78,16 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>GpS9v+0OT5dcMG2RjT/pD3E4NTo=</dsig:DigestValue>
+      <dsig:DigestValue>+SiJj/kR5wAbeXPXZyanEPiCKxE=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="bin\Debug\SQL.xml" size="78965">
+  <file name="bin\Debug\SQL.xml" size="88365">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>+4OmBfieBWsRwKY91zCrmOOejXs=</dsig:DigestValue>
+      <dsig:DigestValue>dbSUyg8aAmab9E9X2EFSnOKNvm8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="phone2.ico" size="203470">

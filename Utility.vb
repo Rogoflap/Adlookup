@@ -804,6 +804,7 @@ Module Utility
             findUser.PropertiesToLoad.Add("SAMAccountName")
             findUser.PropertiesToLoad.Add("Name")
             findUser.PropertiesToLoad.Add("distinguishedName")
+            findUser.PropertiesToLoad.Add("sn")
             findUser.PropertiesToLoad.Add("Title")        'showInAddressBook
             findUser.PropertiesToLoad.Add("uid")
             findUser.PropertiesToLoad.Add("givenname")
@@ -846,16 +847,18 @@ Module Utility
             dt = New DataTable("AD_Users")
 
             dt.Columns.Add(New DataColumn("Name", GetType(System.String)))          '0
-            dt.Columns.Add(New DataColumn("Telephone", GetType(System.String)))     '1
-            dt.Columns.Add(New DataColumn("Email", GetType(System.String)))         '2
-            dt.Columns.Add(New DataColumn("UserID", GetType(System.String)))        '3
-            dt.Columns.Add(New DataColumn("Title", GetType(System.String)))      '4
-            dt.Columns.Add(New DataColumn("StreetAddress", GetType(System.String))) '5
-            dt.Columns.Add(New DataColumn("LOC", GetType(System.String)))          '6
+            'dt.Columns.Add(New DataColumn("Name2", GetType(System.String)))          '1
+            'dt.Columns.Add(New DataColumn("Name3", GetType(System.String)))          '1
+            dt.Columns.Add(New DataColumn("Telephone", GetType(System.String)))     '2
+            dt.Columns.Add(New DataColumn("Email", GetType(System.String)))         '3
+            dt.Columns.Add(New DataColumn("UserID", GetType(System.String)))        '4
+            dt.Columns.Add(New DataColumn("Title", GetType(System.String)))      '5
+            dt.Columns.Add(New DataColumn("StreetAddress", GetType(System.String))) '6
+            dt.Columns.Add(New DataColumn("LOC", GetType(System.String)))          '7
             'dt.Columns.Add(New DataColumn("HomeDrive", GetType(System.String)))
-            dt.Columns.Add(New DataColumn("HomeDirectory", GetType(System.String))) '7
-            dt.Columns.Add(New DataColumn("Company", GetType(System.String)))       '8
-            dt.Columns.Add(New DataColumn("Manager", GetType(System.String)))           '9
+            dt.Columns.Add(New DataColumn("HomeDirectory", GetType(System.String))) '8
+            dt.Columns.Add(New DataColumn("Company", GetType(System.String)))       '9
+            dt.Columns.Add(New DataColumn("Manager", GetType(System.String)))           '10
 
             dt.Columns.Add(New DataColumn("Status", GetType(System.String))) '10
             dt.Columns.Add(New DataColumn("LastLogon", GetType(System.DateTime)))       '11
@@ -890,164 +893,176 @@ Module Utility
                         'If adResult.Properties("showInAddressBook").Count > 0 Then
                         dr = dt.NewRow()
 
-                        dr(0) = adResult.Properties("cn")(0).ToString()
+                        If adResult.Properties("displayName").Count > 0 Then
+                            dr("Name") = adResult.Properties("displayName")(0).ToString()
+                        End If
+
+                        'If adResult.Properties("sn").Count > 0 Then
+                        '    dr("Name2") = adResult.Properties("sn")(0).ToString()
+                        'End If
+
+                        'If adResult.Properties("distinguishedName").Count > 0 Then
+                        '    dr("Name3") = adResult.Properties("distinguishedName")(0).ToString()
+                        'End If
+
+
                         If adResult.Properties("telephoneNumber").Count > 0 Then
-                            dr(1) = adResult.Properties("telephoneNumber")(0).ToString()
+                            dr("Telephone") = adResult.Properties("telephoneNumber")(0).ToString()
                         End If
 
                         If adResult.Properties("mail").Count > 0 Then
-                            dr(2) = adResult.Properties("mail")(0).ToString()
+                            dr("Email") = adResult.Properties("mail")(0).ToString()
                         End If
 
-                        dr(3) = adResult.Properties("sAMAccountName")(0).ToString()
+                        dr("UserID") = adResult.Properties("sAMAccountName")(0).ToString()
 
 
                         If adResult.Properties("Title").Count > 0 Then
-                            dr(4) = adResult.Properties("Title")(0).ToString()
+                            dr("Title") = adResult.Properties("Title")(0).ToString()
                         End If
 
-                        If adResult.Properties("streetaddress").Count > 0 Then
-                            dr(5) = adResult.Properties("streetaddress")(0).ToString()
+                            If adResult.Properties("streetaddress").Count > 0 Then
+                            dr("StreetAddress") = adResult.Properties("streetaddress")(0).ToString()
                         End If
 
-                        If adResult.Properties("l").Count > 0 Then
-                            dr(5) += ", " & adResult.Properties("l")(0).ToString  'City
+                            If adResult.Properties("l").Count > 0 Then
+                            dr("StreetAddress") += ", " & adResult.Properties("l")(0).ToString  'City
                         End If
 
-                        If adResult.Properties("st").Count > 0 Then
-                            dr(5) += " " & adResult.Properties("st")(0).ToString()  'State
+                            If adResult.Properties("st").Count > 0 Then
+                            dr("StreetAddress") += " " & adResult.Properties("st")(0).ToString()  'State
                         End If
 
-                        If adResult.Properties("postalcode").Count > 0 Then
-                            dr(5) += " " & adResult.Properties("postalcode")(0).ToString()  'Zipcode
+                            If adResult.Properties("postalcode").Count > 0 Then
+                            dr("StreetAddress") += " " & adResult.Properties("postalcode")(0).ToString()  'Zipcode
                         End If
 
-                        If adResult.Properties("Physicaldeliveryofficename").Count > 0 Then
-                            dr(6) = adResult.Properties("Physicaldeliveryofficename")(0).ToString()
+                            If adResult.Properties("Physicaldeliveryofficename").Count > 0 Then
+                            dr("LOC") = adResult.Properties("Physicaldeliveryofficename")(0).ToString()
                         End If
 
-                        If adResult.Properties("homedirectory").Count > 0 Then
-                            dr(7) = adResult.Properties("homedirectory")(0).ToString()
+                            If adResult.Properties("homedirectory").Count > 0 Then
+                            dr("HomeDirectory") = adResult.Properties("homedirectory")(0).ToString()
                         End If
 
-                        'Get Location of User
+                            'Get Location of User
 
-                        If adResult.Properties("Company").Count > 0 Then
-                            dr(8) = adResult.Properties("Company")(0).ToString()
+                            If adResult.Properties("Company").Count > 0 Then
+                            dr("Company") = adResult.Properties("Company")(0).ToString()
                         End If
 
-                        If adResult.Properties("Manager").Count > 0 Then
-                            dr(9) = Mid(adResult.Properties("Manager")(0).ToString(), 4, (InStr(adResult.Properties("Manager")(0).ToString(), ",")) - 4)
+                            If adResult.Properties("Manager").Count > 0 Then
+                            dr("Manager") = Mid(adResult.Properties("Manager")(0).ToString(), 4, (InStr(adResult.Properties("Manager")(0).ToString(), ",")) - 4)
                         End If
 
-                        'dr(9) = getLocation(adResult.Properties("cn")(0).ToString())
-                        If adResult.Properties("UserAccountControl").Count > 0 Then
-                            Dim Iresult As Int64
-                            Dim sText As String
-                            Iresult = adResult.Properties("UserAccountControl")(0)
-                            Select Case Iresult
-                                Case 512
-                                    sText = "Enabled Account"
-                                Case 514
-                                    sText = "Disabled Account"
-                                Case 544
-                                    sText = "Enabled, Password Not Required"
-                                Case 546
-                                    sText = "Disabled, Password Not Required"
-                                Case 2080
-                                    sText = "Interdomain_trust_Account, Password Not Required"
-                                Case 66048
-                                    sText = "Enabled, Password Doesn't Expire"
-                                Case 66050
-                                    sText = "Disabled, Password Doesn't Expire"
-                                Case 66080
-                                    sText = "Enabled, Password Doesn't Expire & Not Required"
-                                Case 66082
-                                    sText = "Disabled, Password Doesn't Expire & Not Required"
-                                Case 262656
-                                    sText = "Enabled, Smartcard Required"
-                                Case 262658
-                                    sText = "Disabled, Smartcard Required"
-                                Case 262688
-                                    sText = "Enabled, Smartcard Required, Password Not Required"
-                                Case 262690
-                                    sText = "Disabled, Smartcard Required, Password Not Required"
-                                Case 328192
-                                    sText = "Enabled, Smartcard Required, Password Doesn't Expire"
-                                Case 328194
-                                    sText = "Disabled, Smartcard Required, Password Doesn't Expire"
-                                Case 328224
-                                    sText = "Enabled, Smartcard Required, Password Doesn't Expire & Not Required"
-                                Case 328226
-                                    sText = "Disabled, Smartcard Required, Password Doesn't Expire & Not Required"
-                                Case Else
-                                    sText = Iresult & ": N/A"
-                            End Select
-                            dr(10) = sText
+                            'dr(9) = getLocation(adResult.Properties("cn")(0).ToString())
+                            If adResult.Properties("UserAccountControl").Count > 0 Then
+                                Dim Iresult As Int64
+                                Dim sText As String
+                                Iresult = adResult.Properties("UserAccountControl")(0)
+                                Select Case Iresult
+                                    Case 512
+                                        sText = "Enabled Account"
+                                    Case 514
+                                        sText = "Disabled Account"
+                                    Case 544
+                                        sText = "Enabled, Password Not Required"
+                                    Case 546
+                                        sText = "Disabled, Password Not Required"
+                                    Case 2080
+                                        sText = "Interdomain_trust_Account, Password Not Required"
+                                    Case 66048
+                                        sText = "Enabled, Password Doesn't Expire"
+                            Case 66050
+                                        sText = "Disabled, Password Doesn't Expire"
+                                    Case 66080
+                                        sText = "Enabled, Password Doesn't Expire & Not Required"
+                                    Case 66082
+                                        sText = "Disabled, Password Doesn't Expire & Not Required"
+                                    Case 262656
+                                        sText = "Enabled, Smartcard Required"
+                                    Case 262658
+                                        sText = "Disabled, Smartcard Required"
+                                    Case 262688
+                                        sText = "Enabled, Smartcard Required, Password Not Required"
+                                    Case 262690
+                                        sText = "Disabled, Smartcard Required, Password Not Required"
+                                    Case 328192
+                                        sText = "Enabled, Smartcard Required, Password Doesn't Expire"
+                                    Case 328194
+                                        sText = "Disabled, Smartcard Required, Password Doesn't Expire"
+                                    Case 328224
+                                        sText = "Enabled, Smartcard Required, Password Doesn't Expire & Not Required"
+                                    Case 328226
+                                        sText = "Disabled, Smartcard Required, Password Doesn't Expire & Not Required"
+                                    Case Else
+                                        sText = Iresult & ": N/A"
+                                End Select
+                            dr("Status") = sText
                         End If
 
-                        Try
-                            If adResult.Properties("lastLogon").Count > 0 Then
-                                If adResult.Properties("lastLogon")(0) > 0 Then
-                                    dr(11) = Date.FromFileTime(adResult.Properties("lastLogon")(0))
+                            Try
+                                If adResult.Properties("lastLogon").Count > 0 Then
+                                    If adResult.Properties("lastLogon")(0) > 0 Then
+                                    dr("LastLogon") = Date.FromFileTime(adResult.Properties("lastLogon")(0))
                                 End If
-                            End If
-                        Catch
-                        End Try
-
-                        Try
-                            If adResult.Properties("pwdLastSet").Count > 0 Then
-                                If adResult.Properties("pwdLastSet")(0) > 0 Then
-                                    dr(12) = Date.FromFileTime(adResult.Properties("pwdLastSet")(0))
                                 End If
-                            End If
-                        Catch
-                        End Try
+                            Catch
+                            End Try
 
-                        Try
-                            If adResult.Properties("LockoutTime").Count > 0 Then
-                                If adResult.Properties("LockoutTime")(0) > 0 Then
-                                    dr(13) = Date.FromFileTime(adResult.Properties("LockoutTime")(0))
+                            Try
+                                If adResult.Properties("pwdLastSet").Count > 0 Then
+                                    If adResult.Properties("pwdLastSet")(0) > 0 Then
+                                    dr("pwdLastSet") = Date.FromFileTime(adResult.Properties("pwdLastSet")(0))
                                 End If
+                                End If
+                            Catch
+                            End Try
+
+                            Try
+                                If adResult.Properties("LockoutTime").Count > 0 Then
+                                    If adResult.Properties("LockoutTime")(0) > 0 Then
+                                    dr("LockOutTime") = Date.FromFileTime(adResult.Properties("LockoutTime")(0))
+                                End If
+                                End If
+                            Catch
+                            End Try
+
+
+                            Try
+                                If adResult.Properties("WhenCreated").Count > 0 Then
+                                dr("Created") = adResult.Properties("WhenCreated")(0)
                             End If
-                        Catch
-                        End Try
+                            Catch
+                            End Try
 
-
-                        Try
-                            If adResult.Properties("WhenCreated").Count > 0 Then
-                                dr(14) = adResult.Properties("WhenCreated")(0)
+                            Try
+                                If adResult.Properties("WhenChanged").Count > 0 Then
+                                dr("Changed") = adResult.Properties("WhenChanged")(0)
                             End If
-                        Catch
-                        End Try
+                            Catch
+                            End Try
 
-                        Try
-                            If adResult.Properties("WhenChanged").Count > 0 Then
-                                dr(15) = adResult.Properties("WhenChanged")(0)
-                            End If
-                        Catch
-                        End Try
-
-                        If AddMemberInfo Then
-                            If adResult.Properties("memberof").Count > 0 Then
-                                Dim sTemp As String = ""
-                                Dim i As Integer = 0
-                                For i = 0 To adResult.Properties("memberof").Count - 1
-                                    sTemp += GetGroupPath(adResult.Properties("memberof")(i).ToString())
-                                    sTemp += vbCrLf
-                                Next
-                                dr(16) = sTemp
+                            If AddMemberInfo Then
+                                If adResult.Properties("memberof").Count > 0 Then
+                                    Dim sTemp As String = ""
+                                    Dim i As Integer = 0
+                                    For i = 0 To adResult.Properties("memberof").Count - 1
+                                        sTemp += GetGroupPath(adResult.Properties("memberof")(i).ToString())
+                                        sTemp += vbCrLf
+                                    Next
+                                dr("MemberOf") = sTemp
                             End If
 
-                            If adResult.Properties("distinguishedName").Count > 0 Then
-                                dr(17) = GetOuPath(adResult.Properties("distinguishedName")(0).ToString())
+                                If adResult.Properties("distinguishedName").Count > 0 Then
+                                dr("OU") = GetOuPath(adResult.Properties("distinguishedName")(0).ToString())
                             End If
 
-                        End If 'ADMember
+                            End If 'ADMember
 
-                        dt.Rows.Add(dr)
+                            dt.Rows.Add(dr)
 
-                    End If 'Telephone Number isn't blank or Company isn't blank.
+                        End If 'Telephone Number isn't blank or Company isn't blank.
                     '  End If  'Disginguished Name isn't blank
                     'End If 
                     'End If
