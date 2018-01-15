@@ -400,4 +400,8 @@ Public Class UserGroupInfo
             DataGridView1.Columns(i).Width = iWidth
         Next
     End Sub
+
+    Private Sub ShowMemberOfInfoToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ShowMemberOfInfoToolStripMenuItem.Click
+
+    End Sub
 End Class

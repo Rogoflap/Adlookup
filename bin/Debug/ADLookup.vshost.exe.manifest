@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1695104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ADLookup.exe" size="1695616">
       <assemblyIdentity name="ADLookup" version="2.1.22.0" publicKeyToken="CF5C2E5BC3473B49" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>vsuo2BGovOk6iZMVRYROhHtd1Fc=</dsig:DigestValue>
+        <dsig:DigestValue>6wGGMSstP/84w5bkb866H2wYtLs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -78,7 +78,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>L5YSctoOpvuBT4oJlc56q37OgQs=</dsig:DigestValue>
+      <dsig:DigestValue>fL8p75jnHabsQT4yRlH3XI5uUF0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="bin\Debug\SQL.xml" size="88365">

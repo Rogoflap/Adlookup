@@ -1125,6 +1125,7 @@ Module Utility
             dt.Columns.Add(New DataColumn("Mail", GetType(System.String)))
             dt.Columns.Add(New DataColumn("Description", GetType(System.String)))
             dt.Columns.Add(New DataColumn("Created", GetType(System.DateTime)))
+            dt.Columns.Add(New DataColumn("Modified", GetType(System.DateTime)))
             dt.Columns.Add(New DataColumn("MemberOf", GetType(System.String)))
             dt.Columns.Add(New DataColumn("Members", GetType(System.String)))
             dt.Columns.Add(New DataColumn("ADSPath", GetType(System.String)))
@@ -1146,14 +1147,14 @@ Module Utility
                 iRow = iRow + 1
                 Try
                     If adResult.Properties("Name")(0).ToString.Length > 0 Then
-                        dr(0) = adResult.Properties("Name")(0).ToString()
+                        dr("Name") = adResult.Properties("Name")(0).ToString()
                     End If
                 Catch ex As Exception
                 End Try
 
                 Try
                     If adResult.Properties("Mail").Count > 0 Then
-                        dr(1) = adResult.Properties("Mail")(0).ToString()
+                        dr("Mail") = adResult.Properties("Mail")(0).ToString()
                     End If
                 Catch ex As Exception
                 End Try
@@ -1161,13 +1162,14 @@ Module Utility
 
                 Try
                     If adResult.Properties("Description")(0).ToString.Length > 0 Then
-                        dr(2) = adResult.Properties("Description")(0).ToString()
+                        dr("Description") = adResult.Properties("Description")(0).ToString()
                     End If
                 Catch ex As Exception
                 End Try
 
                 'If adResult.Properties("WhenCreated")(0).count > 0 Then
-                dr(3) = adResult.Properties("WhenCreated")(0).ToString
+                dr("Created") = adResult.Properties("WhenCreated")(0).ToString
+                dr("Modified") = adResult.Properties("Whenchanged")(0).ToString
                 'End If
 
                 Dim sTemp As String = ""
@@ -1178,10 +1180,10 @@ Module Utility
                             sTemp += GetCNfromString(adResult.Properties("memberof")(i).ToString())
                             sTemp += vbCrLf
                         Next
-                        dr(4) = sTemp
+                        dr("MemberOf") = sTemp
                     End If
                 Catch ex As Exception
-                    dr(4) = sTemp
+                    dr("MemberOf") = sTemp
                 End Try
                 Try
                     If adResult.Properties("Member").Count > 0 Then
@@ -1190,17 +1192,15 @@ Module Utility
                             sTemp += GetCNfromString(adResult.Properties("member")(i).ToString())
                             sTemp += vbCrLf
                         Next
-                        dr(5) = sTemp
+                        dr("Members") = sTemp
                     End If
                 Catch ex As Exception
-                    dr(5) = sTemp
+                    dr("Members") = sTemp
                 End Try
 
-
                 If adResult.Properties("adsPath").Count > 0 Then
-                    dr(6) = Mid(adResult.Properties("adsPath")(0).ToString(), 8)
+                    dr("ADSPath") = Mid(adResult.Properties("adsPath")(0).ToString(), 8)
                 End If
-
 
                 dt.Rows.Add(dr)
 
