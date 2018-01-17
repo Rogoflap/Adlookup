@@ -87,6 +87,9 @@ Partial Class GeneralData
         Me.AllRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectedRowsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyCtrlCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WithHeaderTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.WithOutHeaderTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -555,7 +558,7 @@ Partial Class GeneralData
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
+        Me.DataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -598,7 +601,7 @@ Partial Class GeneralData
         '
         Me.cmsUser.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintGridToolStripMenuItem1, Me.ExportGridToExcelToolStripMenuItem, Me.CopyCtrlCToolStripMenuItem})
         Me.cmsUser.Name = "ContextMenuStrip1"
-        Me.cmsUser.Size = New System.Drawing.Size(176, 70)
+        Me.cmsUser.Size = New System.Drawing.Size(176, 92)
         '
         'PrintGridToolStripMenuItem1
         '
@@ -640,9 +643,27 @@ Partial Class GeneralData
         '
         'CopyCtrlCToolStripMenuItem
         '
+        Me.CopyCtrlCToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WithHeaderTextToolStripMenuItem, Me.ToolStripMenuItem2, Me.WithOutHeaderTextToolStripMenuItem})
         Me.CopyCtrlCToolStripMenuItem.Name = "CopyCtrlCToolStripMenuItem"
         Me.CopyCtrlCToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.CopyCtrlCToolStripMenuItem.Text = "Copy - Ctrl + C"
+        '
+        'WithHeaderTextToolStripMenuItem
+        '
+        Me.WithHeaderTextToolStripMenuItem.Name = "WithHeaderTextToolStripMenuItem"
+        Me.WithHeaderTextToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.WithHeaderTextToolStripMenuItem.Text = "With Header Text"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(182, 6)
+        '
+        'WithOutHeaderTextToolStripMenuItem
+        '
+        Me.WithOutHeaderTextToolStripMenuItem.Name = "WithOutHeaderTextToolStripMenuItem"
+        Me.WithOutHeaderTextToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.WithOutHeaderTextToolStripMenuItem.Text = "WithOut Header Text"
         '
         'Button1
         '
@@ -747,4 +768,7 @@ Partial Class GeneralData
     Friend WithEvents Button1 As Button
     Friend WithEvents btnLoadCSV As Button
     Friend WithEvents btnPasteFromClip As Button
+    Friend WithEvents WithHeaderTextToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents WithOutHeaderTextToolStripMenuItem As ToolStripMenuItem
 End Class

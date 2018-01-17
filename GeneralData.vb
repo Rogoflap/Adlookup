@@ -510,10 +510,6 @@ Public Class GeneralData
         FillInCombo()
     End Sub
 
-    Private Sub CopyCtrlCToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyCtrlCToolStripMenuItem.Click
-        My.Computer.Keyboard.SendKeys("^{C}")
-    End Sub
-
     Private Sub AllRowsToolStripMenuItem1_Click_1(sender As Object, e As EventArgs) Handles AllRowsToolStripMenuItem1.Click
         Me.Cursor = Cursors.WaitCursor
         'ExportToExcel(dtf)
@@ -662,5 +658,16 @@ Public Class GeneralData
                 'cmbCompany.Items.Add(dr.GetString(1))
             Loop
         End If
+    End Sub
+
+
+    Private Sub WithHeaderTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WithHeaderTextToolStripMenuItem.Click
+        Me.DataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
+        My.Computer.Keyboard.SendKeys("^{C}")
+    End Sub
+
+    Private Sub WithOutHeaderTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WithOutHeaderTextToolStripMenuItem.Click
+        Me.DataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText
+        My.Computer.Keyboard.SendKeys("^{C}")
     End Sub
 End Class
