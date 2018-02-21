@@ -291,7 +291,7 @@ Public Class UserGroupInfo
     End Sub
 
     Private Sub ShowMemberOfInfoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ShowUserInfoSummaryToolStripMenuItem.Click
-        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.Rows(iRowSelected)
+        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.CurrentRow
         If dataGridViewRow1.Cells("Name").Value.ToString.Trim.Length > 0 Then
             ShowMembersOfGroup(dataGridViewRow1.Cells("Name").Value.ToString)
         End If
@@ -388,7 +388,7 @@ Public Class UserGroupInfo
                     iWidth = 425
                 Case "ADSPATH"
                     iWidth = 425
-                Case "CREATED"
+                Case "CREATED", "MODIFIED", "MAIL"
                     iWidth = 125
                 Case "MEMBEROF"
                     iWidth = 300
@@ -401,7 +401,4 @@ Public Class UserGroupInfo
         Next
     End Sub
 
-    Private Sub ShowMemberOfInfoToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ShowMemberOfInfoToolStripMenuItem.Click
-
-    End Sub
 End Class

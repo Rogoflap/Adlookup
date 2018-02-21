@@ -235,7 +235,6 @@ Module Utility
         Dim dt As DataTable
         Dim dr As DataRow
 
-
         Dim de As New DirectoryEntry(sLdap)
 
         Dim MemberSearcher As New DirectorySearcher
@@ -255,6 +254,7 @@ Module Utility
         dt = New DataTable("Members")
         dt.Columns.Add(New DataColumn("Name", GetType(System.String)))
         'dt.Columns.Add(New DataColumn("UserID", GetType(System.String)))
+        'dt.Columns.Add(New DataColumn("Mail", GetType(System.String)))
         'dt.Columns.Add(New DataColumn("LOC", GetType(System.String)))
         'dt.Columns.Add(New DataColumn("GroupName", GetType(System.String)))
         'dt.Columns.Add(New DataColumn("OU", GetType(System.String)))
@@ -269,7 +269,8 @@ Module Utility
 
         For Each User In mySearchResults.Properties("Member")
             dr = dt.NewRow
-            dr(0) = GetCNfromString(User)
+            dr("Name") = GetCNfromString(User)
+            '     dr("UserID") = User("UID")
             dt.Rows.Add(dr)
         Next
         Return dt

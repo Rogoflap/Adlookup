@@ -99,7 +99,7 @@ Partial Class UserInfo
         '
         Me.cmsUser.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintGridToolStripMenuItem1, Me.ShowUserInfoSummaryToolStripMenuItem, Me.ShowMemberOfInfoToolStripMenuItem, Me.ExportGridToExcelToolStripMenuItem, Me.CopyCtrlCToolStripMenuItem, Me.UnlockUserToolStripMenuItem})
         Me.cmsUser.Name = "ContextMenuStrip1"
-        Me.cmsUser.Size = New System.Drawing.Size(208, 136)
+        Me.cmsUser.Size = New System.Drawing.Size(208, 158)
         '
         'PrintGridToolStripMenuItem1
         '

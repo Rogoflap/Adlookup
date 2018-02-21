@@ -547,7 +547,7 @@ Public Class UserInfo
     End Sub
 
     Private Sub ResetPasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetPasswordToolStripMenuItem.Click
-        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.Rows(iRowSelected)
+        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.CurrentRow
         Dim sPassword As String
         If dataGridViewRow1.Cells("USERID").Value.ToString.Trim.Length > 0 Then
             sPassword = InputBox("New Password for :" & sUserSelected, "Reset Password for :" & sUserSelected, My.Settings.DefaultPassword)
@@ -560,9 +560,11 @@ Public Class UserInfo
     End Sub
 
     Private Sub UnlockPasswordToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnlockPasswordToolStripMenuItem.Click
-        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.Rows(iRowSelected)
+        Dim dataGridViewRow1 As DataGridViewRow = DataGridView1.CurrentRow
         If dataGridViewRow1.Cells("USERID").Value.ToString.Trim.Length > 0 Then
             MsgBox(AdUnlockUser(sUserSelected))
         End If
     End Sub
+
+
 End Class
