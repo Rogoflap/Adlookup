@@ -13,7 +13,6 @@ Imports Microsoft.Office.Interop
 Imports System.Threading
 Imports System.Xml
 
-
 Public Class GeneralData
 
     Dim iRowSelected As Integer
@@ -121,57 +120,9 @@ Public Class GeneralData
         End Try
 
     End Sub
-    Public Function GetSQLFromXML(SQueryName As String) As String
-        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
-        Dim queryname As String = ""
-        Dim sSqlOut As String = ""
-        For Each node As XmlNode In nodes
-            QueryName = node.SelectSingleNode("QueryName").InnerText
-            If queryname = SQueryName Then
-                sSqlOut = node.SelectSingleNode("SQL").InnerText
-                Exit For
-            End If
-        Next
-        Return sSqlOut
-
-    End Function
 
 
-    Public Function GetDataBaseFromXML(SQueryName As String) As String
-        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
-        Dim queryname As String = ""
-        Dim sDBOut As String = ""
-        Try
-            For Each node As XmlNode In nodes
-                queryname = node.SelectSingleNode("QueryName").InnerText
-                If queryname = SQueryName Then
-                    sDBOut = node.SelectSingleNode("DataBase").InnerText
-                    Exit For
-                End If
-            Next
-            Return sDBOut
-        Catch ex As Exception
-            Return sDBOut
-        End Try
-    End Function
-    Public Function GetDBServerFromXML(SQueryName As String) As String
-        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
-        Dim queryname As String = ""
-        Dim sDBServerOut As String = ""
-        Try
-            For Each node As XmlNode In nodes
-                queryname = node.SelectSingleNode("QueryName").InnerText
-                If queryname = SQueryName Then
-                    sDBServerOut = node.SelectSingleNode("DBServer").InnerText
-                    Exit For
-                End If
-            Next
-            Return sDBServerOut
-        Catch ex As Exception
-            Return sDBServerOut
-        End Try
 
-    End Function
 
 
     Public Sub FillInCombo()
@@ -443,6 +394,10 @@ Public Class GeneralData
         Next
 
     End Sub
+
+
+
+
     Public Sub FilterGrid()
         Dim sTemp As String
         Dim ctrltb() As Control
@@ -655,11 +610,9 @@ Public Class GeneralData
             cmbCompany.Items.Clear()
             Do While dr.Read
                 cmbCompany.Items.Add(dr.GetString(0))
-                'cmbCompany.Items.Add(dr.GetString(1))
             Loop
         End If
     End Sub
-
 
     Private Sub WithHeaderTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WithHeaderTextToolStripMenuItem.Click
         Me.DataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText
@@ -669,5 +622,16 @@ Public Class GeneralData
     Private Sub WithOutHeaderTextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WithOutHeaderTextToolStripMenuItem.Click
         Me.DataGridView1.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithoutHeaderText
         My.Computer.Keyboard.SendKeys("^{C}")
+    End Sub
+
+    Private Sub cmdEditQueries_Click(sender As System.Object, e As System.EventArgs) Handles cmdEditQueries.Click
+        Dim frmEditQueries As New SQLQueryEditor
+        frmEditQueries.ShowDialog()
+    End Sub
+
+    Private Sub ShowTextToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ShowTextToolStripMenuItem.Click
+        sPasteStr = Me.DataGridView1.SelectedCells(0).Value
+        Dim frmShowText As New ShowText
+        frmShowText.ShowDialog()
     End Sub
 End Class

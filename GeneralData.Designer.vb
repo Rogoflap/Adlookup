@@ -91,6 +91,8 @@ Partial Class GeneralData
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
         Me.WithOutHeaderTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.cmdEditQueries = New System.Windows.Forms.Button()
+        Me.ShowTextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,21 +111,21 @@ Partial Class GeneralData
         'tsslStatus
         '
         Me.tsslStatus.Name = "tsslStatus"
-        Me.tsslStatus.Size = New System.Drawing.Size(46, 17)
+        Me.tsslStatus.Size = New System.Drawing.Size(45, 17)
         Me.tsslStatus.Text = "Testing"
         Me.tsslStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'labelLastUpdate
         '
         Me.labelLastUpdate.Name = "labelLastUpdate"
-        Me.labelLastUpdate.Size = New System.Drawing.Size(121, 17)
+        Me.labelLastUpdate.Size = New System.Drawing.Size(120, 17)
         Me.labelLastUpdate.Text = "ToolStripStatusLabel1"
         '
         'cmbQuery
         '
         Me.cmbQuery.FormattingEnabled = True
         Me.cmbQuery.Items.AddRange(New Object() {"99999 Contacts", "BOL", "ConfirmShip", "Customer List", "DIFF QOH", "Dropship Order", "Exact Table List", "Exact Users - Roles", "Item Last Usage", "Late Order", "LOC QOH", "New Item Created", "Order Loc DropShip", "PO Cost VS Standard", "PO Email", "PO Request", "Price Code List", "Quarintine Inventory", "RMA", "Serial QOH", "Transit Transfer Approved", "Unique Ship Via Codes", "Vendor Sales Person", "WISYS Users"})
-        Me.cmbQuery.Location = New System.Drawing.Point(310, 21)
+        Me.cmbQuery.Location = New System.Drawing.Point(340, 21)
         Me.cmbQuery.Name = "cmbQuery"
         Me.cmbQuery.Size = New System.Drawing.Size(343, 21)
         Me.cmbQuery.Sorted = True
@@ -132,7 +134,7 @@ Partial Class GeneralData
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(307, 5)
+        Me.Label1.Location = New System.Drawing.Point(337, 5)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
         Me.Label1.TabIndex = 39
@@ -147,12 +149,12 @@ Partial Class GeneralData
         'cmbCompany
         '
         Me.cmbCompany.FormattingEnabled = True
-        Me.cmbCompany.Items.AddRange(New Object() {"100", "200", "200_TSR", "215", "215_TEST", "210", "250", "260", "270", "630", "640", "660", "680", "Data_WH_2", "ReportServer"})
-        Me.cmbCompany.Location = New System.Drawing.Point(97, 21)
+        Me.cmbCompany.Items.AddRange(New Object() {"ASB_PROD", "IT", "Production_ED", "ReportServer", "WMART"})
+        Me.cmbCompany.Location = New System.Drawing.Point(127, 21)
         Me.cmbCompany.Name = "cmbCompany"
-        Me.cmbCompany.Size = New System.Drawing.Size(86, 21)
+        Me.cmbCompany.Size = New System.Drawing.Size(97, 21)
         Me.cmbCompany.TabIndex = 41
-        Me.cmbCompany.Text = "200"
+        Me.cmbCompany.Text = "ASB_PROD"
         '
         'lbl1
         '
@@ -168,7 +170,7 @@ Partial Class GeneralData
         Me.LabelHeader.AutoSize = True
         Me.LabelHeader.BackColor = System.Drawing.Color.Transparent
         Me.LabelHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelHeader.Location = New System.Drawing.Point(832, 6)
+        Me.LabelHeader.Location = New System.Drawing.Point(869, 6)
         Me.LabelHeader.Name = "LabelHeader"
         Me.LabelHeader.Size = New System.Drawing.Size(176, 29)
         Me.LabelHeader.TabIndex = 43
@@ -176,7 +178,7 @@ Partial Class GeneralData
         '
         'BtnRefresh
         '
-        Me.BtnRefresh.Location = New System.Drawing.Point(664, 19)
+        Me.BtnRefresh.Location = New System.Drawing.Point(694, 19)
         Me.BtnRefresh.Name = "BtnRefresh"
         Me.BtnRefresh.Size = New System.Drawing.Size(75, 23)
         Me.BtnRefresh.TabIndex = 44
@@ -494,7 +496,7 @@ Partial Class GeneralData
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(94, 5)
+        Me.Label2.Location = New System.Drawing.Point(124, 5)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(22, 13)
         Me.Label2.TabIndex = 35
@@ -515,12 +517,12 @@ Partial Class GeneralData
         'cmbServer
         '
         Me.cmbServer.FormattingEnabled = True
-        Me.cmbServer.Items.AddRange(New Object() {"STL01APP", "STL01DB", "STLQADB", "DMC01QA"})
+        Me.cmbServer.Items.AddRange(New Object() {"FIRM-DB-LPROD", "FIRM-DB-LUAT", "FIRM-DB-LDEV"})
         Me.cmbServer.Location = New System.Drawing.Point(10, 21)
         Me.cmbServer.Name = "cmbServer"
-        Me.cmbServer.Size = New System.Drawing.Size(80, 21)
+        Me.cmbServer.Size = New System.Drawing.Size(112, 21)
         Me.cmbServer.TabIndex = 49
-        Me.cmbServer.Text = "STL01APP"
+        Me.cmbServer.Text = "FIRM-DB-LDEV"
         '
         'Label3
         '
@@ -533,7 +535,7 @@ Partial Class GeneralData
         '
         'cmbReloadCombo
         '
-        Me.cmbReloadCombo.Location = New System.Drawing.Point(198, 17)
+        Me.cmbReloadCombo.Location = New System.Drawing.Point(234, 17)
         Me.cmbReloadCombo.Name = "cmbReloadCombo"
         Me.cmbReloadCombo.Size = New System.Drawing.Size(90, 23)
         Me.cmbReloadCombo.TabIndex = 50
@@ -543,7 +545,7 @@ Partial Class GeneralData
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(961, 39)
+        Me.Label4.Location = New System.Drawing.Point(958, 36)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 13)
         Me.Label4.TabIndex = 51
@@ -599,9 +601,9 @@ Partial Class GeneralData
         '
         'cmsUser
         '
-        Me.cmsUser.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintGridToolStripMenuItem1, Me.ExportGridToExcelToolStripMenuItem, Me.CopyCtrlCToolStripMenuItem})
+        Me.cmsUser.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintGridToolStripMenuItem1, Me.ExportGridToExcelToolStripMenuItem, Me.CopyCtrlCToolStripMenuItem, Me.ShowTextToolStripMenuItem})
         Me.cmsUser.Name = "ContextMenuStrip1"
-        Me.cmsUser.Size = New System.Drawing.Size(176, 92)
+        Me.cmsUser.Size = New System.Drawing.Size(176, 114)
         '
         'PrintGridToolStripMenuItem1
         '
@@ -651,18 +653,18 @@ Partial Class GeneralData
         'WithHeaderTextToolStripMenuItem
         '
         Me.WithHeaderTextToolStripMenuItem.Name = "WithHeaderTextToolStripMenuItem"
-        Me.WithHeaderTextToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.WithHeaderTextToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.WithHeaderTextToolStripMenuItem.Text = "With Header Text"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(182, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(181, 6)
         '
         'WithOutHeaderTextToolStripMenuItem
         '
         Me.WithOutHeaderTextToolStripMenuItem.Name = "WithOutHeaderTextToolStripMenuItem"
-        Me.WithOutHeaderTextToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.WithOutHeaderTextToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.WithOutHeaderTextToolStripMenuItem.Text = "WithOut Header Text"
         '
         'Button1
@@ -675,11 +677,27 @@ Partial Class GeneralData
         Me.Button1.Text = "Get Email List"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'cmdEditQueries
+        '
+        Me.cmdEditQueries.Location = New System.Drawing.Point(791, 18)
+        Me.cmdEditQueries.Name = "cmdEditQueries"
+        Me.cmdEditQueries.Size = New System.Drawing.Size(75, 23)
+        Me.cmdEditQueries.TabIndex = 54
+        Me.cmdEditQueries.Text = "Edit Qry"
+        Me.cmdEditQueries.UseVisualStyleBackColor = True
+        '
+        'ShowTextToolStripMenuItem
+        '
+        Me.ShowTextToolStripMenuItem.Name = "ShowTextToolStripMenuItem"
+        Me.ShowTextToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.ShowTextToolStripMenuItem.Text = "Show Text"
+        '
         'GeneralData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1429, 726)
+        Me.Controls.Add(Me.cmdEditQueries)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Label4)
@@ -771,4 +789,6 @@ Partial Class GeneralData
     Friend WithEvents WithHeaderTextToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents WithOutHeaderTextToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cmdEditQueries As System.Windows.Forms.Button
+    Friend WithEvents ShowTextToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

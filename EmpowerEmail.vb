@@ -35,9 +35,9 @@ Public Class EmpowerEmail
         'tempInbox = tempApp.GetNamespace("Mapi").Folders("Empower@Accellacorp.com").Folders("Inbox").Folders(sSubFolder)
         'tempInbox = tempApp.GetNamespace("Mapi").GetDefaultFolder(Outlook.OlDefaultFolders.olFolderInbox)
         InboxItems = tempInbox.Items
-        Dim newMail As Object 'Outlook.MailItem
-        Dim oMail As Outlook.MailItem
-        Dim rptItem As Outlook.ReportItem
+        'Dim newMail As Object 'Outlook.MailItem
+        'Dim oMail As Outlook.MailItem
+        'Dim rptItem As Outlook.ReportItem
         Dim fldrs As Outlook.Folder
         cmbInboxFoders.Items.Add("Inbox")
         For Each fldrs In tempInbox.Folders

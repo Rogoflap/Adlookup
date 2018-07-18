@@ -261,14 +261,6 @@ Public Class MainParent
                 ShowSCCMReports()
             End If
 
-            If GetCurrentUserName().ToUpper = "RDAVIS" Then
-                EmpowerEmailButton.Visible = True
-                tsbExact.Visible = True
-            Else
-                EmpowerEmailButton.Visible = False
-                tsbExact.Visible = False
-            End If
-
             My.Settings.ComputerFormOpen = "N"
             My.Settings.UserFormOpen = "N"
             My.Settings.UserGroupOpen = "N"
@@ -350,7 +342,7 @@ Public Class MainParent
         ShowFormPrinterInfo()
     End Sub
 
-    Private Sub EmpowerEmailButton_Click(sender As Object, e As EventArgs) Handles EmpowerEmailButton.Click
+    Private Sub EmpowerEmailButton_Click(ByVal sender As Object, ByVal e As EventArgs)
         Me.Cursor = Cursors.WaitCursor
         Dim frm As New EmpowerEmail
         frm.MdiParent = Me

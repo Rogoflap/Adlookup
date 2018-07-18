@@ -276,7 +276,7 @@ Public Class Computershares
     End Sub
 
     Private Sub dgvReports_Mouseup(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles dgvReports.MouseUp
-        Dim i, j As Integer
+        Dim i As Integer
         i = dgvReports.CurrentRow.Index
         Dim col As DataGridViewColumn
         For Each col In dgvReports.Columns
@@ -327,7 +327,7 @@ Public Class Computershares
         dtShares.Columns.Add(New DataColumn("Drive", GetType(System.String)))
         dtShares.Columns.Add(New DataColumn("Share Folder", GetType(System.String)))
         dtShares.Columns.Add(New DataColumn("Status", GetType(System.String)))
-        Dim dr As DataRow
+
         Dim dgr As DataGridViewRow
         Dim iThCount As Integer = Process.GetCurrentProcess.Threads.Count()
         For Each dgr In dgv.Rows

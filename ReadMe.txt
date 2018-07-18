@@ -6,6 +6,9 @@ It also shows some Computer SCCM info if you, the user are in an SCCM Group.
 Don't hesitate to use the Send Suggestion (Bug, or New Idea etc) this will help make 
 the program better for everyone.
 
+Version 2.2.0
+Added ability to Edit / Add SQL Queries
+
 Version 2.1.21
 Added Operations to filter   
  <>  Not Equal

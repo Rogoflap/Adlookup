@@ -37,6 +37,8 @@ Module Utility
     Public dcUserIDFullname As Dictionary(Of String, String)
     Public sAdminUserName As String
     Public sAdminPassword As String
+    Dim xmlDoc As New XmlDocument()
+    Public sPasteStr As String = ""
 
     <DllImport("User32.dll")>
     Public Function RegisterHotKey(ByVal hwnd As IntPtr,
@@ -1141,7 +1143,7 @@ Module Utility
                 '    Debug.Print(prop.propertyname & " " & prop.value)
                 'Next
 
-                Dim sOu As String
+                'Dim sOu As String
                 Dim iRow As Integer = 0
 
                 dr = dt.NewRow()
@@ -1217,7 +1219,7 @@ Module Utility
     End Function
 
     Public Function GetCNfromString(sIn As String) As String
-        Dim ibeg As Integer
+        'Dim ibeg As Integer
         Dim iend As String
         Dim sTemp As String
         Dim sOut As String = ""
@@ -1474,6 +1476,94 @@ Module Utility
             'System.Diagnostics.Debug.WriteLine("Error   sending To answer midwest " & Now)
         End Try
     End Sub
+
+    Public Function GetMaxIDFromXML() As String
+        xmlDoc.Load(My.Application.Info.DirectoryPath & "\sql.xml")
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim sMaxID As Integer = 0
+        For Each node As XmlNode In nodes
+            If node.SelectSingleNode("ID").InnerText > sMaxID Then
+                sMaxID = node.SelectSingleNode("ID").InnerText
+            End If
+        Next
+        Return sMaxID
+    End Function
+
+
+    Public Function GetIDFromXML(SQueryName As String) As String
+
+        xmlDoc.Load(My.Application.Info.DirectoryPath & "\sql.xml")
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim queryname As String = ""
+        Dim sSqlOut As String = ""
+
+        For Each node As XmlNode In nodes
+            queryname = node.SelectSingleNode("QueryName").InnerText
+            If queryname = SQueryName Then
+                sSqlOut = node.SelectSingleNode("ID").InnerText
+                Exit For
+            End If
+        Next
+        Return sSqlOut
+
+    End Function
+
+    Public Function GetSQLFromXML(SQueryName As String) As String
+
+        xmlDoc.Load(My.Application.Info.DirectoryPath & "\sql.xml")
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim queryname As String = ""
+        Dim sSqlOut As String = ""
+
+        For Each node As XmlNode In nodes
+            queryname = node.SelectSingleNode("QueryName").InnerText
+            If queryname = SQueryName Then
+                sSqlOut = node.SelectSingleNode("SQL").InnerText
+                Exit For
+            End If
+        Next
+        Return sSqlOut
+
+    End Function
+    Public Function GetDataBaseFromXML(SQueryName As String) As String
+
+        xmlDoc.Load(My.Application.Info.DirectoryPath & "\sql.xml")
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim queryname As String = ""
+        Dim sDBOut As String = ""
+        Try
+            For Each node As XmlNode In nodes
+                queryname = node.SelectSingleNode("QueryName").InnerText
+                If queryname = SQueryName Then
+                    sDBOut = node.SelectSingleNode("DataBase").InnerText
+                    Exit For
+                End If
+            Next
+            Return sDBOut
+        Catch ex As Exception
+            Return sDBOut
+        End Try
+    End Function
+    Public Function GetDBServerFromXML(SQueryName As String) As String
+
+        xmlDoc.Load(My.Application.Info.DirectoryPath & "\sql.xml")
+        Dim nodes As XmlNodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Query")
+        Dim queryname As String = ""
+        Dim sDBServerOut As String = ""
+        Try
+            For Each node As XmlNode In nodes
+                queryname = node.SelectSingleNode("QueryName").InnerText
+                If queryname = SQueryName Then
+                    sDBServerOut = node.SelectSingleNode("DBServer").InnerText
+                    Exit For
+                End If
+            Next
+            Return sDBServerOut
+        Catch ex As Exception
+            Return sDBServerOut
+        End Try
+
+    End Function
 
     Public Function Ping(sComputerName As String) As String
         Dim sOut As String = ""
@@ -2001,8 +2091,8 @@ Module Utility
 
     Public Function GetAttachment(sEmailID As String) As String
         Dim tempApp As Outlook.Application
-        Dim tempInbox As Outlook.MAPIFolder
-        Dim InboxItems As Outlook.Items
+        'Dim tempInbox As Outlook.MAPIFolder
+        'Dim InboxItems As Outlook.Items
         Dim dt As New DataTable
         Dim sFileName As String = ""
 

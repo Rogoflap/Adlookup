@@ -54,4 +54,8 @@ Public Class EditXML
         End If
 
     End Sub
+
+    Private Sub btnSaveXML_Click(sender As System.Object, e As System.EventArgs) Handles btnSaveXML.Click
+
+    End Sub
 End Class
